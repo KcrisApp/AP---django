@@ -65,10 +65,10 @@ class Test(TimeStampedModel):
     status = models.BooleanField(default=False, null=True)
     # create_new = models.BooleanField(default=False)
    
-    order = models.OneToOneField(Order,on_delete= models.CASCADE, related_name="order_smd")
+    order = models.OneToOneField(Order,on_delete= models.CASCADE, related_name="order_test")
 
     def __str__(self):
-        return "%s %s" % (self.order, self.test_date_create)
+        return self.order.order_number
     
     class Meta:
 

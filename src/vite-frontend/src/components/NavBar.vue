@@ -19,7 +19,7 @@
                           </svg>
                           <RouterLink to="/" class="text-sm ml-2">Dashboard</RouterLink>
                       </div>
-                      <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">5</div>
+                      <!-- <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">5</div> -->
                   </li>
                   <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
                       <div class="flex items-center">
@@ -30,7 +30,7 @@
                           <RouterLink to="/ordini" class="text-sm ml-2">Ordini</RouterLink>
                       
                       </div>
-                      <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">8</div>
+                      <!-- <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">8</div> -->
                   </li>
                   <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
                       <div class="flex items-center">

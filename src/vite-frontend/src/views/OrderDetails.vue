@@ -43,7 +43,7 @@
           </div>
   
           <hr class="my-2" />
-          <div class="flex bg-slate-100 p-4 gap-3
+          <div class="flex bg-slate-100 p-4 h-32 gap-10
           flex-wrap">
             <div class="flex-none">
               <qrcode-vue class="my-2" :value="o.order_number" size="60" level="H" />

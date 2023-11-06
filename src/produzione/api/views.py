@@ -69,10 +69,12 @@ class BoardImgUpdate(generics.UpdateAPIView):
 class TestListAPIView(generics.ListAPIView):
     queryset = Test.objects.all()
     serializer_class = TestSerializer
+    lookup_field = "uuid"
 
 class TestDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Test.objects.all()
     serializer_class = TestSerializer
+    lookup_field = "uuid"
 
 # class TestCreateAPIView(generics.CreateAPIView):
 #     queryset = Test.objects.all()
@@ -94,17 +96,19 @@ class VerifyListAPIView(generics.ListAPIView):
 
     queryset = Verify.objects.all()
     serializer_class = VerifySerializer
-
+    lookup_field = "uuid"
 
 class VerifyDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Verify.objects.all()
     serializer_class = VerifySerializer
+    lookup_field = "uuid"
 
 class VerifyCreateAPIView(generics.CreateAPIView):
 
     queryset = Verify.objects.all()
     serializer_class = VerifySerializer
+    lookup_field = "uuid"
 
     def perform_create(self, serializer):
         order_pk = self.kwargs.get("order_pk")
@@ -120,16 +124,19 @@ class SmtListAPIView(generics.ListAPIView):
 
     queryset = Smt.objects.all()
     serializer_class = SmtSerializer
+    lookup_field = "uuid"
 
 class SmtDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Smt.objects.all()
     serializer_class = SmtSerializer
+    lookup_field = "uuid"
 
 class SmtCreateAPIView(generics.CreateAPIView):
 
     queryset = Smt.objects.all()
     serializer_class = SmtSerializer
+    lookup_field = "uuid"
 
     def perform_create(self, serializer):
 

@@ -2,11 +2,16 @@ from rest_framework import serializers
 from produzione.models import Board, Order, Test, Verify, Smt
 
 
+
 class OrderSerializer(serializers.ModelSerializer):
 
     created_at = serializers.SerializerMethodField()
     board_name= serializers.SerializerMethodField()
     customer= serializers.SerializerMethodField()
+    order_verify = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
+    order_smt = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
+    order_test = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
+    order_shipping = serializers.SlugRelatedField(many=True, read_only=True, slug_field="uuid")
 
 
     class Meta:
@@ -34,14 +39,13 @@ class BoardSerializer(serializers.ModelSerializer):
         model = Board
         exclude = ["updated_at"]
 
+
 class TestSerializer(serializers.ModelSerializer):
     
-    order =  OrderSerializer(read_only=True)
 
     class Meta:
         model = Test
-        exclude = ["updated_at"]
-        
+        exclude = ["updated_at"]   
 
 class VerifySerializer(serializers.ModelSerializer):
     

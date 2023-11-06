@@ -38,7 +38,7 @@ urlpatterns = [
          TestListAPIView.as_view(),
          name="test-list"),
 
-     path("test/<int:pk>/", 
+     path("test/<uuid:uuid>/", 
           TestDetailAPIView.as_view(),
           name="test-details"),
 
