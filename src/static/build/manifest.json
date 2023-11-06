@@ -1,0 +1,93 @@
+{
+  "_BoardForm-5f361ad1.js": {
+    "file": "assets/BoardForm-5f361ad1.js",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "_OrderForm-c6b31a3d.js": {
+    "file": "assets/OrderForm-c6b31a3d.js",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "index.css": {
+    "file": "assets/index-d59511c5.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "css": [
+      "assets/index-d59511c5.css"
+    ],
+    "dynamicImports": [
+      "src/views/Ordini.vue",
+      "src/views/Tools.vue",
+      "src/views/Boards.vue",
+      "src/views/BoardDetails.vue",
+      "src/views/OrderDetails.vue",
+      "src/views/NotFound.vue"
+    ],
+    "file": "assets/index-dcd3e5f1.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "src/views/BoardDetails.vue": {
+    "file": "assets/BoardDetails-1c510d7a.js",
+    "imports": [
+      "index.html",
+      "_OrderForm-c6b31a3d.js",
+      "_BoardForm-5f361ad1.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/BoardDetails.vue"
+  },
+  "src/views/Boards.vue": {
+    "file": "assets/Boards-a670488b.js",
+    "imports": [
+      "index.html",
+      "_BoardForm-5f361ad1.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/Boards.vue"
+  },
+  "src/views/NotFound.css": {
+    "file": "assets/NotFound-1d5089cf.css",
+    "src": "src/views/NotFound.css"
+  },
+  "src/views/NotFound.vue": {
+    "css": [
+      "assets/NotFound-1d5089cf.css"
+    ],
+    "file": "assets/NotFound-c50ef4e7.js",
+    "imports": [
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/NotFound.vue"
+  },
+  "src/views/OrderDetails.vue": {
+    "file": "assets/OrderDetails-d498ff70.js",
+    "imports": [
+      "index.html",
+      "_OrderForm-c6b31a3d.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/OrderDetails.vue"
+  },
+  "src/views/Ordini.vue": {
+    "file": "assets/Ordini-d065f99d.js",
+    "imports": [
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/Ordini.vue"
+  },
+  "src/views/Tools.vue": {
+    "file": "assets/Tools-37f7600a.js",
+    "imports": [
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/Tools.vue"
+  }
+}

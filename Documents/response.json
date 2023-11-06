@@ -1,0 +1,57 @@
+{
+  "created_at": "20 July 2023",
+  "uuid": "cf1b371d-ff32-4cd7-934c-6cb7f1b4aa8f",
+  "order_number": "123",
+  "order_quantity": 55,
+  "order_process_note": "aaaa",
+  "order_serialnumber": "asdsd",
+  "board": 1
+}
+
+
+// Board
+[
+  {
+      "order": [
+          {
+              "created_at": "20 July 2023",
+              "uuid": "4fb7b4c6-e1a1-49c5-a8f7-915bba164b82",
+              "order_number": "1",
+              "order_quantity": 12,
+              "order_process_note": "122",
+              "order_serialnumber": "ffff",
+              "board": 1
+          },
+          {
+              "created_at": "20 July 2023",
+              "board_name": "14229-01",
+              "customer": "Arca cts",
+              "uuid": "cf1b371d-ff32-4cd7-934c-6cb7f1b4aa8f",
+              "order_number": "123",
+              "order_quantity": 55,
+              "order_process_note": "aaaa",
+              "order_serialnumber": "asdsd",
+              "board": 1
+          }
+      ],
+      "created_at": "2023-07-20",
+      "uuid": "9814ca5e-bfa2-449a-95b3-252495ca2c99",
+      "customer": "Arca cts",
+      "board_name": "14229-01",
+      "board_code": "142356",
+      "board_rev": "01",
+      "board_img": null,
+      "board_file": null
+  },
+  {
+      "order": [],
+      "created_at": "2023-10-20",
+      "uuid": "ace1c1e9-901a-4832-a56e-fd8df4347cfe",
+      "customer": "Arca cts",
+      "board_name": "14326-02",
+      "board_code": "aaaaa",
+      "board_rev": "03",
+      "board_img": null,
+      "board_file": null
+  }
+]
