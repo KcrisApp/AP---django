@@ -132,18 +132,18 @@ class SmtDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SmtSerializer
     lookup_field = "uuid"
 
-class SmtCreateAPIView(generics.CreateAPIView):
+# class SmtCreateAPIView(generics.CreateAPIView):
 
-    queryset = Smt.objects.all()
-    serializer_class = SmtSerializer
-    lookup_field = "uuid"
+#     queryset = Smt.objects.all()
+#     serializer_class = SmtSerializer
+#     lookup_field = "uuid"
 
-    def perform_create(self, serializer):
+#     def perform_create(self, serializer):
 
-        order_pk = self.kwargs.get("order_pk")
-        print(order_pk)
-        order = get_object_or_404(Order, pk = order_pk)
-        serializer.save(order = order)
+#         order_pk = self.kwargs.get("order_pk")
+#         print(order_pk)
+#         order = get_object_or_404(Order, pk = order_pk)
+#         serializer.save(order = order)
 
 # *************************************************************
 

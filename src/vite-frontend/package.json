@@ -13,6 +13,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.5.1",
     "oh-vue-icons": "^1.0.0-rc3",
+    "pinia": "^2.1.7",
     "qrcode.vue": "^3.4.1",
     "vue": "^3.3.4",
     "vue-qrcode-component": "^2.1.1",

@@ -44,7 +44,7 @@
   
           <hr class="my-2" />
           <div class="flex bg-slate-100 p-4 h-32 gap-10
-          flex-wrap">
+          flex-wrap rounded-md">
             <div class="flex-none">
               <qrcode-vue class="my-2" :value="o.order_number" size="60" level="H" />
             </div>
@@ -61,7 +61,7 @@
                    
                 </div>
             </div>
-            <div class="bg-gray-100 my-2 p-4">
+            <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
               <p><b>Note di processo:</b></p>
               <hr class="my-1">
               <p>{{ o.order_process_note }}</p>
@@ -76,19 +76,19 @@
         
             <div class="flex gap-2 mt-4 ">
               <router-link
-                  :to="{ name: 'board-details', params: { uuid: o.uuid } }"
+                  :to="{ name: 'smt-details', params: { smt_number: o.order_smt } }"
                   class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
                 >
                 SMT
                 </router-link>
                 <router-link
-                  :to="{ name: 'board-details', params: { uuid: o.uuid } }"
+                  :to="{ name: 'verify-details', params: { verify_number: o.order_verify } }"
                   class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
                 >
                 Verifica
                 </router-link>
                 <router-link
-                  :to="{ name: 'board-details', params: { uuid: o.uuid } }"
+                  :to="{ name: 'test-details', params: { test_number: o.order_test } }"
                   class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
                 >
                 Collaudi
@@ -97,8 +97,9 @@
                   :to="{ name: 'board-details', params: { uuid: o.uuid } }"
                   class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
                 >
-                Spedizione
+                Spedizioni
                 </router-link>
+               
             </div>
         </div>
       </div>

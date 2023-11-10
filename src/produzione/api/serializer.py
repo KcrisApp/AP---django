@@ -42,26 +42,36 @@ class BoardSerializer(serializers.ModelSerializer):
 
 class TestSerializer(serializers.ModelSerializer):
     
+    order_number = serializers.SerializerMethodField()
 
     class Meta:
         model = Test
         exclude = ["updated_at"]   
+    
+    def get_order_number (self, instance):
+        return instance.order.order_number
 
 class VerifySerializer(serializers.ModelSerializer):
     
-    order =  OrderSerializer(read_only=True)
-    
+    order_number = serializers.SerializerMethodField()
+
     class Meta:
         model = Verify
         exclude = ["id", "updated_at"]
+    
+    def get_order_number (self, instance):
+        return instance.order.order_number
 
 class SmtSerializer(serializers.ModelSerializer):
 
-    order =  OrderSerializer(read_only=True)
+    order_number = serializers.SerializerMethodField()
 
     class Meta:
         model = Smt
         exclude = ["id", "updated_at"]
+    
+    def get_order_number (self, instance):
+        return instance.order.order_number
 
 class BoardImagesSerializer(serializers.ModelSerializer):
 

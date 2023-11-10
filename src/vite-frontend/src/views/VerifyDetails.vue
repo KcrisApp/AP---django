@@ -9,20 +9,20 @@
             <h1 class="text-2xl">
               <font-awesome-icon icon="laptop-code" class="text-blue-950" />
 
-              Collauo: {{ tests.order_number }}
+              Collauo: {{ verify.order_number }}
             </h1>
-            <p class="mt-2">Data: {{ tests.created_at }}</p>
+            <p class="mt-2">Data: {{ verify.created_at }}</p>
           </div>
 
           <div class="flex gap-2">
             <button
-              class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
+              class="hover:bg-amber-400 max-h-8 text-blue-950 font-semibold hover:text-white  px-4 border hover:border-none text-sm border-blue-950 rounded"
               @click="togleForm"
             >
               Aggiorna
             </button>
             <button
-              class="hover:bg-red-900 max-h-8 text-sm bg-red-600 text-white font-semibold py-1 px-4 rounded"
+              class="hover:bg-red-900 max-h-8 bg-red-600 text-white font-semibold  px-4 rounded text-sm"
               @click="togleAlert"
             >
               Elimina
@@ -35,24 +35,17 @@
           <h1 class="text-md font-semibold">Status:</h1>
           <h1 class="text-md">
             <span
-              v-if="tests.status"
+              v-if="verify.status"
               class="text-white bg-green-700 p-1 px-2 rounded-md"
               >COMPLETATO</span
             >
-            <span v-else class="text-white bg-red-700 p-1 px-2 rounded-md"
+            <span v-else class="text-white bg-yellow-400 p-1 px-2 rounded-md"
               >DA COMPLETARE</span
             >
           </h1>
         </div>
-        <hr class="my-2" />
-        <div class="flex flex-wrap justify-center mt-5">
-          <CardCheck :status="tests.ict" text="ICT" />
-          <CardCheck :status="tests.aoi" text="AOI" />
-          <CardCheck :status="tests.xray" text="X-Ray" />
-          <CardCheck :status="tests.functional" text="Funzionale" />
-        </div>
+        <hr class="my-4" />
 
-        <TestForm />
         <!-- <div class="flex bg-slate-50 p-4 gap-4">
             <div class="col">
     
@@ -86,27 +79,24 @@
             <p class="bg-s-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-slate-300 dark:text-blue-300">Numero ordini: {{ orderCount }}</p> 
         
           </div> -->
+
         <div class="mt-4 bg-gray-100 p-4 rounded-md">
-          <h4 class="text-blue-800 text-sn font-semibold">Non conformita:</h4>
+          <h4 class="text-blue-800 text-sm font-semibold">Modifiche dopo collaudo:</h4>
           <hr class="my-1" />
-          <p>{{ tests.non_compliance }}</p>
+          <p class="text-sm">{{ verify.changes_after_testing }}</p>
         </div>
+
         <div class="mt-4 bg-gray-100 p-4 rounded-md">
           <h4 class="text-blue-800 text-sm font-semibold">
             Componenti mancanti:
           </h4>
           <hr class="my-1" />
-          <p>{{ tests.missing_component }}</p>
+          <p class="text-sm">{{ verify.missing_component }}</p>
         </div>
         <div class="mt-4 bg-gray-100 p-4 rounded-md">
-          <h4 class="text-blue-800 text-sm font-semibold">Note:</h4>
+          <h4 class="text-blue-800 text-sm font-semibold">Lavorazioni manuali:</h4>
           <hr class="my-1" />
-          <p>{{ tests.note }}</p>
-        </div>
-        <div class="mt-4 bg-gray-100 p-4 rounded-md">
-          <h4 class="text-blue-800 text-sm font-semibold">Serial number:</h4>
-          <hr class="my-1" />
-          <p>{{ tests.serialnumber }}</p>
+          <p class="text-sm">{{ verify.manual_work }}</p>
         </div>
 
         <!-- <table class="text-left text-sm font-light flex-wrap w-full">
@@ -162,56 +152,68 @@ import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import Alert from "../components/Alert.vue";
-import TestForm from "../components/TestForm.vue";
+import OrderForm from "../components/OrderForm.vue";
 import BoardForm from "../components/BoardForm.vue";
 import ModalImg from "../components/ModalImg.vue";
 import CardCheck from "../components/CardCheck.vue";
 import { useRouter, useRoute } from "vue-router";
 
-const tests = ref("");
+const verify = ref("");
 
 const showAlert = ref(false);
 const showModal = ref(false);
 const showForm = ref(false);
-
+const showFormImg = ref(false);
 
 const router = useRouter();
 const route = useRoute();
 
 const props = defineProps({
-  test_number: String,
+  verify_number: String,
 });
 
-
 async function callApi() {
-  const endpoint = `${endpoints["testCRUD"]}${props.test_number}/`;
+  const endpoint = `${endpoints["verifyCRUD"]}${props.verify_number}/`;
 
   try {
     const response = await axios.get(endpoint);
 
-    tests.value = response.data;
+    verify.value = response.data;
     console.log(response.data);
   } catch (error) {
     alert(error);
   }
 }
 
+async function deleteBoard(uuid) {
+  let endpoint = `${endpoints["boardsCRUD"]}${uuid}/`;
 
+  try {
+    const response = await axios.delete(endpoint);
+    togleAlert();
+    router.push({ name: "boards" });
+  } catch (error) {
+    alert(error);
+  }
+}
 
-function updateTest(value) {
-  togleTestForm();
+function updateOrder(value) {
+  togleModal();
   order.value.unshift(value);
 }
 
 function updateBoard(value) {
-  togleTestForm();
+  togleForm();
   console.log(value);
   board.value[0].board_code = value.board_code;
   board.value[0].board_name = value.board_name;
   board.value[0].board_rev = value.board_rev;
   board.value[0].customer = value.customer;
 }
-
+function imgUpdate(value) {
+  togleImgForm();
+  board.value[0].board_img = value.board_img;
+}
 
 function togleAlert() {
   showAlert.value = !showAlert.value;
@@ -220,7 +222,7 @@ function togleModal() {
   showModal.value = !showModal.value;
 }
 
-function togleTestForm() {
+function togleForm() {
   showForm.value = !showForm.value;
 }
 function togleImgForm() {

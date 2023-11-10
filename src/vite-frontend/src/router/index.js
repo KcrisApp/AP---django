@@ -47,11 +47,29 @@ const router = createRouter({
     },
     {
       path: "/test/:test_number",
-      name: "order-details",
+      name: "test-details",
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/TestDetails.vue"),
+      props: true,
+    },
+    {
+      path: "/smt/:smt_number",
+      name: "smt-details",
+      // route level code-splitting
+      // this generates a separate chunk (QuestionView.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/SmtDetails.vue"),
+      props: true,
+    },
+    {
+      path: "/verify/:verify_number",
+      name: "verify-details",
+      // route level code-splitting
+      // this generates a separate chunk (QuestionView.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/VerifyDetails.vue"),
       props: true,
     },
     {

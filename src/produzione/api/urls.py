@@ -1,6 +1,6 @@
 from django.urls import path, include
 # from produzione.api.views import OrderViewset,BoardViewSet, BoardListCreateAPIView, BoardDetailAPIView, OrderCreateAPIView, OrderDetailAPIView, OrderListAPIView, SmtCreateAPIView, SmtDetailAPIView, SmtListAPIView, TestCreateAPIView, TestDetailAPIView, TestListAPIView, VerifyCreateAPIView, VerifyDetailAPIView, VerifyListAPIView
-from produzione.api.views import BoardImgUpdate, OrderViewset,BoardViewSet, TestListAPIView, TestDetailAPIView
+from produzione.api.views import BoardImgUpdate, OrderViewset,BoardViewSet, TestListAPIView, TestDetailAPIView, SmtDetailAPIView, SmtListAPIView, VerifyDetailAPIView, VerifyListAPIView
 
 from rest_framework.routers import DefaultRouter
 
@@ -46,25 +46,25 @@ urlpatterns = [
      #      TestCreateAPIView.as_view(),
      #      name="test-create"),
 
-     # path("verify/",
-     #      VerifyListAPIView.as_view(),
-     #      name="verify-list"),
+     path("verify/",
+          VerifyListAPIView.as_view(),
+          name="verify-list"),
 
-     # path("verify/<int:pk>/",
-     #      VerifyDetailAPIView.as_view(),
-     #      name="verify-details"),
+     path("verify/<uuid:uuid>/",
+          VerifyDetailAPIView.as_view(),
+          name="verify-details"),
 
      # path("order/<int:order_pk>/verify", 
      #      VerifyCreateAPIView.as_view(), 
      #      name="verify-create"),
 
-     # path("smt/",
-     #      SmtListAPIView.as_view(),
-     #      name="smt-list"),
+     path("smt/",
+          SmtListAPIView.as_view(),
+          name="smt-list"),
 
-     # path("smt/<int:pk/",
-     #      SmtDetailAPIView.as_view(),
-     #      name="smt-details"),
+     path("smt/<uuid:uuid>/",
+          SmtDetailAPIView.as_view(),
+          name="smt-details"),
 
      # path("order/<int:order_pk>/smt", 
      #      SmtCreateAPIView.as_view(), 
