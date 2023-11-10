@@ -17,7 +17,7 @@
           <div class="flex gap-2">
             <button
               class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
-              @click="togleForm"
+              @click="togleTestForm"
             >
               Aggiorna
             </button>
@@ -52,7 +52,7 @@
           <CardCheck :status="tests.functional" text="Funzionale" />
         </div>
 
-        <TestForm />
+        <TestForm v-show="showForm" @close-modal="togleTestForm"/>
         <!-- <div class="flex bg-slate-50 p-4 gap-4">
             <div class="col">
     

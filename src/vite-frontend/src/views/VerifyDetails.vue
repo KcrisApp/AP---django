@@ -7,11 +7,12 @@
         <div class="flex justify-between my-4">
           <div>
             <h1 class="text-2xl">
-              <font-awesome-icon icon="laptop-code" class="text-blue-950" />
+              <font-awesome-icon icon="magnifying-glass" />
 
-              Collauo: {{ verify.order_number }}
+              Verifica
             </h1>
             <p class="mt-2">Data: {{ verify.created_at }}</p>
+            <p class="mt-2">Ordine: {{ verify.order_number }}</p>
           </div>
 
           <div class="flex gap-2">

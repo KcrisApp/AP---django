@@ -151,7 +151,7 @@
                         >Note di processo</label
                       >
                       <textarea
-                        v-model="order_process_note"
+                        v-model="note"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="procesNote"
                         id="procesNote"
@@ -167,7 +167,7 @@
                         >Componenti mancanti</label
                       >
                       <textarea
-                        v-model="order_process_note"
+                        v-model="missing_component"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="procesNote"
                         id="procesNote"
@@ -183,7 +183,7 @@
                         >Non conformita</label
                       >
                       <textarea
-                        v-model="order_process_note"
+                        v-model="non_compliance"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         name="procesNote"
                         id="procesNote"
@@ -257,13 +257,9 @@ if (props.order) {
 }
 
 async function sentData() {
-  let endpoint = endpoints["ordersCRUD"];
-  let method = "POST";
+  let endpoint = endpoints["testCRUD"]`${props.order.order_number}/`;
+  let method = "PUT";
 
-  if (props.order) {
-    endpoint += `${props.order.order_number}/`;
-    method = "PUT";
-  }
   try {
     const response = await axios({
       method: method,

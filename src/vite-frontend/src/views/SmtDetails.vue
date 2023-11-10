@@ -7,22 +7,23 @@
         <div class="flex justify-between my-4">
           <div>
             <h1 class="text-2xl">
-              <font-awesome-icon icon="laptop-code" class="text-blue-950" />
+              <font-awesome-icon icon="microchip" />
 
-              Collauo: {{ smt.order_number }}
+              SMT 
             </h1>
             <p class="mt-2">Data: {{ smt.created_at }}</p>
+            <p class="mt-2">Ordine: {{ smt.order_number }}</p>
           </div>
 
           <div class="flex gap-2">
             <button
-              class="hover:bg-amber-400 max-h-10 text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
+            class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
               @click="togleForm"
             >
               Aggiorna
             </button>
             <button
-              class="hover:bg-red-900 max-h-10 bg-red-600 text-white font-semibold py-1 px-4 rounded"
+            class="hover:bg-red-900 max-h-8 text-sm bg-red-600 text-white font-semibold py-1 px-4 rounded"
               @click="togleAlert"
             >
               Elimina
