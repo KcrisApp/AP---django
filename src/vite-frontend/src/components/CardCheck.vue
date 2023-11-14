@@ -38,7 +38,8 @@
 const props = defineProps({
     status: {
         type: Boolean,
-        required: true
+        required: true,
+        default:false
             },
     text:{
         type:String,
@@ -46,4 +47,5 @@ const props = defineProps({
     }
     
 })
+
 </script>

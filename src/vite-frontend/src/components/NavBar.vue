@@ -2,11 +2,12 @@
   <div class="">
       <!-- Sidebar starts -->
       <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
-      <div class="w-64 absolute sm:relative bg-blue-950 shadow md:h-full flex-col justify-between hidden sm:flex ">
+      <div class="w-56 absolute sm:relative bg-blue-950 shadow md:h-full flex-col justify-between hidden sm:flex ">
           <div class="px-8">
               <div class="h-16 w-full flex items-center">
                 <svg class="feather feather-user" fill="white" height="56" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </div>
+              <span class="text-white p-2">MCE - AP</span>
+            </div>
               <ul class="mt-12">
                   <li class="flex w-full justify-between text-gray-300 hover:text-white cursor-pointer items-center mb-6">
                       <div class="flex items-center">
@@ -99,7 +100,7 @@
               </div>
           </div>
           <div class="px-8 border-t border-gray-700">
-              <ul class="w-full flex items-center justify-between bg-gray-800">
+              <ul class="w-full flex items-center justify-between bg-blue-950">
                   <li class="cursor-pointer text-white pt-5 pb-3">
                   
                       <a class="btn btn-outline-secondary" href="/accounts/logout/">

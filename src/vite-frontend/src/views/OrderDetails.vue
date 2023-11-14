@@ -46,7 +46,7 @@
           <div class="flex bg-slate-100 p-4 h-32 gap-10
           flex-wrap rounded-md">
             <div class="flex-none">
-              <qrcode-vue class="my-2" :value="o.order_number" size="60" level="H" />
+              <qrcode-vue class="my-2" :value="o.order_number" :size="60" level="H" />
             </div>
         
                 <div class="flix-1">
