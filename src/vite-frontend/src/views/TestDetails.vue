@@ -77,7 +77,7 @@
     <TestForm
       v-show="showForm"
       @close-modal="togleTestForm"
-      @save-data="togleTestForm"
+      @save-data="updateTest"
       v-if="isLoading"
       :tests="tests"
     />
@@ -87,13 +87,10 @@
 import NavBar from "../components/NavBar.vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { ref, onMounted, computed } from "vue";
-import Alert from "../components/Alert.vue";
+import { ref, onMounted } from "vue";
 import TestForm from "../components/TestForm.vue";
-import BoardForm from "../components/BoardForm.vue";
-import ModalImg from "../components/ModalImg.vue";
 import CardCheck from "../components/CardCheck.vue";
-import { useRouter, useRoute } from "vue-router";
+
 
 const tests = ref({});
 const showForm = ref(false);

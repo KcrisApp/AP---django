@@ -19,33 +19,36 @@
           <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <div class="">
               <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-
                 <div class="flex justify-between my-4">
-
                   <h2
-                  class="text-base font-semibold leading-6 p-2 text-gray-900"
-                  id="modal-title"
-                >
-                  <b class="text-blue-900">Aggiorna test</b>
-                </h2>
+                    class="text-base font-semibold leading-6 p-2 text-gray-900"
+                    id="modal-title"
+                  >
+                    <b class="text-blue-900">Aggiorna SMT</b>
+                  </h2>
 
                   <div class="flex items-center">
-                    <label for="status" class="block mr-2 text-md font-medium  dark:text-white">Status:</label>
-                    <select v-model="status" id="status" class="p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option selected value= false>Da completare</option>
-                      <option value= true>Completate</option>
-                  
+                    <label
+                      for="status"
+                      class="block mr-2 text-md font-medium dark:text-white"
+                      >Status:</label
+                    >
+                    <select
+                      v-model="status"
+                      id="status"
+                      class="p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option selected value="false">Da completare</option>
+                      <option value="true">Completate</option>
                     </select>
-                    </div>
+                  </div>
                 </div>
-                
-
-
-
 
                 <hr class="mb-4" />
 
-                <h3 class="mb-4 font-semibold text-gray-900 dark:text-white text-center">
+                <h3
+                  class="my-4 text-md-body-1 font-semibold text-blue-900 dark:text-white text-center"
+                >
                   Controlli
                 </h3>
                 <ul
@@ -58,13 +61,13 @@
                       <input
                         id="vue-checkbox-list"
                         type="checkbox"
-                        v-model="ict"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark:ring-offset-gray-700   dark:bg-gray-600 dark:border-gray-500"
+                        v-model="fridge_temperature"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
                         for="vue-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >Ict</label
+                        >Temperatura frigo</label
                       >
                     </div>
                   </li>
@@ -75,13 +78,13 @@
                       <input
                         id="react-checkbox-list"
                         type="checkbox"
-                        v-model="aoi"
+                        v-model="cream_expiration"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
                         for="react-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >AOI</label
+                        >Scadenza crema</label
                       >
                     </div>
                   </li>
@@ -92,13 +95,13 @@
                       <input
                         id="angular-checkbox-list"
                         type="checkbox"
-                        v-model="xray"
+                        v-model="cream_deposit"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
                         for="angular-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >X-ray</label
+                        >Deposito crema</label
                       >
                     </div>
                   </li>
@@ -107,19 +110,19 @@
                       <input
                         id="laravel-checkbox-list"
                         type="checkbox"
-                        v-model="functional"
+                        v-model="pick_and_place_setup"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
                         for="laravel-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >FT</label
+                        >PeP setup</label
                       >
                     </div>
                   </li>
                 </ul>
                 <ul
-                  class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  class="mt-2 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 >
                   <li
                     class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600"
@@ -128,13 +131,13 @@
                       <input
                         id="vue-checkbox-list"
                         type="checkbox"
-                        v-model="ict"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark:ring-offset-gray-700   dark:bg-gray-600 dark:border-gray-500"
+                        v-model="frame_status"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
                         for="vue-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >Ict</label
+                        >Controllo lamina</label
                       >
                     </div>
                   </li>
@@ -145,13 +148,13 @@
                       <input
                         id="react-checkbox-list"
                         type="checkbox"
-                        v-model="aoi"
+                        v-model="board_check"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
                         for="react-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >AOI</label
+                        >Controllo scheda</label
                       >
                     </div>
                   </li>
@@ -162,13 +165,13 @@
                       <input
                         id="angular-checkbox-list"
                         type="checkbox"
-                        v-model="xray"
+                        v-model="oven_parameters"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
                         for="angular-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >X-ray</label
+                        >Parametri forno</label
                       >
                     </div>
                   </li>
@@ -177,25 +180,25 @@
                       <input
                         id="laravel-checkbox-list"
                         type="checkbox"
-                        v-model="functional"
+                        v-model="check_status"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
                         for="laravel-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >FT</label
+                        >Controllo parametri</label
                       >
                     </div>
                   </li>
                 </ul>
-                <hr class="my-5">
+                <hr class="my-5" />
                 <div class="mt-4">
                   <form>
                     <div class="mb-6">
                       <label
                         for="orderNumber"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Serial number testati</label
+                        >Programma MyData</label
                       >
                       <input
                         type="text"
@@ -203,12 +206,219 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
-                        v-model="serialnumber"
+                        v-model="mydata_program"
                       />
                     </div>
 
-                   
-                    
+                    <hr class="mb-4" />
+
+                    <h3
+                    class="my-4 text-md-body-1 font-semibold text-blue-900 dark:text-white text-center"
+                
+                    >
+                      Forni
+                    </h3>
+                    <div
+                      class="my-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                    >
+                      <div class="sm:col-span-3">
+                        <label
+                          for="first-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >Forno TOP</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            v-model="oven_top"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="sm:col-span-3">
+                        <label
+                          for="last-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >Forno BOT</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="last-name"
+                            id="last-name"
+                            v-model="oven_bot"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="my-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                    >
+                      <div class="sm:col-span-3">
+                        <label
+                          for="first-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >Profilo forno TOP</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            v-model="recast_profile_top"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="sm:col-span-3">
+                        <label
+                          for="last-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >Profilo forno BOT</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="last-name"
+                            id="last-name"
+                            v-model="recast_profile_bot"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <hr class="mb-4" />
+
+                    <h3
+                    class="my-4 text-md-body-1 font-semibold text-blue-900 dark:text-white text-center"
+                >
+                      Serigrafia
+                    </h3>
+                    <div
+                      class="my-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                    >
+                      <div class="sm:col-span-3">
+                        <label
+                          for="first-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >My500 TOP</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            v-model="my500_top"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="sm:col-span-3">
+                        <label
+                          for="last-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >My500 BOT</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="last-name"
+                            id="last-name"
+                            v-model="my500_bot"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="my-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                    >
+                      <div class="sm:col-span-3">
+                        <label
+                          for="first-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >Telaio serigrafico TOP</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            v-model="screen_printer_top"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="sm:col-span-3">
+                        <label
+                          for="last-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >Telaio serigrafico BOT</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="last-name"
+                            id="last-name"
+                            v-model="screen_printer_bot"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="my-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                    >
+                      <div class="sm:col-span-3">
+                        <label
+                          for="first-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >Tipo crema</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            v-model="cream_type"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="sm:col-span-3 p-10">
+                        <input
+                          checked
+                          id="checked-checkbox"
+                          type="checkbox"
+                          v-model="cream_test"
+                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
+                        <label
+                          for="checked-checkbox"
+                          class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                          >Controllo crema</label
+                        >
+                      </div>
+                    </div>
+                    <hr class="mb-4" />
+
+<h3
+class="my-4 text-md-body-1 font-semibold text-blue-900 dark:text-white text-center"
+                >
+  Info
+</h3>
                     <div class="mb-6">
                       <label
                         for="procesNote"
@@ -223,7 +433,6 @@
                         cols="30"
                         rows="3"
                       ></textarea>
-                  
                     </div>
                     <div class="mb-6">
                       <label
@@ -239,34 +448,16 @@
                         cols="30"
                         rows="3"
                       ></textarea>
-                  
-                    </div>
-                    <div class="mb-6">
-                      <label
-                        for="procesNote"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Non conformita</label
-                      >
-                      <textarea
-                        v-model="non_compliance"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
-                        cols="30"
-                        rows="3"
-                      ></textarea>
-                  
                     </div>
 
                     <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                       <button
-                       @click="sentData"
-                        class="mt-3 inline-flex w-full justify-center mx-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-500 hover:text-white sm:mt-0 sm:w-auto"
+                        @click="sentData"
+                        class="mt-3 inline-flex w-full justify-center mx-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-blue-900 hover:text-white sm:mt-0 sm:w-auto"
                       >
                         Save
                       </button>
                       <button
-                     
                         class="mt-3 inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-800 hover:text-white sm:mt-0 sm:w-auto"
                         @click="triggerCloseModal"
                       >
@@ -289,54 +480,72 @@ import { ref, defineEmits, onMounted } from "vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 
-
 const props = defineProps({
- 
-  tests: {
+  smt: {
     type: Object,
     required: false,
   },
 });
 
-const note = ref(props.tests.note);
-const non_compliance = ref(props.tests.non_compliance);
-const missing_component = ref(props.tests.missing_component);
-const serialnumber = ref(props.tests.serialnumber);
+const fridge_temperature = ref(props.smt.fridge_temperature);
+const cream_expiration = ref(props.smt.cream_expiration);
+const cream_deposit = ref(props.smt.cream_deposit);
+const pick_and_place_setup = ref(props.smt.pick_and_place_setup);
+const frame_status = ref(props.smt.frame_status);
+const board_check = ref(props.smt.board_check);
+const oven_parameters = ref(props.smt.oven_parameters);
+const check_status = ref(props.smt.check_status);
 
-const ict = ref(props.tests.ict);
-const aoi = ref(props.tests.aoi);
-const xray = ref(props.tests.xray);
-const functional = ref(props.tests.functional);
-const status = ref(props.tests.status);
+const mydata_program = ref(props.smt.mydata_program);
+const oven_top = ref(props.smt.oven_top);
+const oven_bot = ref(props.smt.oven_bot);
+const recast_profile_top = ref(props.smt.recast_profile_top);
+const recast_profile_bot = ref(props.smt.recast_profile_bot);
+const my500_top = ref(props.smt.my500_top);
+const my500_bot = ref(props.smt.my500_bot);
+const screen_printer_top = ref(props.smt.screen_printer_top);
+const screen_printer_bot = ref(props.smt.screen_printer_bot);
+const cream_type = ref(props.smt.cream_type);
+const cream_test = ref(props.smt.cream_test);
+const missing_component = ref(props.smt.missing_component);
+const note = ref(props.smt.note);
+const status = ref(props.smt.status);
 
 const emit = defineEmits(["close-modal", "save-data"]);
 
-
-
 async function sentData() {
-  
-  let endpoint = endpoints["testCRUD"]+`${props.tests.uuid}/`;
+  let endpoint = endpoints["smtCRUD"] + `${props.smt.uuid}/`;
   let method = "PATCH";
+  let data = {
+    fridge_temperature: fridge_temperature.value,
+    cream_expiration: cream_expiration.value,
+    cream_deposit: cream_deposit.value,
+    pick_and_place_setup: pick_and_place_setup.value,
+    frame_status: frame_status.value,
+    board_check: board_check.value,
+    oven_parameters: oven_parameters.value,
+    check_status: check_status.value,
+    mydata_program: mydata_program.value,
+    oven_top: oven_top.value,
+    oven_bot: oven_bot.value,
+    recast_profile_top: recast_profile_top.value,
+    recast_profile_bot: recast_profile_bot.value,
+    my500_top: my500_top.value,
+    my500_bot: my500_bot.value,
+    screen_printer_top: screen_printer_top.value,
+    screen_printer_bot: screen_printer_bot.value,
+    cream_type: cream_type.value,
+    cream_test: cream_test.value,
+    note: note.value,
+    status: status.value,
+  }
   try {
     const response = await axios({
       method: method,
       url: endpoint,
-      data: {
-        ict: ict.value,
-        aoi: aoi.value,
-        xray: xray.value,
-        functional: functional.value,
-        note: note.value,
-        non_compliance: non_compliance.value,
-        missing_component: missing_component.value,
-        serialnumber: serialnumber.value,
-        status: status.value,
-      },
-
+      data: data
     });
     emit("save-data", response.data);
-
-   
   } catch (error) {
     error = error;
     alert(error);
@@ -346,8 +555,4 @@ function triggerCloseModal() {
   // emit an event to delete an answer instance
   emit("close-modal");
 }
-
- 
-
-
 </script>
