@@ -1,7 +1,5 @@
 <template>
-
   <NavBar />
-  {{ store.username }}
 </template>
 
 <script setup>

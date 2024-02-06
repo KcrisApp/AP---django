@@ -67,21 +67,21 @@
                 {{ board.created_at }}
               </td>
               <td class="whitespace-nowrap px-4 py-4">{{ board.board_rev }}</td>
-              <td class="px-2 py-4">
-                <div class="flex justify-center gap-4">
+              <td class="py-4">
+                
                   <router-link
                     :to="{
                       name: 'board-details',
                       params: { uuid: board.id },
                     }"
-                    class=""
+               
                   >
                     <font-awesome-icon
                       icon="fa-eye"
                       class="text-blue-950 hover:text-green-500"
                     />
                   </router-link>
-                </div>
+         
               </td>
             </tr>
           </tbody>

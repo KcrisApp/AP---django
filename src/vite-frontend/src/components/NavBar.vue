@@ -19,8 +19,8 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-
             <li>
             <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
 
-               <h4 class="ms-3 font-extrabold text-xl text-blue-900">MCE AP</h4> 
-               
+               <!-- <h4 class="font-extrabold text-xl text-blue-900">MCE AP</h4>  -->
+               <img src="http://127.0.0.1:8000/static/img/logo.png" alt="Mce logo" srcset="" width="150">
             </a>
          </li>
          <li v-show="!sideBarHide" @click.prevent="hideSidebar">
@@ -30,8 +30,12 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-
             </a>
          </li>
          </div>
-         <span class="ms-3 p-2">Benvenuto {{ store.first_name }}</span> 
-         <hr>
+         <div class="pb-4">
+            <span class="p-2">Benvenuto {{ store.first_name }}</span>
+            <p class="text-sm text-green-700 p-2">{{ formatted }}</p> 
+         </div>
+        
+         <hr class="">
          <li>
             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -106,7 +110,10 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-
 import { ref } from "vue";
 import { RouterLink, RouterView } from 'vue-router'
 import { useStoreUser } from '../stores/storeUsers'
+import { useDateFormat, useNow } from '@vueuse/core'
 
+const formatter = ref('HH:mm:ss DD-MM-YYYY ')
+const formatted = useDateFormat(useNow(), formatter)
 
 // access the `store` 
 const store = useStoreUser()

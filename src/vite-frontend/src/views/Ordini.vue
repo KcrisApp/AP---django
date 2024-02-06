@@ -2,7 +2,7 @@
   <main>
 
 
-      <div class="m-4 w-full">
+      <div class="p-4 w-full">
         <div class="flex justify-between gap-2">
         <h1 class="text-2xl">
           <font-awesome-icon icon="table-list" class="text-blue-950" />
@@ -61,7 +61,7 @@
 
               </td>
               <td class="whitespace-nowrap px-6 py-4">{{ order.board_name }}</td>
-              <td class="whitespace-nowrap px-6 py-4">
+              <td class="whitespace-nowrap py-4">
                 <router-link
                   :to="{
                     name: 'order-details',
@@ -113,7 +113,7 @@
   </main>
 </template>
 <script setup>
-import NavBar from "../components/NavBar.vue";
+
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
