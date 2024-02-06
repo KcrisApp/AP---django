@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'widget_tweaks',
     #Authentication
     'rest_framework.authtoken',
@@ -47,7 +48,8 @@ INSTALLED_APPS = [
     # Custom app
     'produzione',
     'users',
-    'core'
+    'core',
+    'colorfield' 
 ]
 
 MIDDLEWARE = [
@@ -146,19 +148,31 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 #DRF permission settings
 REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
 
 
 
+DJOSER = {
+
+    "SERIALIZERS": {
+
+           'current_user': 'users.serializers.CustomUserSerializer',
+    }
+}
 
 # Vite - Django connection
 VITE_BUILD_DIRNAME = "build"
 VITE_STATIC_BUNDLE = BASE_DIR / f"static/{VITE_BUILD_DIRNAME}"
 VITE_LIVE_SERVER = True
+
+
+

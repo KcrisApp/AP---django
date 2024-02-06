@@ -1,13 +1,8 @@
 <template>
-    <main>
-      <div class="container-fluid flex min-h-screen">
-        <NavBar />
+  <main>
 
-       
-
-        <div class="m-4 w-full" v-for="o in order">
-
-          <Alert
+      <div class="p-4 w-full" v-for="o in order">
+        <Alert
           v-show="showAlert"
           icon-type="error"
           title="Attenzione"
@@ -15,159 +10,194 @@
           @close-alert="togleAlert"
           @confirm="deleteOrder(o.order_number)"
         />
-          <OrderForm v-show="showModal" v-bind:order_id="o.board" v-bind:order="o" @close-modal="togleModal" @save-data="updateOrder"/>
-          <div class="flex justify-between my-4">
-        
-         
-            <h1 class="text-2xl" >
-              <font-awesome-icon icon="hard-drive" class="text-blue-950" />
-              Ordine: {{ o.order_number }}
-                
-            </h1>
+        <OrderForm
+          v-show="showModal"
+          v-bind:order_id="o.board"
+          v-bind:order="o"
+          @close-modal="togleModal"
+          @save-data="updateOrder"
+        />
+        <div class="flex justify-between my-4">
+          <h1 class="text-2xl">
+            <font-awesome-icon icon="hard-drive" class="text-blue-950" />
+            Ordine: {{ o.order_number }}
+          </h1>
 
-            <div class="flex gap-2">
-              <button
-            class="hover:bg-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded" 
-            @click="togleModal"
-          >
-            <font-awesome-icon icon="folder-plus" /> Modifica ordine
-          </button>
-          <button
-            class="bg-red-600 hover:bg-red-900 text-white font-semibold hover:text-white py-1 px-6 border  rounded" 
-            @click="togleAlert"
-          >
-           Elimina
-          </button>
-            </div>
-            
+          <div class="flex gap-2"  v-if="store.company_role == 'M'">
+            <button
+              class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
+              @click="togleModal"
+            >
+              <font-awesome-icon icon="folder-plus" /> Modifica ordine
+            </button>
+            <button
+              class="bg-red-600 hover:bg-red-900 text-white font-semibold hover:text-white py-1 px-6 border rounded"
+              @click="togleAlert"
+            >
+              Elimina
+            </button>
           </div>
-  
-          <hr class="my-2" />
-          <div class="flex bg-slate-100 p-4 h-32 gap-10
-          flex-wrap rounded-md">
-            <div class="flex-none">
-              <qrcode-vue class="my-2" :value="o.order_number" :size="60" level="H" />
-            </div>
-        
-                <div class="flix-1">
-                    <p>Numero d'ordine: <b> {{ o.order_number }}</b></p>
-                    <p>Serial number: <b> {{ o.order_serialnumber }}</b></p>
-                    <p>Quantità: <b> {{ o.order_quantity }}</b></p>
-           
-                </div>
-                <div class="flex-1">
-                    <p>Data di creazione: <b> {{ o.created_at }}</b></p>
-                    <p>Cliente: <b> {{ o.customer }}</b></p>
-                   
-                </div>
-            </div>
-            <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
-              <p><b>Note di processo:</b></p>
-              <hr class="my-1">
-              <p>{{ o.order_process_note }}</p>
-              
-            </div>
-           
-            <hr class="my-2">
+        </div>
 
-            <h1 class="text-xl mt-4" > 
-              Reparti
-            </h1>
-        
-            <div class="flex gap-2 mt-4 ">
-              <router-link
-                  :to="{ name: 'smt-details', params: { smt_number: o.order_smt } }"
-                  class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
-                >
-                SMT
-                </router-link>
-                <router-link
-                  :to="{ name: 'verify-details', params: { verify_number: o.order_verify } }"
-                  class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
-                >
-                Verifica
-                </router-link>
-                <router-link
-                  :to="{ name: 'test-details', params: { test_number: o.order_test } }"
-                  class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
-                >
-                Collaudi
-                </router-link>
-                <router-link
-                  :to="{ name: 'board-details', params: { uuid: o.uuid } }"
-                  class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
-                >
-                Spedizioni
-                </router-link>
-               
-            </div>
+        <hr class="my-2" />
+        <div class="flex bg-slate-100 p-4 h-32 gap-10 flex-wrap rounded-md">
+          <div class="flex-none">
+            <qrcode-vue
+              class="my-2"
+              :value="o.order_number"
+              :size="60"
+              level="H"
+            />
+          </div>
+
+          <div class="flix-1">
+            <p>
+              Numero d'ordine: <b> {{ o.order_number }}</b>
+            </p>
+            <p>
+              Serial number: <b> {{ o.order_serialnumber }}</b>
+            </p>
+            <p>
+              Quantità: <b> {{ o.order_quantity }}</b>
+            </p>
+          </div>
+          <div class="flex-1">
+            <p>
+              Data di creazione: <b>{{ formatDate(o.created_at) }} </b>
+            </p>
+            <p>
+              Cliente: <b> {{ o.customer }}</b>
+            </p>
+            <p>
+              Personalizzazione: <b> {{ o.order_customization }}</b>
+            </p>
+          </div>
+          <div class="flex-1">
+            <h5 class="mb-4"><b>Foglio di caratterizzazione</b></h5>
+            <router-link
+              :to="{
+                name: 'foglio-caratterizzazione',
+                params: { uuid: o.uuid },
+              }"
+            >
+              <h3 class="text-3xl hover:text-blue-800">
+                <font-awesome-icon icon="passport" />
+              </h3>
+            </router-link>
+          </div>
+        </div>
+        <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
+          <p><b>Note di processo:</b></p>
+          <hr class="my-1" />
+          <p>{{ o.order_process_note }}</p>
+        </div>
+
+        <hr class="my-2" />
+
+        <h1 class="text-xl mt-4">Reparti</h1>
+
+        <div class="flex gap-2 mt-4">
+          <router-link
+            :to="{ name: 'smt-details', params: { smt_number: o.order_smt } }"
+            class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
+          >
+            SMT
+          </router-link>
+          <router-link
+            :to="{
+              name: 'verify-details',
+              params: { verify_number: o.order_verify },
+            }"
+            class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
+          >
+            Verifica
+          </router-link>
+          <router-link
+            :to="{
+              name: 'test-details',
+              params: { test_number: o.order_test },
+            }"
+            class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
+          >
+            Collaudi
+          </router-link>
+          <router-link
+            :to="{ name: 'shipping-details', params: { order_id: o.id } }"
+            class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
+          >
+            Spedizioni
+          </router-link>
         </div>
       </div>
-    </main>
-  </template>
-  <script setup>
 
-  import NavBar from "../components/NavBar.vue";
-  import { endpoints } from "../common/endpoints";
-  import { axios } from "../common/api.service";
-  import { ref, onMounted } from "vue";
-  import Alert from "../components/Alert.vue";
-  import { useRouter, useRoute } from "vue-router";
-  import OrderForm from "../components/OrderForm.vue";
+  </main>
+</template>
+<script setup>
 
-  import QrcodeVue from 'qrcode.vue'
+import { endpoints } from "../common/endpoints";
+import { axios } from "../common/api.service";
+import { ref, onMounted } from "vue";
+import Alert from "../components/Alert.vue";
+import { useRouter, useRoute } from "vue-router";
+import OrderForm from "../components/OrderForm.vue";
 
-  const router = useRouter();
-  const route = useRoute();
+import QrcodeVue from "qrcode.vue";
+import { useStoreUser } from '../stores/storeUsers'
 
-  const order = ref([]);
-  const showAlert = ref(false);
-  const showModal = ref(false);
+// access the `store` 
+const store = useStoreUser()
+console.log(store.first_name)
+const router = useRouter();
+const route = useRoute();
 
-  const props = defineProps({
-            order_number: String,
+const order = ref([]);
+const showAlert = ref(false);
+const showModal = ref(false);
 
-        })
-  
+const props = defineProps({
+  order_number: String,
+});
 
-  
-  async function callApi() {
-    const endpoint = `${endpoints["ordersCRUD"]}${props.order_number}/`;
+const formatDate = (date) => {
+  const dateTime = new Date(date).toLocaleString().split(",")[0];
 
-try {
-  const response = await axios.get(endpoint);
-  console.log(response)
+  return dateTime;
+};
+async function callApi() {
+  const endpoint = `${endpoints["ordersCRUD"]}${props.order_number}/`;
 
-      order.value.push(response.data);
-  
+  try {
+    const response = await axios.get(endpoint);
+    console.log(response);
 
-      console.log(response.data);
-    } catch (error) {
-      alert(error);
-    }
+    order.value.push(response.data);
+
+    console.log(response.data);
+  } catch (error) {
+    alert(error);
   }
+}
 
-  async function deleteOrder(order_number) {
-    let endpoint = `${endpoints["ordersCRUD"]}${order_number}/`;
+async function deleteOrder(order_number) {
+  let endpoint = `${endpoints["ordersCRUD"]}${order_number}/`;
 
-    try {
-      const response = await axios.delete(endpoint);
-      togleAlert();
-      router.push({ name: "ordini" });
-    } catch (error) {
-      alert(error);
-    }
+  try {
+    const response = await axios.delete(endpoint);
+    togleAlert();
+    router.push({ name: "ordini" });
+  } catch (error) {
+    alert(error);
   }
+}
 
 function updateOrder(value) {
-  togleModal()
- 
-  order.value[0].order_number = value.order_number
-  order.value[0].order_process_note = value.order_process_note
-  order.value[0].order_quantity = value.order_quantity
-  order.value[0].order_serialnumber = value.order_serialnumber
-  
+  togleModal();
 
+  order.value[0].order_number = value.order_number;
+  order.value[0].order_process_note = value.order_process_note;
+  order.value[0].order_quantity = value.order_quantity;
+  order.value[0].order_serialnumber = value.order_serialnumber;
+  order.value[0].order_customization = value.order_customization;
 }
 
 function togleAlert() {
@@ -177,10 +207,8 @@ function togleModal() {
   showModal.value = !showModal.value;
 }
 
-  // lifecycle hooks
-  onMounted(() => {
-    callApi();
-  
-  });
-  </script>
-  
+// lifecycle hooks
+onMounted(() => {
+  callApi();
+});
+</script>

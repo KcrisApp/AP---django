@@ -1,9 +1,9 @@
 <template>
   <main>
-    <div class="container-fluid flex min-h-screen">
-      <NavBar />
 
-      <div class="m-4 w-full" v-for="b in board">
+
+    
+      <div class="p-4 w-full" v-for="b in board">
 
         <Alert
           v-show="showAlert"
@@ -26,21 +26,21 @@
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
             Scheda: {{ b.board_name }}
           </h1>
-          <div class="flex gap-2">
+          <div class="flex gap-2"  v-if="store.company_role == 'M'">
             <button
-              class="hover:bg-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
+              class="hover:bg-blue-500 hover:border-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
               @click="togleModal"
             >
               <font-awesome-icon icon="folder-plus" /> Aggiungi ordine
             </button>
             <button
-              class="hover:bg-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
+              class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
               @click="togleForm"
             >
               <font-awesome-icon icon="folder-plus" /> Modifica
             </button>
             <button
-              class="hover:bg-red-900 bg-red-600 text-white font-semibold py-1 px-4 border border-blue-950 rounded"
+              class="hover:bg-red-900 bg-red-600 text-white font-semibold py-1 px-4 rounded"
               @click="togleAlert"
             >
               Elimina
@@ -49,13 +49,14 @@
         </div>
 
         <hr class="my-2" />
-        <div class="flex bg-slate-50 p-4 gap-4">
+        <div class="flex bg-slate-50 p-4 gap-4 rounded-xl">
           <div class="col">
   
               
               <img class="h-auto max-w-xs" :src='b.board_img'>
               <button
-              class="hover:bg-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
+              v-if="store.company_role == 'M'"
+              class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
               @click="togleImgForm"
             >Carica/Modifica</button>
           </div>
@@ -127,30 +128,111 @@
             </tr>
           </tbody>
         </table>
+        <hr class="my-5">
+
+        <div class="flex justify-center mt-5">
+    
+
+       <button
+             class=" hover:border-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 rounded"
+             :class="showSteps ? 'hover:bg-red-500' : 'bg-blue-500 text-white hover:bg-blue-900'"
+             @click="togleStepView"
+           >
+             {{ showSteps ? 'Nascondi fasi produttive':'Mostra fasi produttive' }}
+             
+           </button>
+           
+        </div>
+        <p class="text-center" v-if="!showSteps">...</p>
+        
+        
+        <div v-if="showSteps">
+          <hr class="my-5">
+
+          <div class="flex justify-between my-4">
+         
+           
+            <h4 class="text-2xl ml-5">Fasi produttive</h4> 
+     
+          <div class="flex gap-2">
+            <button
+             v-if="store.company_role == 'M'"
+              class="hover:bg-blue-500 hover:border-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
+              @click="togleStepForm"
+            >
+              <font-awesome-icon icon="folder-plus" /> Aggiungi fase
+            </button>
+          </div>
+        </div>
+        
+        <div 
+        class="flex flex-wrap justify-center mt-10" >
+        
+   
+          <StepCard v-for="s in orderSteps"
+          :color="s.step_color"
+          :title="s.step_name"
+          :content="s.step_description"
+          :order="s.step_order"
+          :rep="s.step_type"
+          :key="s.uuid"
+          @delete-step="deleteStep(s.uuid)"
+          @mod-step="modStep(s)"
+          />
+        </div>
       </div>
-    </div>
+   
+      <StepForm 
+      v-show="showStepsForm"
+      :board="orderNumber"
+      @close-modal="togleStepForm"
+      @save-data="saveDataStep"
+      />
+        
+      <StepForm 
+      v-if="showModStepsForm"
+      :steps = "singleStep"
+      :board="orderNumber"
+      @close-modal="showModStepsForm = false"
+      @save-data="updateSingleStep"
+      />
+      
+      </div>
+
   </main>
 </template>
 <script setup>
-import NavBar from "../components/NavBar.vue";
+
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import Alert from "../components/Alert.vue";
 import OrderForm from "../components/OrderForm.vue";
+import StepForm from "../components/StepForm.vue";
 import BoardForm from "../components/BoardForm.vue";
 import ModalImg from "../components/ModalImg.vue";
+import StepCard from "../components/StepCard.vue";
 import { useRouter, useRoute } from "vue-router";
+import { useStoreUser } from '../stores/storeUsers'
+
+// access the `store` 
+const store = useStoreUser()
+console.log(store.first_name)
+
 
 const board = ref([]);
 const order = ref([]);
+const steps = ref([]);
 
 
 const showAlert = ref(false);
 const showModal = ref(false);
 const showForm = ref(false);
 const showFormImg = ref(false);
-
+const showSteps = ref(false)
+const showStepsForm = ref(false)
+const showModStepsForm = ref(false)
+const singleStep = ref({})
 const router = useRouter();
 const route = useRoute();
 
@@ -163,21 +245,62 @@ const orderCount = computed(() => {
   return order.value.length;
 });
 
-async function callApi() {
-  const endpoint = `${endpoints["boardsCRUD"]}${props.uuid}/`;
+const orderNumber = computed(() =>{
+  return board.value[0].id
+})
+const orderSteps = computed(() => {
+   return steps.value.sort((a, b) => a.step_order - b.step_order);
+  }
+)
+
+const modStep = (step) =>{
+  singleStep.value = step
+  showModStepsForm.value = true
+}
+
+const updateSingleStep = (value) =>{
+  
+  const upd_obj = steps.value.findIndex((obj => obj.uuid == value.uuid));
+   console.log(value)
+
+  steps.value[upd_obj].step_type = value.step_type
+  steps.value[upd_obj].step_name = value.step_name
+  steps.value[upd_obj].step_description = value.step_description
+  steps.value[upd_obj].step_color = value.step_color
+  steps.value[upd_obj].step_order = value.step_order
+  showModStepsForm.value = false
+
+}
+
+
+async function callApiBoard() {
 
   try {
-    const response = await axios.get(endpoint);
 
-    board.value.push(response.data);
-    order.value = response.data.order;
+    // Test axios all
+    axios.all([
+      axios.get(`${endpoints["boardsCRUD"]}${props.uuid}/`), 
+      axios.get(`${endpoints["productionstepCRUD"]}?board=${props.uuid}`)
+    ])
+    .then(axios.spread((data1, data2) => {
+      // output of req.
+      board.value.push(data1.data);
+      order.value = data1.data.order;
 
+      data2.data.forEach(element => {
+        steps.value.push(element)
+      });
+      
+    }));
 
-    console.log(response.data);
+    
+
   } catch (error) {
     alert(error);
   }
 }
+
+
 
 
 async function deleteBoard(uuid) {
@@ -192,6 +315,28 @@ async function deleteBoard(uuid) {
   }
 }
 
+
+async function deleteStep(uuid) {
+  let endpoint = `${endpoints["productionstepCRUD"]}${uuid}/`;
+
+  try {
+    const response = await axios.delete(endpoint);
+    
+    console.log(response)
+    updateDeleteStep(uuid)
+  
+  } catch (error) {
+    alert(error);
+  }
+}
+
+const saveDataStep = (newStep) =>{
+  togleStepForm()
+  steps.value.unshift(newStep)
+} 
+const updateDeleteStep = uuidDelete => {
+  steps.value = steps.value.filter(step => { return step.uuid !== uuidDelete })
+  }
 
 function updateOrder(value) {
   togleModal()
@@ -223,12 +368,18 @@ function togleModal() {
 function togleForm() {
   showForm.value = !showForm.value;
 }
+function togleStepView() {
+  showSteps.value = !showSteps.value;
+}
+function togleStepForm() {
+  showStepsForm.value = !showStepsForm.value;
+}
 function togleImgForm() {
   showFormImg.value = !showFormImg.value;
 }
 // lifecycle hooks
 onMounted(() => {
-  callApi();
-  console.log(props.uuid);
+  callApiBoard();
+
 });
 </script>

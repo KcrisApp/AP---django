@@ -203,6 +203,10 @@ async function sentData(){
         });
       
         emit("save-data", response.data);
+        customer.value = ""
+        board_code.value = ""
+        board_name.value = ""
+        board_rev.value = ""
 
       } catch (error) {
         error = error;

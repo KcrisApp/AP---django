@@ -7,8 +7,8 @@ from rest_framework import viewsets
 from produzione.api.permissions import IsManagerOrReadOnly
 
 
-from produzione.models import Board, Order, Smt, Test, Verify
-from produzione.api.serializer import BoardSerializer, OrderSerializer, SmtSerializer, TestSerializer, VerifySerializer, BoardImagesSerializer
+from produzione.models import Board, Order, Smt, Test, Verify, Shipping, ProductionSteps
+from produzione.api.serializer import BoardSerializer, OrderSerializer, SmtSerializer, TestSerializer, VerifySerializer, BoardImagesSerializer, ShippingSerializer, ProductionStepSerializer, ProductionDetailsSerializer
 
 # Orders views V2
 class OrderViewset(viewsets.ModelViewSet):
@@ -22,8 +22,15 @@ class BoardViewSet(viewsets.ModelViewSet):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsManagerOrReadOnly]
-    lookup_field = "uuid"
+  
 
+# Production Step views V2
+class ProductionStepViewset(viewsets.ModelViewSet):
+    queryset = ProductionSteps.objects.all()
+    serializer_class = ProductionStepSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
+    lookup_field = "uuid"
+    filterset_fields = ('board', )
 
 
 # Boards views
@@ -104,17 +111,17 @@ class VerifyDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = VerifySerializer
     lookup_field = "uuid"
 
-class VerifyCreateAPIView(generics.CreateAPIView):
+# class VerifyCreateAPIView(generics.CreateAPIView):
 
-    queryset = Verify.objects.all()
-    serializer_class = VerifySerializer
-    lookup_field = "uuid"
+#     queryset = Verify.objects.all()
+#     serializer_class = VerifySerializer
+#     lookup_field = "uuid"
 
-    def perform_create(self, serializer):
-        order_pk = self.kwargs.get("order_pk")
-        print(order_pk)
-        order = get_object_or_404(Order, pk = order_pk)
-        serializer.save(order = order)
+#     def perform_create(self, serializer):
+#         order_pk = self.kwargs.get("order_pk")
+#         print(order_pk)
+#         order = get_object_or_404(Order, pk = order_pk)
+#         serializer.save(order = order)
 
 # *************************************************************
 
@@ -146,8 +153,20 @@ class SmtDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 #         serializer.save(order = order)
 
 # *************************************************************
+# Shipping views V2
+class ShippingViewSet(viewsets.ModelViewSet):
+    queryset = Shipping.objects.all()
+    serializer_class = ShippingSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    lookup_field = "uuid"
+    filterset_fields = ('order', )
+
+# *************************************************************
 
 
-
-
+# ProductionList views for caratterizzazione prodotto
+class ProductionListAPIView(generics.RetrieveAPIView):
+    queryset = Order.objects.all()
+    serializer_class = ProductionDetailsSerializer
+    lookup_field = "uuid"
 

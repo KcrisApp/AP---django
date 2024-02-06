@@ -1,9 +1,28 @@
 <template>
   <main>
-    <div class="container-fluid flex min-h-screen">
-      <NavBar />
 
-      <div class="m-4 w-full">
+
+      <div class="p-4 w-full">
+
+
+
+
+        <div class="" v-if="isLoading">
+        <router-link
+                  :to="{
+                    name: 'order-details',
+                    params: { order_number:verify.order_number  },
+                  }"
+                  class="hover:text-green-600"
+                >
+                <font-awesome-icon icon="arrow-left-long" /> Back to {{ verify.order_number }}
+                
+                </router-link>
+                <hr class="my-4">
+        </div>
+
+
+
         <div class="flex justify-between my-4">
           <div>
             <h1 class="text-2xl">
@@ -62,7 +81,7 @@
         </div>
 
       </div>
-    </div>
+
     <VerifyForm
       v-show="showForm"
       @close-modal="togleVerifyForm"
@@ -74,7 +93,7 @@
 </template>
 
 <script setup>
-import NavBar from "../components/NavBar.vue";
+
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";

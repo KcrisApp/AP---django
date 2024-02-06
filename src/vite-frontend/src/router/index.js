@@ -28,6 +28,20 @@ const router = createRouter({
 
     },
     {
+      path:'/shipping/',
+      name:'shipping',
+      component: () => import ('../views/Shipping.vue'),
+
+
+    },
+    {
+      path:'/shipping/:order_id',
+      name:'shipping-details',
+      component: () => import ('../views/ShippingDetails.vue'),
+      props: true
+
+    },
+    {
       path: "/board/:uuid",
       name: "board-details",
       // route level code-splitting
@@ -73,9 +87,24 @@ const router = createRouter({
       props: true,
     },
     {
+      path: "/foglio-caratterizzazione/:uuid",
+      name: "foglio-caratterizzazione",
+      // route level code-splitting
+      // this generates a separate chunk (QuestionView.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/CaratterizzazioneProdotto.vue"),
+      props: true
+
+    },
+    {
       path: "/:catchAll(.*)",
       name: "page-not-found",
       component: () => import("../views/NotFound.vue"),
+    },
+    {
+      path: "/stats/",
+      name: "stat-page",
+      component: () => import("../views/Stats.vue"),
     },
   ]
 })

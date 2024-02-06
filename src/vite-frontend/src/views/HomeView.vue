@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="container-fluid flex min-h-screen">
-      <NavBar />
+
       <div class="m-4 w-full">
      
 
@@ -37,24 +37,24 @@
 </template>
 <script setup>
 import NavBar from "../components/NavBar.vue";
-import { endpoints } from "../common/endpoints";
-import { axios } from "../common/api.service";
-import { ref, onMounted } from "vue";
+// import { endpoints } from "../common/endpoints";
+// import { axios } from "../common/api.service";
+// import { ref, onMounted } from "vue";
 
-const boards = ref([]);
+// const boards = ref([]);
 
-async function callApi() {
-  let endpoint = endpoints["boardsCRUD"];
-  try {
-    const response = await axios.get(endpoint);
-    boards.value.push(...response.data);
-    console.log(response.data);
-  } catch (error) {
-    alert(error);
-  }
-}
-// lifecycle hooks
-onMounted(() => {
-  callApi();
-});
+// async function callApi() {
+//   let endpoint = endpoints["boardsCRUD"];
+//   try {
+//     const response = await axios.get(endpoint);
+//     boards.value.push(...response.data);
+//     console.log(response.data);
+//   } catch (error) {
+//     alert(error);
+//   }
+// }
+// // lifecycle hooks
+// onMounted(() => {
+//   callApi();
+// });
 </script>

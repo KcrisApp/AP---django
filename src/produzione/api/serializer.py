@@ -1,25 +1,25 @@
 from rest_framework import serializers
-from produzione.models import Board, Order, Test, Verify, Smt
+from rest_framework.serializers import BaseSerializer
+from produzione.models import Board, Order, Test, Verify, Smt, Shipping, ProductionSteps
 
 
 
 class OrderSerializer(serializers.ModelSerializer):
 
-    created_at = serializers.SerializerMethodField()
+    # created_at = serializers.SerializerMethodField()
     board_name= serializers.SerializerMethodField()
     customer= serializers.SerializerMethodField()
     order_verify = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_smt = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_test = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_shipping = serializers.SlugRelatedField(many=True, read_only=True, slug_field="uuid")
-
-
+    
     class Meta:
         model = Order
-        exclude = ["id", "updated_at"]
+        exclude = ["updated_at"]
     
-    def get_created_at(self, instance):
-        return instance.created_at.strftime("%d %B %Y")
+    # def get_created_at(self, instance):
+    #     return instance.created_at.strftime("%d/%m/%Y")
     
     def get_board_name (self, instance):
         return instance.board.board_name
@@ -34,11 +34,22 @@ class OrderSerializer(serializers.ModelSerializer):
 class BoardSerializer(serializers.ModelSerializer):
 
     order = OrderSerializer(many=True, read_only=True)
- 
+   
+
     class Meta:
         model = Board
         exclude = ["updated_at"]
+    
+  
 
+
+class ProductionStepSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = ProductionSteps
+        exclude = ["id", "updated_at"]
+
+  
 
 class TestSerializer(serializers.ModelSerializer):
     
@@ -65,6 +76,7 @@ class VerifySerializer(serializers.ModelSerializer):
 class SmtSerializer(serializers.ModelSerializer):
 
     order_number = serializers.SerializerMethodField()
+   
 
     class Meta:
         model = Smt
@@ -73,8 +85,50 @@ class SmtSerializer(serializers.ModelSerializer):
     def get_order_number (self, instance):
         return instance.order.order_number
 
+class ShippingSerializer(serializers.ModelSerializer):
+
+    # order = OrderSerializer(many=True)
+    order_number = serializers.SerializerMethodField()
+    order_quantity = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Shipping
+        exclude = ["updated_at"]
+    
+    def get_order_number (self, instance):
+        return instance.order.order_number
+    
+    def get_order_quantity (self, instance):
+            return instance.order.order_quantity
+    
+
 class BoardImagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Board
         fields = ("board_img",)
+
+
+
+# tEST PER CREARE SERIALIZER FOGLIO DI PRODUZIONE
+class ProductionDetailsSerializer(serializers.ModelSerializer):
+
+    order_verify = SmtSerializer(many=False, read_only=True)
+    order_shipping = ShippingSerializer(many=True, read_only=True)
+    order_smt = SmtSerializer(many=False, read_only=True)
+    order_verify = VerifySerializer(many=False, read_only=True)
+    order_test = TestSerializer(many=False, read_only=True)
+    board_name= serializers.SerializerMethodField()
+    board_code= serializers.SerializerMethodField()
+
+
+    class Meta:
+        model = Order
+        exclude = ["updated_at"]
+
+
+    def get_board_name (self, instance):
+            return instance.board.board_name
+    def get_board_code (self, instance):
+            return instance.board.board_code
+    

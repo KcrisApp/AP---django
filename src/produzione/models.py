@@ -3,7 +3,7 @@ import re
 from unittest.util import _MAX_LENGTH
 from xml.parsers.expat import model
 from django.db import models
-
+from colorfield.fields import ColorField
 from core.models import TimeStampedModel
 import uuid as uuid_lib
 
@@ -27,6 +27,34 @@ class Board(TimeStampedModel):
         verbose_name = "Board"
         verbose_name_plural = "Boards"
     
+#phase model
+
+class ProductionSteps(TimeStampedModel):
+    TYPE_CHOICES = ( 
+    ("Verifica", "Verifica"), 
+    ("Smt", "Smt"), 
+    ("Collaudo", "Collaudo"), 
+    ("Saldatura Onda", "Saldatura Onda"), 
+    ("Saldatura selettiva", "Saldatura selettiva"), 
+    ("Preformatura", "Preformatura"), 
+
+) 
+    uuid = models.UUIDField(default=uuid_lib.uuid4 ,editable=False)
+    step_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default="Verifica")
+    step_name = models.CharField(max_length=180)
+    step_description = models.CharField(max_length=180)
+    step_color = ColorField(default='#FF0000')
+    step_order = models.IntegerField(default=0)
+
+    board = models.ForeignKey(Board, on_delete= models.CASCADE, related_name="phase")
+    def __str__(self):
+        return self.step_name
+    
+    class Meta:
+
+        verbose_name = "Step"
+        verbose_name_plural = "Steps"
+
 # Order model 
 
 class Order(TimeStampedModel):
@@ -37,7 +65,7 @@ class Order(TimeStampedModel):
     order_quantity = models.PositiveBigIntegerField()
     order_process_note = models.TextField(blank=True, null=True)
     order_serialnumber = models. CharField(max_length=120, blank=True, null=True)
-    
+    order_customization = models.CharField(max_length=120, blank=True, default="")
 
     board = models.ForeignKey(Board, on_delete= models.CASCADE, related_name="order")
 
@@ -49,7 +77,7 @@ class Order(TimeStampedModel):
         verbose_name = "Order"
         verbose_name_plural = "Orders"
 
-# TODO: da implementare modello spedizione 
+
 class Test(TimeStampedModel):
 
     uuid = models.UUIDField(default=uuid_lib.uuid4 ,editable=False)
@@ -141,7 +169,11 @@ class Shipping(TimeStampedModel):
     shipping_qta = models.PositiveIntegerField()
     shipping_check = models.BooleanField(default=False)
     shipping_date = models.DateTimeField(null=False)
+    shipping_missing_components = models.CharField(default="",max_length=250, null=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_shipping")
+
+    def __str__(self):
+        return "%s %s" % (self.order, self.shipping_date)
 
     class Meta:
 

@@ -1,7 +1,7 @@
 <template>
   <main>
-    <div class="container-fluid flex min-h-screen">
-      <NavBar />
+
+
       <div class="m-4 w-full">
         <div class="flex justify-between gap-2">
         <h1 class="text-2xl">
@@ -21,7 +21,8 @@
                   type="search"
                   id="default-search"
                   class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Cerca per numero ordine o codice"
+                  placeholder="Cerca per numero ordine"
+                  v-model="search"
                   required
                 />
 
@@ -44,7 +45,7 @@
           <tbody>
             <tr
               class="border-b dark:border-neutral-500"
-              v-for="order in orders"
+              v-for="order in paginatedData"
               :key="order.uuid"
             >
               <td class="whitespace-nowrap px-6 py-4 font-medium">
@@ -54,7 +55,10 @@
                 {{ order.order_quantity }}
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                {{ order.created_at }}
+           
+              {{ useDateFormat( order.created_at) }}
+
+
               </td>
               <td class="whitespace-nowrap px-6 py-4">{{ order.board_name }}</td>
               <td class="whitespace-nowrap px-6 py-4">
@@ -74,17 +78,97 @@
             </tr>
           </tbody>
         </table>
+
+
+          <!-- Testpagination -->
+          <div class=" text-center mt-4">
+
+
+          <nav aria-label="Page navigation example">
+          <ul class="inline-flex -space-x-px text-sm">
+          <li v-show="pageNumber !== 0">
+
+          <a @click.prevent="prevPage" class="disabled  flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+          </li>
+          <li v-for="p in pageCounter">
+          <a @click.prevent="setPage(p)"  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ p }}</a>
+          </li>
+
+          <li v-show ="pageNumber < pageCounter -1" >
+          <a @click.prevent="nextPage" 
+
+          class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+          </li>
+          </ul>
+          </nav>
+
+
+          </div>
+          <!-- Testpagination -->
+
+
+
       </div>
-    </div>
+ 
   </main>
 </template>
 <script setup>
 import NavBar from "../components/NavBar.vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
+import {useDateFormat } from "../use/useDateFormat"
 
 const orders = ref([]);
+
+const search = ref("");
+const pageCounter = ref(0)
+
+
+
+// Pagination
+const size = ref(15);
+const pageNumber = ref(0);
+
+
+
+
+const paginatedData = computed(()=>{
+  const start = pageNumber.value * size.value
+  const end = start + size.value;
+
+  let b = orders.value.filter((order) =>
+    order.order_number.toLowerCase().includes(search.value.toLowerCase())
+  )
+
+  pageCounter.value =  Math.ceil(b.length/size.value);
+  console.log(pageCounter.value)
+
+  return b.slice(start, end);
+  
+
+})
+
+const setPage = (page) =>{
+  pageNumber.value = page - 1
+}
+
+const nextPage = () => {
+
+  pageNumber.value++;
+}
+
+const prevPage = () => {
+  pageNumber.value === 0 ? pageNumber.value = 0 : pageNumber.value--;
+}
+
+
+
+const formatDate = (date) => {
+  const dateTime = new Date(date).toLocaleString().split(',')[0];
+  
+  return dateTime
+}
 
 async function callApi() {
   let endpoint = endpoints["ordersCRUD"];

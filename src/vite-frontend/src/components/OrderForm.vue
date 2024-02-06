@@ -88,6 +88,20 @@
                     </div>
                     <div class="mb-6">
                       <label
+                        for="order_customization"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Personalizzazione</label
+                      >
+                      <input
+                        type="text"
+                        id="order_customization"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required
+                        v-model="order_customization"
+                      />
+                    </div>
+                    <div class="mb-6">
+                      <label
                         for="procesNote"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Note di processo</label
@@ -149,6 +163,7 @@ const order_number = ref("");
 const order_quantity = ref("");
 const order_process_note = ref("");
 const order_serialnumber = ref("");
+const order_customization = ref("");
 
 const router = useRouter();
 const route = useRoute();
@@ -162,6 +177,7 @@ if (props.order) {
   order_quantity.value = props.order.order_quantity
   order_process_note.value = props.order.order_process_note
   order_serialnumber.value = props.order.order_serialnumber
+  order_customization.value = props.order.order_customization
 }
 
 
@@ -172,7 +188,7 @@ async function sentData() {
 
   if (props.order) {
     endpoint += `${props.order.order_number}/`;
-    method = "PUT";
+    method = "PATCH";
   }
   try {
     const response = await axios({
@@ -183,6 +199,7 @@ async function sentData() {
         order_quantity: order_quantity.value,
         order_process_note: order_process_note.value,
         order_serialnumber: order_serialnumber.value,
+        order_customization: order_customization.value,
         board: props.board_id
       },
     });

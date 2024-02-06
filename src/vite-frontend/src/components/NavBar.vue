@@ -1,294 +1,123 @@
 <template>
-  <div class="">
-      <!-- Sidebar starts -->
-      <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
-      <div class="w-56 absolute sm:relative bg-blue-950 shadow md:h-full flex-col justify-between hidden sm:flex ">
-          <div class="px-8">
-              <div class="h-16 w-full flex items-center">
-                <svg class="feather feather-user" fill="white" height="56" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <span class="text-white p-2">MCE - AP</span>
-            </div>
-              <ul class="mt-12">
-                  <li class="flex w-full justify-between text-gray-300 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <rect x="4" y="4" width="6" height="6" rx="1"></rect>
-                              <rect x="14" y="4" width="6" height="6" rx="1"></rect>
-                              <rect x="4" y="14" width="6" height="6" rx="1"></rect>
-                              <rect x="14" y="14" width="6" height="6" rx="1"></rect>
-                          </svg>
-                          <RouterLink to="/" class="text-sm ml-2">Dashboard</RouterLink>
-                      </div>
-                      <!-- <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">5</div> -->
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1"></path>
-                          </svg>
-                          <RouterLink to="/ordini" class="text-sm ml-2">Ordini</RouterLink>
-                      
-                      </div>
-                      <!-- <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">8</div> -->
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <polyline points="8 16 10 10 16 8 14 14 8 16"></polyline>
-                              <circle cx="12" cy="12" r="9"></circle>
-                          </svg>
-                          <RouterLink to="/boards" class="text-sm ml-2">Schede</RouterLink>
-                      </div>
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <polyline points="7 8 3 12 7 16"></polyline>
-                              <polyline points="17 8 21 12 17 16"></polyline>
-                              <line x1="14" y1="4" x2="10" y2="20"></line>
-                          </svg>
-                          <RouterLink to="/tools/" class="text-sm ml-2">Tools</RouterLink>
-                      </div>
-                  </li>
-                  <!-- <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1"></path>
-                          </svg>
-                          <span class="text-sm ml-2">Processi</span>
-                      </div>
-                      <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">25</div>
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" />
-                              <polyline points="12 4 4 8 12 12 20 8 12 4" />
-                              <polyline points="4 12 12 16 20 12" />
-                              <polyline points="4 16 12 20 20 16" />
-                          </svg>
-                          <span class="text-sm ml-2">Inventory</span>
-                      </div>
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" />
-                              <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                              <circle cx="12" cy="12" r="3" />
-                          </svg>
-                          <span class="text-sm ml-2">Settings</span>
-                      </div> -->
-                  <!-- </li> -->
-              </ul>
-              <div class="flex justify-center mt-48 mb-4 w-full">
-                  <!-- <div class="relative">
-                      <div class="text-white absolute ml-4 inset-0 m-auto w-4 h-4">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <circle cx="10" cy="10" r="7"></circle>
-                              <line x1="21" y1="21" x2="15" y2="15"></line>
-                          </svg>
-                      </div>
-                      <input class="bg-gray-700 focus:outline-none rounded w-full text-sm text-white pl-10 py-2" type="text" placeholder="Search" />
-                  </div> -->
-              </div>
-          </div>
-          <div class="px-8 border-t border-gray-700">
-              <ul class="w-full flex items-center justify-between bg-blue-950">
-                  <li class="cursor-pointer text-white pt-5 pb-3">
-                  
-                      <a class="btn btn-outline-secondary" href="/accounts/logout/">
-                        Logout
-                        </a>
-                  </li>
-                  <li class="cursor-pointer text-white pt-5 pb-3">
-                  
-                  <a class="btn btn-outline-secondary" href="/accounts/login/">
-                    Login
-                    </a>
-              </li>
-                  <li class="cursor-pointer text-white pt-5 pb-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z"></path>
-                          <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10"></path>
-                          <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2"></path>
-                      </svg>
-                  </li>
-                  <li class="cursor-pointer text-white pt-5 pb-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z"></path>
-                          <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                          <circle cx="12" cy="12" r="3"></circle>
-                      </svg>
-                  </li>
-                  <li class="cursor-pointer text-white pt-5 pb-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z"></path>
-                          <rect x="3" y="4" width="18" height="4" rx="2"></rect>
-                          <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10"></path>
-                          <line x1="10" y1="12" x2="14" y2="12"></line>
-                      </svg>
-                  </li>
-              </ul>
-          </div>
-      </div>
-      <div class="w-64 z-40 absolute bg-blue-950 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out" id="mobile-nav">
-          <div id="openSideBar" class="h-10 w-10 bg-blue-950 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer" @click="sidebarHandler(true)">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-adjustments" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" />
-                  <circle cx="6" cy="10" r="2" />
-                  <line x1="6" y1="4" x2="6" y2="8" />
-                  <line x1="6" y1="12" x2="6" y2="20" />
-                  <circle cx="12" cy="16" r="2" />
-                  <line x1="12" y1="4" x2="12" y2="14" />
-                  <line x1="12" y1="18" x2="12" y2="20" />
-                  <circle cx="18" cy="7" r="2" />
-                  <line x1="18" y1="4" x2="18" y2="5" />
-                  <line x1="18" y1="9" x2="18" y2="20" />
-              </svg>
-          </div>
-          <div id="closeSideBar" class="h-10 w-10 bg-blue-950 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer text-white" @click="sidebarHandler(false)">
-            <div v-if="!moved">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" />
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </div>
-            <div v-else>
-                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="white">
-                <path fill="#fff" fill-rule="evenodd" d="M19 4a1 1 0 01-1 1H2a1 1 0 010-2h16a1 1 0 011 1zm0 6a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 7a1 1 0 100-2H2a1 1 0 100 2h16z"/>
-                </svg>
-            </div>
-            
-          </div>
-          <div class="px-8">
-              <div class="h-16 w-full flex items-center">
-                <H4 class="text-white">MCE APP</H4>
-              </div>
-              <ul class="mt-12">
-                  <li class="flex w-full justify-between text-gray-300 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <rect x="4" y="4" width="6" height="6" rx="1"></rect>
-                              <rect x="14" y="4" width="6" height="6" rx="1"></rect>
-                              <rect x="4" y="14" width="6" height="6" rx="1"></rect>
-                              <rect x="14" y="14" width="6" height="6" rx="1"></rect>
-                          </svg>
-                          <span class="text-sm ml-2">Dashboard</span>
-                      </div>
-                      <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">5</div>
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1"></path>
-                          </svg>
-                          <span class="text-sm ml-2">Ordini</span>
-                      </div>
-                      <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">8</div>
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <polyline points="8 16 10 10 16 8 14 14 8 16"></polyline>
-                              <circle cx="12" cy="12" r="9"></circle>
-                          </svg>
-                          <span class="text-sm ml-2">Schede</span>
-                      </div>
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <polyline points="7 8 3 12 7 16"></polyline>
-                              <polyline points="17 8 21 12 17 16"></polyline>
-                              <line x1="14" y1="4" x2="10" y2="20"></line>
-                          </svg>
-                          <span class="text-sm ml-2">Tools</span>
-                      </div>
-                  </li>
-                  <!-- <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1"></path>
-                          </svg>
-                          <span class="text-sm ml-2">Processi</span>
-                      </div>
-                      <div class="py-1 px-3 bg-gray-700 rounded text-white flex items-center justify-center text-xs">25</div>
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center mb-6">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-stack" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" />
-                              <polyline points="12 4 4 8 12 12 20 8 12 4" />
-                              <polyline points="4 12 12 16 20 12" />
-                              <polyline points="4 16 12 20 20 16" />
-                          </svg>
-                          <span class="text-sm ml-2">Inventory</span>
-                      </div>
-                  </li>
-                  <li class="flex w-full justify-between text-gray-600 hover:text-white cursor-pointer items-center">
-                      <div class="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" />
-                              <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                              <circle cx="12" cy="12" r="3" />
-                          </svg>
-                          <span class="text-sm ml-2">Settings</span>
-                      </div>
-                  </li> -->
-              </ul>
-              <div class="flex justify-center mt-48 mb-4 w-full">
-                  <div class="relative">
-                      <!-- <div class="text-white absolute ml-4 inset-0 m-auto w-4 h-4">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z"></path>
-                              <circle cx="10" cy="10" r="7"></circle>
-                              <line x1="21" y1="21" x2="15" y2="15"></line>
-                          </svg>
-                      </div>
-                      <input class="focus:outline-none rounded w-full text-sm text-white bg-gray-100 pl-10 py-2" type="text" placeholder="Search" /> -->
-                  </div>
-              </div>
-          </div>
-         
-      </div>
-      <!-- Sidebar ends -->
-    
-  </div>
-</template>
 
-<script>
-export default {
-  name: "NavBar",
-  data() {
-      return {
-          moved: true,
-      };
-  },
-  methods: {
-      sidebarHandler() {
-          let sideBar = document.getElementById("mobile-nav");
-          sideBar.style.transform = "translateX(-260px)";
-          if (this.moved) {
-              sideBar.style.transform = "translateX(0px)";
-              this.moved = false;
-          } else {
-              sideBar.style.transform = "translateX(-260px)";
-              this.moved = true;
-          }
-      },
-  },
-};
-</script>
+<button 
+@click="showSidebar"
+aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+   <span class="sr-only">Open sidebar</span>
+   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+   <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+   </svg>
+</button>
+
+<aside 
+id="default-sidebar" 
+:class="sideBarHide ? '-translate-x-full': ''"
+class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-x-0" aria-label="Sidebar">
+   <div class="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
+      <ul class="space-y-2 font-medium">
+         <div class="flex justify-between">
+            <li>
+            <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+
+               <h4 class="ms-3 font-extrabold text-xl text-blue-900">MCE AP</h4> 
+               
+            </a>
+         </li>
+         <li v-show="!sideBarHide" @click.prevent="hideSidebar">
+            <a  class="flex items-center sm:hidden p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <font-awesome-icon icon="xmark" />
+               
+            </a>
+         </li>
+         </div>
+         <span class="ms-3 p-2">Benvenuto {{ store.first_name }}</span> 
+         <hr>
+         <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                  <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
+               </svg>
+               <RouterLink to="/ordini" class="text-sm ml-2">Ordini</RouterLink>
+             
+            </a>
+         </li>
+         <li>
+            <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <font-awesome-icon icon="hard-drive" class="text-blue-950" />
+               <RouterLink to="/boards" class="text-sm ml-2">Schede</RouterLink>
+            </a>
+         </li>
+         <li>
+            <a class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                  <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
+               </svg>
+               <RouterLink to="/shipping" class="text-sm ml-2">Spedizioni</RouterLink>
+            </a>
+         </li>
+         <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                  <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"/>
+               </svg>
+               <RouterLink to="/tools/" class="text-sm ml-2">Tools</RouterLink>
+            </a>
+         </li>
+         <li>
+            <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                  <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
+                  <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+               </svg>
+               <RouterLink to="/stats/" class="text-sm ml-2">Statistiche</RouterLink>
+            </a>
+         </li>
+         <hr>
+         <!-- <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+            </a>
+         </li> -->
+         <li>
+            <a href="/accounts/logout/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"/>
+                  <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"/>
+                  <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"/>
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Logout</span>
+            </a>
+         </li>
+      </ul>
+   </div>
+</aside>
+
+<div class="p-4 sm:ml-64">
+   
+  <RouterView />
+</div>
+</template>
+ 
+
+<script setup>
+import { ref } from "vue";
+import { RouterLink, RouterView } from 'vue-router'
+import { useStoreUser } from '../stores/storeUsers'
+
+
+// access the `store` 
+const store = useStoreUser()
+
+
+const sideBarHide = ref(true)
+
+const hideSidebar = () =>{
+    sideBarHide.value = true
+}
+const showSidebar = () =>{
+    sideBarHide.value = false
+}
+</script>  

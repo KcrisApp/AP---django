@@ -1,8 +1,7 @@
 <template>
   <main>
-    <div class="container-fluid flex min-h-screen">
-      <NavBar />
-      <div class="m-4 w-full">
+
+      <div class="p-4 w-full">
         <h1 class="text-3xl my-4">Tools</h1>
 
         <hr class="my-2"/>
@@ -117,12 +116,12 @@
           </div>
 
         </div>
-      </div>
+
     </div>
   </main>
 </template>
 <script setup>
-import NavBar from "../components/NavBar.vue";
+
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted } from "vue";

@@ -1,9 +1,21 @@
 <template>
   <main>
-    <div class="container-fluid flex min-h-screen">
-      <NavBar />
+      <div class="p-4 w-full">
+        <div class="" v-if="isLoading">
+        <router-link
+                  :to="{
+                    name: 'order-details',
+                    params: { order_number:smt.order_number  },
+                  }"
+                  class="hover:text-green-600"
+                >
+                <font-awesome-icon icon="arrow-left-long" /> Back to {{ smt.order_number }}
+                
+                </router-link>
+                <hr class="my-4">
+        </div>
 
-      <div class="m-4 w-full">
+
         <div class="flex justify-between my-4">
           <div>
             <h1 class="text-2xl">
@@ -28,7 +40,7 @@
         </div>
 
         <hr class="my-2" />
-        <div class="flex justify-between my-4">
+        <div class="flex justify-between my-4 ">
           <h1 class="text-md font-semibold">Status:</h1>
           <h1 class="text-md">
             <span
@@ -184,7 +196,7 @@
        
     
       </div>
-    </div>
+
     <SmtForm
       v-show="showForm"
       @close-modal="togleSmtForm"
@@ -195,7 +207,7 @@
   </main>
 </template>
 <script setup>
-import NavBar from "../components/NavBar.vue";
+
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";

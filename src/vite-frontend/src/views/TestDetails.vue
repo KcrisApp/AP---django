@@ -1,15 +1,35 @@
 <template>
   <main>
-    <div class="container-fluid flex min-h-screen">
-      <NavBar />
 
-      <div class="m-4 w-full">
+
+      <div class="w-full p-4">
+
+
+
+
+        <div class="" v-if="isLoading">
+        <router-link
+                  :to="{
+                    name: 'order-details',
+                    params: { order_number:tests.order_number  },
+                  }"
+                  class="hover:text-green-600"
+                >
+                <font-awesome-icon icon="arrow-left-long" /> Back to {{ tests.order_number }}
+                
+                </router-link>
+                <hr class="my-4">
+        </div>
+
+
+
+        
         <div class="flex justify-between my-4">
           <div>
             <h1 class="text-2xl">
               <font-awesome-icon icon="laptop-code" class="text-blue-950" />
 
-              Collauo: {{ tests.order_number }}
+              Collaudo: {{ tests.order_number }}
             </h1>
             <p class="mt-2">Data: {{ tests.created_at }}</p>
           </div>
@@ -71,8 +91,6 @@
           <p>{{ tests.serialnumber }}</p>
         </div>
 
-     
-      </div>
     </div>
     <TestForm
       v-show="showForm"
@@ -84,16 +102,16 @@
   </main>
 </template>
 <script setup>
-import NavBar from "../components/NavBar.vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import TestForm from "../components/TestForm.vue";
 import CardCheck from "../components/CardCheck.vue";
 
 
 const tests = ref({});
 const showForm = ref(false);
+
 
 const props = defineProps({
   test_number: String,
@@ -125,6 +143,15 @@ function updateTest(value) {
 function togleTestForm() {
   showForm.value = !showForm.value;
 }
+
+
+
+
+const orderNumber = computed(() => {
+
+  return tests.value.order_number
+  
+})
 
 // lifecycle hooks
 onMounted(() => {
