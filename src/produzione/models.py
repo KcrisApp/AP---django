@@ -86,10 +86,11 @@ class Test(TimeStampedModel):
     aoi = models.BooleanField(default=False, null=True)
     xray = models.BooleanField(default=False, null=True)
     functional = models.BooleanField(default=False, null=True)
-    non_compliance = models.CharField(max_length=120, default="")
-    missing_component = models.CharField(max_length=120, default="")
-    serialnumber = models.CharField(max_length=120, default="")
-    note = models.CharField(max_length=120, default="")
+    non_compliance = models.CharField(max_length=120, default="", null=True, blank=True)
+    missing_component = models.CharField(max_length=120, default="", null=True,blank=True)
+    serialnumber = models.CharField(max_length=120, default="", null=True,blank=True)
+    note = models.CharField(max_length=120, default="", null=True,blank=True)
+    firma = models.CharField(max_length=120, default="", null=True, blank=True)
     status = models.BooleanField(default=False)
     # create_new = models.BooleanField(default=False)
    
@@ -107,14 +108,14 @@ class Verify(TimeStampedModel):
 
     uuid = models.UUIDField(default=uuid_lib.uuid4 ,editable=False)
 
-    missing_component = models.CharField(max_length=120, null=True)
-    manual_work = models.CharField(max_length=120, null=True)
-    changes_after_testing = models.CharField(max_length=120, null=True)
+    missing_component = models.CharField(max_length=120, null=True,blank=True,)
+    manual_work = models.CharField(max_length=120, null=True, blank=True,)
+    changes_after_testing = models.CharField(max_length=120, null=True, blank=True,)
     verify_date_create = models.DateTimeField(auto_now_add=True, null=True)
     create_new = models.BooleanField(default=False, null=True)
     status = models.BooleanField(default=False, null=True)
     order = models.OneToOneField(Order,on_delete= models.CASCADE, related_name="order_verify")
-
+    firma = models.CharField(max_length=120, default="", null=True, blank=True)
     def __str__(self):
         return "%s %s" % (self.order, self.verify_date_create)
     
@@ -151,7 +152,7 @@ class Smt(TimeStampedModel):
     oven_parameters = models.BooleanField(default=False, null=True)
     check_status = models.BooleanField(default=False, null=True)
     create_new = models.BooleanField(default=False, null=True)
-   
+    firma = models.CharField(max_length=120, default="", null=True, blank=True)
     order = models.OneToOneField(Order,on_delete= models.CASCADE, related_name="order_smt")
 
     def __str__(self):
@@ -169,9 +170,9 @@ class Shipping(TimeStampedModel):
     shipping_qta = models.PositiveIntegerField()
     shipping_check = models.BooleanField(default=False)
     shipping_date = models.DateTimeField(null=False)
-    shipping_missing_components = models.CharField(default="",max_length=250, null=True)
+    shipping_missing_components = models.CharField(default="",max_length=250, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_shipping")
-
+    firma = models.CharField(max_length=120, default="", null=True, blank=True)
     def __str__(self):
         return "%s %s" % (self.order, self.shipping_date)
 

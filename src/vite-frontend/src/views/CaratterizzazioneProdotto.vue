@@ -33,7 +33,7 @@ table{
 </style>
 
 <template>
-        <div class="flex justify-around m-5 gap-5" v-if="isLoading">
+        <div class="  flex justify-between mx-12 my-4 " v-if="isLoading">
         <router-link
                   :to="{
                     name: 'order-details',
@@ -50,7 +50,6 @@ table{
         class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white">
         Save to PDF
     </button>
-                <hr class="my-4">
         </div>
 
   

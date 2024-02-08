@@ -79,6 +79,11 @@
           <hr class="my-1" />
           <p class="text-sm">{{ verify.manual_work }}</p>
         </div>
+        <div class="mt-4 bg-gray-100 p-4 rounded-md">
+          <h4 class="text-blue-800 text-sm font-semibold mb-4">Firma operatore:</h4>
+          <p class="">{{ verify.firma }}</p>
+          <hr>
+        </div>
 
       </div>
 

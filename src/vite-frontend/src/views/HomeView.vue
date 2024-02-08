@@ -18,7 +18,7 @@
               </h1>
 
               <p class="mt-4 sm:text-xl/relaxed">
-                Da qui potrai accedere agli ordini in produzione e a tutte le info sulle schede.
+                Da qui potrai accedere agli ordini in produzione e alle relative schede.
               </p>
 
               <div class="mt-8 flex flex-wrap justify-center gap-4">

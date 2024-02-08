@@ -18,6 +18,11 @@ import {faLaptopCode,
         faArrowLeftLong,
         faBars,
         faXmark,
+        faTruckFast,
+        faRightFromBracket,
+        faToolbox,
+        faChartPie,
+        faTableColumns,
         faPassport     } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { createPinia } from 'pinia'
@@ -37,6 +42,11 @@ library.add(faArrowLeftLong);
 library.add(faPassport);
 library.add(faBars);
 library.add(faXmark);
+library.add(faRightFromBracket);
+library.add(faTruckFast);
+library.add(faToolbox);
+library.add(faChartPie);
+library.add(faTableColumns);
 
 const options = {
         name: '_blank',

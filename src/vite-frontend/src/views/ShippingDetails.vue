@@ -2,7 +2,7 @@
   <main>
 
   
-      <div class="m-4 w-full">
+      <div class="p-4 w-full">
 
         <div class="">
         <router-link v-if="orderNumber"
@@ -49,6 +49,7 @@
               <th scope="col" class="px-6 py-4">Qtà</th>
               <th scope="col" class="px-2 py-4">Data</th>
               <th scope="col" class="py-4">Componenti mancanti</th>
+              <th scope="col" class="py-4">Firma operatore</th>
               <th scope="col" class="py-4"></th>
             </tr>
           </thead>
@@ -74,6 +75,9 @@
               <td class="whitespace-nowrap py-4">{{ formatDate(s.shipping_date) }}</td>
               <td class="whitespace-nowrap px-6 py-4">
                 {{ s.shipping_missing_components ? s.shipping_missing_components : 'Nessuno' }}
+              </td>
+              <td class="whitespace-nowrap py-4">
+                {{ s.firma }}
               </td>
               <td class="py-4">
                 <div class="flex justify-center gap-4" @click="openModShipping(s)">

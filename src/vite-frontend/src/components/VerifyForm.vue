@@ -100,7 +100,22 @@
                       ></textarea>
                   
                     </div>
-
+                    <hr>
+                    <div class="mb-6 mt-4">
+                      <label
+                        for="orderNumber"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Firma operatore</label
+                      >
+                      <input
+                        type="text"
+                        id="orderNumber"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder=""
+                        required
+                        v-model="firma"
+                      />
+                    </div>
                     <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                       <button
                        @click="sentData"
@@ -146,7 +161,7 @@ const changes_after_testing = ref(props.verify.changes_after_testing);
 const missing_component = ref(props.verify.missing_component);
 const manual_work = ref(props.verify.manual_work);
 const status = ref(props.verify.status);
-
+const firma = ref(props.verify.firma);
 const emit = defineEmits(["close-modal", "save-data"]);
 
 
@@ -163,6 +178,7 @@ async function sentData() {
         changes_after_testing: changes_after_testing.value,
         missing_component: missing_component.value,
         manual_work: manual_work.value,
+        firma: firma.value,
         status: status.value,
       },
 

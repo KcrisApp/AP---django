@@ -51,7 +51,7 @@
                       <label
                         for="react-checkbox-list"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >Controllo spedizione</label
+                        >Collaudo</label
                       >
                     </div>
                   
@@ -101,6 +101,24 @@
                         cols="30"
                         rows="3"
                       ></textarea>
+                    </div>
+
+
+                    <hr>
+                    <div class="mb-6 mt-4">
+                      <label
+                        for="orderNumber"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Firma operatore</label
+                      >
+                      <input
+                        type="text"
+                        id="orderNumber"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder=""
+                        required
+                        v-model="firma"
+                      />
                     </div>
                    
 
@@ -159,7 +177,7 @@ const shipping_quantity = ref(0);
 const shipping_date = ref(date);
 const shipping_check = ref(false);
 const shipping_missing_components = ref("");
-
+const firma = ref("");
 
 const emit = defineEmits(["close-modal", "save-data"]);
 
@@ -173,6 +191,7 @@ if (props.ship) {
   shipping_date.value = date
   shipping_check.value = props.ship.shipping_check
   shipping_missing_components.value = props.ship.shipping_missing_components
+  firma.value = props.ship.firma
 }
 
 async function sentData() {
@@ -194,6 +213,7 @@ async function sentData() {
         shipping_check: shipping_check.value,
         shipping_date: shipping_date.value,
         shipping_missing_components: shipping_missing_components.value,
+        firma: firma.value,
         order: props.order,
         
       },

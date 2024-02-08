@@ -188,6 +188,23 @@
                   
                     </div>
 
+                    <hr>
+                    <div class="mb-6 mt-4">
+                      <label
+                        for="orderNumber"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Firma operatore</label
+                      >
+                      <input
+                        type="text"
+                        id="orderNumber"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder=""
+                        required
+                        v-model="firma"
+                      />
+                    </div>
+
                     <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                       <button
                        @click="sentData"
@@ -232,6 +249,7 @@ const note = ref(props.tests.note);
 const non_compliance = ref(props.tests.non_compliance);
 const missing_component = ref(props.tests.missing_component);
 const serialnumber = ref(props.tests.serialnumber);
+const firma = ref(props.tests.firma);
 
 const ict = ref(props.tests.ict);
 const aoi = ref(props.tests.aoi);
@@ -247,6 +265,7 @@ async function sentData() {
   
   let endpoint = endpoints["testCRUD"]+`${props.tests.uuid}/`;
   let method = "PATCH";
+
   try {
     const response = await axios({
       method: method,
@@ -260,6 +279,7 @@ async function sentData() {
         non_compliance: non_compliance.value,
         missing_component: missing_component.value,
         serialnumber: serialnumber.value,
+        firma: firma.value,
         status: status.value,
       },
 

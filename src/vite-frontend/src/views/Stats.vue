@@ -3,7 +3,7 @@
 
 
         <div class="container m-4">
-            <h1 class="text-2xl">Stats</h1>
+            <h1 class="text-2xl">Statistiche</h1>
 
             <div class="flex">
 
