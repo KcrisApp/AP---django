@@ -1,12 +1,11 @@
 <template>
 
-
 <div class="p-2 max-w-sm ">
         <div 
         class="border border-slate-100 flex rounded-lg h-full bg-slate-50 dark:bg-gray-800  flex-col">
         <div 
-        :style="{ 'background-color': color}"
-        class="py-2 rounded-md">
+       
+        class="py-2 rounded-md bg-blue-950 text-white">
         <h5 class="px-2 text-md font-medium">
             {{ order }} - {{ title }}
         </h5>
@@ -27,7 +26,9 @@
                 </div>
         </div>
           <div class="flex flex-col justify-between flex-grow mt-4">
-            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ rep }}</span>
+            <span 
+            :style="{ 'background-color': color}"
+            class="text-black text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ rep }}</span>
            
            
           </div>

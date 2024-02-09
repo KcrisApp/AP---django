@@ -17,7 +17,7 @@
           @close-modal="togleModal"
           @save-data="updateOrder"
         />
-        <div class="flex justify-between my-4">
+        <div class="flex flex-wrap gap-4 justify-between my-4">
           <h1 class="text-2xl">
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
             Ordine: {{ o.order_number }}
@@ -39,9 +39,9 @@
           </div>
         </div>
 
-        <hr class="my-2" />
-        <div class="flex bg-slate-100 p-4 h-32 gap-10 flex-wrap rounded-md">
-          <div class="flex-none">
+        <hr class="my-5" />
+        <div class="flex bg-slate-100 p-4  gap-10 flex-wrap rounded-md">
+          <div class="flex-0">
             <qrcode-vue
               class="my-2"
               :value="o.order_number"
@@ -50,7 +50,7 @@
             />
           </div>
 
-          <div class="flix-1">
+          <div class="flex-1">
             <p>
               Numero d'ordine: <b> {{ o.order_number }}</b>
             </p>
@@ -72,9 +72,12 @@
               Personalizzazione: <b> {{ o.order_customization }}</b>
             </p>
           </div>
-          <div class="flex-1">
-            <h5 class="mb-4"><b>Foglio di caratterizzazione</b></h5>
-            <router-link
+         
+        </div>
+        <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
+          <p><b>Foglio di caratterizzazione:</b></p>
+          <hr class="my-2" />
+          <router-link
               :to="{
                 name: 'foglio-caratterizzazione',
                 params: { uuid: o.uuid },
@@ -84,7 +87,6 @@
                 <font-awesome-icon icon="passport" />
               </h3>
             </router-link>
-          </div>
         </div>
         <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
           <p><b>Note di processo:</b></p>
@@ -92,11 +94,11 @@
           <p>{{ o.order_process_note }}</p>
         </div>
 
-        <hr class="my-2" />
+        <hr class="my-5" />
 
         <h1 class="text-xl mt-4">Reparti</h1>
 
-        <div class="flex gap-2 mt-4">
+        <div class="flex gap-2 mt-4 flex-wrap">
           <router-link
             :to="{ name: 'smt-details', params: { smt_number: o.order_smt } }"
             class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"

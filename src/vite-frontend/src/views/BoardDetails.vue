@@ -180,9 +180,7 @@
           @mod-step="modStep(s)"
           />
         </div>
-      </div>
-   
-      <StepForm 
+        <StepForm 
       v-show="showStepsForm"
       :board="orderNumber"
       @close-modal="togleStepForm"
@@ -198,6 +196,9 @@
       />
       
       </div>
+      </div>
+   
+
 
   </main>
 </template>
