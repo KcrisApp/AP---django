@@ -47,7 +47,7 @@
 
                
                 <div class="mt-4">
-                  <form>
+             
                    
 
                    
@@ -131,7 +131,7 @@
                         Cancel
                       </button>
                     </div>
-                  </form>
+              
                 </div>
               </div>
             </div>

@@ -193,7 +193,7 @@
                 </ul>
                 <hr class="my-5" />
                 <div class="mt-4">
-                  <form>
+             
                     <div class="mb-6">
                       <label
                         for="orderNumber"
@@ -479,7 +479,7 @@ class="my-4 text-md-body-1 font-semibold text-blue-900 dark:text-white text-cent
                         Cancel
                       </button>
                     </div>
-                  </form>
+              
                 </div>
               </div>
             </div>

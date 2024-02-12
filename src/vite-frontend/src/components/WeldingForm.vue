@@ -64,7 +64,7 @@
 
                 <hr class="my-5">
                 <div class="mt-4">
-                  <form>
+              
                     <div class="mb-6">
                       <label
                         for="orderNumber"
@@ -151,7 +151,8 @@
                         Cancel
                       </button>
                     </div>
-                  </form>
+            
+                    
                 </div>
               </div>
             </div>

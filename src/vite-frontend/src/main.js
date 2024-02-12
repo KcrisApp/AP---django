@@ -24,6 +24,7 @@ import {faLaptopCode,
         faChartPie,
         faTableColumns,
         faTarpDroplet,
+  
         faPassport     } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { createPinia } from 'pinia'
@@ -49,6 +50,7 @@ library.add(faToolbox);
 library.add(faChartPie);
 library.add(faTableColumns);
 library.add(faTarpDroplet);
+
 
 const options = {
         name: '_blank',

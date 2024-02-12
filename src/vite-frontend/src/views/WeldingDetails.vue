@@ -1,5 +1,9 @@
 <template>
   <main>
+   
+      <Info v-show="msg" :message="msg" icon-type="" title="Success" />
+
+    
       <div class="p-4 w-full">
         <div class="" v-if="isLoading">
         <router-link
@@ -106,6 +110,7 @@
     
       </div>
 
+
     <WeldingForm
       v-show="showForm"
       @close-modal="togleWeldingForm"
@@ -114,6 +119,7 @@
       :welding="welding"
     />
   </main>
+
 </template>
 <script setup>
 
@@ -121,7 +127,7 @@ import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import WeldingForm from "../components/WeldingForm.vue";
-import CardCheck from "../components/CardCheck.vue";
+import  Info from "../components/Info.vue"
 
 
 const welding = ref({});
@@ -130,6 +136,8 @@ const welding = ref({});
 
 const showForm = ref(false);
 const isLoading = ref(false);
+const msg = ref("");
+
 
 
 const props = defineProps({
@@ -156,14 +164,23 @@ async function callApi() {
 
 
 function updateWelding(value) {
+  
   togleWeldingForm();
   welding.value = value;
+  msg.value =  "Campi aggiornati con successo"
+
+  setTimeout(() => msg.value = "", 5000)
+ 
 }
+
+  
+
 
 
 function togleWeldingForm() {
   showForm.value = !showForm.value;
 }
+
 
 
 // lifecycle hooks
