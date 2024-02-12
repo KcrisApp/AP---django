@@ -180,3 +180,26 @@ class Shipping(TimeStampedModel):
 
         verbose_name = "Shipping"
         verbose_name_plural = "Shippings"
+
+class Welding(TimeStampedModel):
+
+    uuid = models.UUIDField(default=uuid_lib.uuid4 ,editable=False)
+
+    soldering_type = models.BooleanField(default=False, null=True)
+    soldering_program = models.CharField(max_length=120, default="", null=True, blank=True)
+    non_compliance = models.CharField(max_length=120, default="", null=True, blank=True)
+    missing_component = models.CharField(max_length=120, default="", null=True,blank=True)
+    note = models.CharField(max_length=120, default="", null=True,blank=True)
+    firma = models.CharField(max_length=120, default="", null=True, blank=True)
+    status = models.BooleanField(default=False)
+    # create_new = models.BooleanField(default=False)
+   
+    order = models.OneToOneField(Order,on_delete= models.CASCADE, related_name="order_welding")
+
+    def __str__(self):
+        return self.order.order_number
+    
+    class Meta:
+
+        verbose_name = "Welding"
+        verbose_name_plural = "Welding"

@@ -7,6 +7,7 @@ const endpoints = {
   productionstepCRUD: `${baseEndpoint}productionstep/`,
   testCRUD: `${baseEndpoint}test/`,
   smtCRUD: `${baseEndpoint}smt/`,
+  weldingCRUD: `${baseEndpoint}welding/`,
   verifyCRUD: `${baseEndpoint}verify/`,
   updateImgBoard: `${baseEndpoint}boardImgUpdate/`,
   production: `${baseEndpoint}production/`,

@@ -21,8 +21,8 @@
 
         <div class="flex justify-between my-4">
           <div>
-            <h1 class="text-2xl mb-5">
-              <font-awesome-icon icon="microchip" />
+            <h1 class="text-2xl mb-4 text-blue-900">
+              <font-awesome-icon icon="truck-fast"/>
               Dettaglio Spedizioni 
 
             </h1>

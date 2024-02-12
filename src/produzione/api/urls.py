@@ -1,6 +1,6 @@
 from django.urls import path, include
 # from produzione.api.views import OrderViewset,BoardViewSet, BoardListCreateAPIView, BoardDetailAPIView, OrderCreateAPIView, OrderDetailAPIView, OrderListAPIView, SmtCreateAPIView, SmtDetailAPIView, SmtListAPIView, TestCreateAPIView, TestDetailAPIView, TestListAPIView, VerifyCreateAPIView, VerifyDetailAPIView, VerifyListAPIView
-from produzione.api.views import BoardImgUpdate, OrderViewset,BoardViewSet, TestListAPIView, TestDetailAPIView, SmtDetailAPIView, SmtListAPIView, VerifyDetailAPIView, VerifyListAPIView, ShippingViewSet, ProductionStepViewset, ProductionListAPIView
+from produzione.api.views import WeldingListAPIView, WeldingDetailAPIView, BoardImgUpdate, OrderViewset,BoardViewSet, TestListAPIView, TestDetailAPIView, SmtDetailAPIView, SmtListAPIView, VerifyDetailAPIView, VerifyListAPIView, ShippingViewSet, ProductionStepViewset, ProductionListAPIView
 
 from rest_framework.routers import DefaultRouter
 
@@ -42,6 +42,13 @@ urlpatterns = [
      path("smt/<uuid:uuid>/",
           SmtDetailAPIView.as_view(),
           name="smt-details"),
+
+     path("welding/",
+          WeldingListAPIView.as_view(),
+          name="welding-list"),
+     path("welding/<uuid:uuid>/",
+          WeldingDetailAPIView.as_view(),
+          name="welding-details"),
 
 
      path("production/<uuid:uuid>/",

@@ -26,7 +26,7 @@
         
         <div class="flex justify-between my-4">
           <div>
-            <h1 class="text-2xl">
+            <h1 class="text-2xl mb-4 text-blue-900">
               <font-awesome-icon icon="laptop-code" class="text-blue-950" />
 
               Collaudo: {{ tests.order_number }}

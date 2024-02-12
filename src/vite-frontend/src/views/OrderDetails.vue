@@ -106,6 +106,12 @@
             SMT
           </router-link>
           <router-link
+            :to="{ name: 'welding-details', params: { welding_number: o.order_welding } }"
+            class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
+          >
+            Saldatura
+          </router-link>
+          <router-link
             :to="{
               name: 'verify-details',
               params: { verify_number: o.order_verify },

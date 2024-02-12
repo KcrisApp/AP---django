@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import BaseSerializer
-from produzione.models import Board, Order, Test, Verify, Smt, Shipping, ProductionSteps
+from produzione.models import Welding, Board, Order, Test, Verify, Smt, Shipping, ProductionSteps
 
 
 
@@ -12,6 +12,7 @@ class OrderSerializer(serializers.ModelSerializer):
     order_verify = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_smt = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_test = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
+    order_welding = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_shipping = serializers.SlugRelatedField(many=True, read_only=True, slug_field="uuid")
     
     class Meta:
@@ -102,6 +103,21 @@ class ShippingSerializer(serializers.ModelSerializer):
             return instance.order.order_quantity
     
 
+
+class WeldingSerializer(serializers.ModelSerializer):
+    
+    order_number = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Welding
+        exclude = ["id", "updated_at"]
+    
+    def get_order_number (self, instance):
+        return instance.order.order_number
+    
+
+
+
 class BoardImagesSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -110,7 +126,7 @@ class BoardImagesSerializer(serializers.ModelSerializer):
 
 
 
-# tEST PER CREARE SERIALIZER FOGLIO DI PRODUZIONE
+# CREARE SERIALIZER FOGLIO DI PRODUZIONE
 class ProductionDetailsSerializer(serializers.ModelSerializer):
 
     order_verify = SmtSerializer(many=False, read_only=True)

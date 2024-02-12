@@ -7,8 +7,8 @@ from rest_framework import viewsets
 from produzione.api.permissions import IsManagerOrReadOnly
 
 
-from produzione.models import Board, Order, Smt, Test, Verify, Shipping, ProductionSteps
-from produzione.api.serializer import BoardSerializer, OrderSerializer, SmtSerializer, TestSerializer, VerifySerializer, BoardImagesSerializer, ShippingSerializer, ProductionStepSerializer, ProductionDetailsSerializer
+from produzione.models import Welding, Board, Order, Smt, Test, Verify, Shipping, ProductionSteps
+from produzione.api.serializer import WeldingSerializer, BoardSerializer, OrderSerializer, SmtSerializer, TestSerializer, VerifySerializer, BoardImagesSerializer, ShippingSerializer, ProductionStepSerializer, ProductionDetailsSerializer
 
 # Orders views V2
 class OrderViewset(viewsets.ModelViewSet):
@@ -138,6 +138,25 @@ class SmtDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Smt.objects.all()
     serializer_class = SmtSerializer
     lookup_field = "uuid"
+
+
+
+# Welding views
+class WeldingListAPIView(generics.ListAPIView):
+    queryset = Welding.objects.all()
+    serializer_class = WeldingSerializer
+    lookup_field = "uuid"
+
+class WeldingDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Welding.objects.all()
+    serializer_class = WeldingSerializer
+    lookup_field = "uuid"
+
+
+
+
+
+
 
 # class SmtCreateAPIView(generics.CreateAPIView):
 
