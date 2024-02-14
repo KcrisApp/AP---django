@@ -39,8 +39,12 @@
             </button>
           </div>
         </div>
-        <p class="">Quantità totale: {{ orderQta }}pz</p>
-        <hr class="mt-2" />
+        <div class="flex gap-2">
+          <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Quantità totale: {{ orderQta }} pz</span>
+          <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Da spedire: {{ orderQtaDelivery }} pz</span>
+          <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Spedite: {{ orderQtaDelivered }} pz</span>
+        </div>
+       <hr class="mt-2" />
         <table class="text-left text-sm font-light flex-wrap w-full">
           <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
@@ -160,6 +164,38 @@ let val = 0
   return val
   
 })
+const orderQtaDelivery = computed(() => {
+
+ let val = 0
+ let orderDelivery = 0
+ let orderToDelivery = 0
+ shipping.value.forEach((element, index) => {
+
+      orderDelivery += element.shipping_qta 
+      if (index == 0){
+        val = element.order_quantity
+      }
+  });
+
+  orderToDelivery = val - orderDelivery
+  return orderToDelivery
+  
+})
+
+
+const orderQtaDelivered = computed(() => {
+
+let val = 0
+let orderDelivery = 0
+
+shipping.value.forEach((element, index) => {
+     orderDelivery += element.shipping_qta 
+ });
+
+ return orderDelivery
+ 
+})
+
 
 const orderNumber = computed(() => {
 

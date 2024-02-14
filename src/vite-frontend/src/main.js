@@ -24,7 +24,8 @@ import {faLaptopCode,
         faChartPie,
         faTableColumns,
         faTarpDroplet,
-  
+        faCamera,
+        faCircleInfo,
         faPassport     } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { createPinia } from 'pinia'
@@ -50,6 +51,8 @@ library.add(faToolbox);
 library.add(faChartPie);
 library.add(faTableColumns);
 library.add(faTarpDroplet);
+library.add(faCamera);
+library.add(faCircleInfo);
 
 
 const options = {
