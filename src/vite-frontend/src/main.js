@@ -4,6 +4,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueHtmlToPaper from 'vue-html-to-paper';
+import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue"; // import lottie-vuejs
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {faLaptopCode, 
         faHardDrive, 
@@ -26,6 +27,7 @@ import {faLaptopCode,
         faTarpDroplet,
         faCamera,
         faCircleInfo,
+        faTriangleExclamation,
         faPassport     } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { createPinia } from 'pinia'
@@ -53,6 +55,7 @@ library.add(faTableColumns);
 library.add(faTarpDroplet);
 library.add(faCamera);
 library.add(faCircleInfo);
+library.add(faTriangleExclamation);
 
 
 const options = {
@@ -78,6 +81,7 @@ const app = createApp(App);
 app.use(router)
 app.use(createPinia())
 app.use(VueHtmlToPaper, options);
+app.use(LottieAnimation); // add lottie-animation to your global scope
 app.component("font-awesome-icon", FontAwesomeIcon)
 
 

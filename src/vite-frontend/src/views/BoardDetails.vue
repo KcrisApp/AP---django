@@ -21,23 +21,25 @@
               />
         <OrderForm v-show="showModal" v-bind:board_id="b.id" @close-modal="togleModal" @save-data="updateOrder"/>
         <ModalImg v-show="showFormImg" @close-alert="togleImgForm" v-bind:board_id="b.id" @save-img="imgUpdate"/>
-        <div class="flex justify-between my-4">
-          <h1 class="text-2xl">
+        <div class="flex justify-between my-4 flex-wrap">
+          <h1 class="text-2xl mb-4">
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
             Scheda: {{ b.board_name }}
           </h1>
-          <div class="flex gap-2"  v-if="store.company_role == 'M'">
+          <div class="flex gap-2  sm:text-sm md:text-lg"  v-if="store.company_role == 'M'">
             <button
               class="hover:bg-blue-500 hover:border-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
               @click="togleModal"
             >
-              <font-awesome-icon icon="folder-plus" /> Aggiungi ordine
+              <!-- <font-awesome-icon icon="folder-plus" /> Add order -->
+              Add order
             </button>
             <button
               class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
               @click="togleForm"
             >
-              <font-awesome-icon icon="folder-plus" /> Modifica
+              <!-- <font-awesome-icon icon="folder-plus" /> Modifica -->
+              Modifica
             </button>
             <button
               class="hover:bg-red-900 bg-red-600 text-white font-semibold py-1 px-4 rounded"
@@ -49,7 +51,7 @@
         </div>
 
         <hr class="my-2" />
-        <div class="flex bg-slate-50 p-4 gap-4 rounded-xl">
+        <div class="flex bg-slate-50 p-4 gap-4 rounded-xl flex-wrap">
           <div class="col">
   
               
@@ -91,8 +93,8 @@
               <th scope="col" class="px-6 py-4">Numero ordine</th>
               <th scope="col" class="px-6 py-4">Quantità</th>
               <th scope="col" class="px-6 py-4">Data creazione</th>
-              <th scope="col" class="px-6 py-4">Scheda</th>
-              <th scope="col" class="px-6 py-4"></th>
+            
+            
             </tr>
           </thead>
           <tbody>
@@ -101,15 +103,7 @@
               v-for="o in order"
               :key="order.uuid"
             >
-              <td class="whitespace-nowrap px-6 py-2 font-medium">
-                {{ o.order_number }}
-              </td>
-              <td class="whitespace-nowrap px-6 py-2">
-                {{ o.order_quantity }}
-              </td>
-              <td class="whitespace-nowrap px-6 py-2">{{ o.created_at }}</td>
-              <td class="whitespace-nowrap px-6 py-2">{{ b.board_name }}</td>
-              <td class="whitespace-nowrap px-6 py-2">
+            <td class="whitespace-nowrap px-6 py-2">
                 <router-link
                   :to="{
                     name: 'order-details',
@@ -117,14 +111,14 @@
                   }"
                   class="hover:text-green-600"
                 >
-                  <font-awesome-icon
-                    icon="fa-eye"
-                    class="text-blue-950 hover:text-green-500"
-                  />
+                {{ o.order_number }}
                 </router-link>
               </td>
-
-             
+              <td class="whitespace-nowrap px-6 py-2">
+                {{ o.order_quantity }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-2">{{ o.created_at }}</td>
+            
             </tr>
           </tbody>
         </table>

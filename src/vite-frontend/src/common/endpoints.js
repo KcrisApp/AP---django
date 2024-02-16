@@ -1,17 +1,22 @@
-const baseEndpoint = "/api/v1/";
+const productionEndPoint = "/api/v1/production/";
+const adminEndPoint = "/api/v1/administration/";
 
 const endpoints = {
-  boardsCRUD: `${baseEndpoint}board/`,
-  ordersCRUD: `${baseEndpoint}order/`,
-  shippingCRUD: `${baseEndpoint}shipping/`,
-  productionstepCRUD: `${baseEndpoint}productionstep/`,
-  testCRUD: `${baseEndpoint}test/`,
-  smtCRUD: `${baseEndpoint}smt/`,
-  weldingCRUD: `${baseEndpoint}welding/`,
-  verifyCRUD: `${baseEndpoint}verify/`,
-  updateImgBoard: `${baseEndpoint}boardImgUpdate/`,
-  production: `${baseEndpoint}production/`,
+  boardsCRUD: `${productionEndPoint}board/`,
+  ordersCRUD: `${productionEndPoint}order/`,
+  shippingCRUD: `${productionEndPoint}shipping/`,
+  productionstepCRUD: `${productionEndPoint}productionstep/`,
+  testCRUD: `${productionEndPoint}test/`,
+  smtCRUD: `${productionEndPoint}smt/`,
+  weldingCRUD: `${productionEndPoint}welding/`,
+  verifyCRUD: `${productionEndPoint}verify/`,
+  updateImgBoard: `${productionEndPoint}boardImgUpdate/`,
+  production: `${productionEndPoint}production/`,
   usersDetail: "/auth/users/me/",
 };
 
-export { endpoints };
+const administrationEndpoint = {
+  announcementCRUD: `${adminEndPoint}announcement/`,
+}
+
+export { endpoints, administrationEndpoint };

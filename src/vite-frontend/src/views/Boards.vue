@@ -10,12 +10,12 @@
       />
 
       <div class="p-4 w-full">
-        <div class="flex justify-between gap-2">
-          <h1 class="text-2xl">
+        <div class="flex justify-between gap-2 flex-wrap">
+          <h1 class="text-2xl flex-1">
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
             Schede
           </h1>
-          <div class="flex-1">
+          <div class="flex-2">
             <form class="">
               <div class="relative">
                 <div
@@ -48,7 +48,7 @@
               <th scope="col" class="px-6 py-4">Codice</th>
               <th scope="col" class="px-6 py-4">Data creazione</th>
               <th scope="col" class="px-2 py-4">Revisione</th>
-              <th scope="col" class="px-2 py-4"></th>
+             
             </tr>
           </thead>
           <tbody>
@@ -57,8 +57,17 @@
               v-for="board in paginatedData"
               :key="board.uuid"
             >
-              <td class="whitespace-nowrap px-6 py-4 font-medium">
-                {{ board.board_name }}
+              <td class="whitespace-nowrap px-6 py-4 font-medium hover:text-green-600">
+       
+                <router-link
+                    :to="{
+                      name: 'board-details',
+                      params: { uuid: board.id },
+                    }"
+               
+                  >
+                  {{ board.board_name }}
+                  </router-link>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
                 {{ board.board_code }}
@@ -67,22 +76,7 @@
                 {{ board.created_at }}
               </td>
               <td class="whitespace-nowrap px-4 py-4">{{ board.board_rev }}</td>
-              <td class="py-4">
-                
-                  <router-link
-                    :to="{
-                      name: 'board-details',
-                      params: { uuid: board.id },
-                    }"
-               
-                  >
-                    <font-awesome-icon
-                      icon="fa-eye"
-                      class="text-blue-950 hover:text-green-500"
-                    />
-                  </router-link>
-         
-              </td>
+           
             </tr>
           </tbody>
         </table>

@@ -11,19 +11,27 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+#reading .env file
+# Load environment variables from .env file
+load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG')
+# DATABASE_URL = os.getenv('DATABASE_URL')
+
+
+# Build pahs inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w&vx20!jvrmzt4x*!w(f-+l=ri9ttg^xei7*@!@1bc3^c)24d#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 ALLOWED_HOSTS = []
 
@@ -49,6 +57,7 @@ INSTALLED_APPS = [
     'produzione',
     'users',
     'core',
+    'administration',
     'colorfield' 
 ]
 

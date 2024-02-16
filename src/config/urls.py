@@ -35,7 +35,8 @@ urlpatterns = [
         name="django_registration_register",
     ),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("api/v1/", include("produzione.api.urls")),
+    path("api/v1/production/", include("produzione.api.urls")),
+    path("api/v1/administration/", include("administration.api.urls")),
 ]
 
 if settings.DEBUG:
