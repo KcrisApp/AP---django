@@ -1,9 +1,9 @@
 <template>
   <main>
-
+    <Info v-show="msg" :message="msg" :icon-type="iconType" />
 
     
-      <div class="p-4 w-full" v-for="b in board">
+      <div class="p-4 w-full">
 
         <Alert
           v-show="showAlert"
@@ -11,22 +11,23 @@
           title="Attenzione"
           message="Sei sicuro di voler eliminare la scheda?"
           @close-alert="togleAlert"
-          @confirm="deleteBoard(b.uuid)"
+          @confirm="deleteBoard(board.uuid)"
         />
         <BoardForm
+                v-if="isLoading"
                 v-show="showForm"
                 @close-modal="togleForm"
                 @save-data="updateBoard"
-                v-bind:boardArr="b"
+                v-bind:boardArr="board"
               />
-        <OrderForm v-show="showModal" v-bind:board_id="b.id" @close-modal="togleModal" @save-data="updateOrder"/>
-        <ModalImg v-show="showFormImg" @close-alert="togleImgForm" v-bind:board_id="b.id" @save-img="imgUpdate"/>
+        <!-- <OrderForm v-show="showModal" v-bind:board_id="b.id" @close-modal="togleModal" @save-data="updateOrder"/> -->
+        <ModalImg v-show="showFormImg" @close-alert="togleImgForm" v-bind:board_id="board.id" @save-img="imgUpdate"/>
         <div class="flex justify-between my-4 flex-wrap">
           <h1 class="text-2xl mb-4">
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
-            Scheda: {{ b.board_name }}
+            Scheda: {{ board.board_name }}
           </h1>
-          <div class="flex gap-2  sm:text-sm md:text-lg"  v-if="store.company_role == 'M'">
+          <div class="flex gap-2  sm:text-sm md:text-md"  v-if="store.company_role == 'M'">
             <button
               class="hover:bg-blue-500 hover:border-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
               @click="togleModal"
@@ -55,7 +56,7 @@
           <div class="col">
   
               
-              <img class="h-auto max-w-xs" :src='b.board_img'>
+              <img class="h-auto max-w-xs" :src='board.board_img'>
               <button
               v-if="store.company_role == 'M'"
               class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
@@ -64,17 +65,17 @@
           </div>
           <div class="col">
             <p>
-              Codice: <b> {{ b.board_code }}</b>
+              Codice: <b> {{ board.board_code }}</b>
             </p>
             <p class="mt-2">
-              Revisione: <b> {{ b.board_rev }}</b>
+              Revisione: <b> {{ board.board_rev }}</b>
             </p>
             
             <p>
-              Data di creazione: <b> {{ b.created_at }}</b>
+              Data di creazione: <b> {{ board.created_at }}</b>
             </p>
             <p class="mt-2">
-              Cliente: <b> {{ b.customer }}</b>
+              Cliente: <b> {{ board.customer }}</b>
             </p>
             
 
@@ -202,22 +203,24 @@ import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import Alert from "../components/Alert.vue";
-import OrderForm from "../components/OrderForm.vue";
+// import OrderForm from "../components/OrderForm.vue";
 import StepForm from "../components/StepForm.vue";
 import BoardForm from "../components/BoardForm.vue";
 import ModalImg from "../components/ModalImg.vue";
 import StepCard from "../components/StepCard.vue";
 import { useRouter, useRoute } from "vue-router";
 import { useStoreUser } from '../stores/storeUsers'
-
+import  Info from "../components/Info.vue"
 // access the `store` 
 const store = useStoreUser()
 console.log(store.first_name)
 
 
-const board = ref([]);
+const board = ref({});
 const order = ref([]);
 const steps = ref([]);
+const iconType = ref(false);
+const msg = ref("");
 
 
 const showAlert = ref(false);
@@ -227,6 +230,7 @@ const showFormImg = ref(false);
 const showSteps = ref(false)
 const showStepsForm = ref(false)
 const showModStepsForm = ref(false)
+const isLoading = ref(false)
 const singleStep = ref({})
 const router = useRouter();
 const route = useRoute();
@@ -241,7 +245,7 @@ const orderCount = computed(() => {
 });
 
 const orderNumber = computed(() =>{
-  return board.value[0].id
+  return board.value.id
 })
 const orderSteps = computed(() => {
    return steps.value.sort((a, b) => a.step_order - b.step_order);
@@ -269,7 +273,7 @@ const updateSingleStep = (value) =>{
 
 
 async function callApiBoard() {
-
+  isLoading.value = false
   try {
 
     // Test axios all
@@ -279,13 +283,13 @@ async function callApiBoard() {
     ])
     .then(axios.spread((data1, data2) => {
       // output of req.
-      board.value.push(data1.data);
+      board.value = data1.data
       order.value = data1.data.order;
 
       data2.data.forEach(element => {
         steps.value.push(element)
       });
-      
+      isLoading.value = true
     }));
 
     
@@ -333,23 +337,33 @@ const updateDeleteStep = uuidDelete => {
   steps.value = steps.value.filter(step => { return step.uuid !== uuidDelete })
   }
 
-function updateOrder(value) {
-  togleModal()
-  order.value.unshift(value);
-}
+// function updateOrder(value) {
+//   togleModal()
+//   order.value.unshift(value);
+// }
 
 function updateBoard(value) {
   togleForm()
+  if (typeof value === 'number') {
+      msg.value =  "Aggiornametno non riuscito"
+      iconType.value =  false
+  }
+  else{
   console.log(value)
-  board.value[0].board_code = value.board_code
-  board.value[0].board_name = value.board_name
-  board.value[0].board_rev = value.board_rev
-  board.value[0].customer = value.customer
+  board.value = value
+  msg.value =  "Aggiornametno avvenuto con successo"
+  iconType.value =  true
+  }
+  
+
+  setTimeout(() => msg.value = "", 5000)
+
+
 
 }
 function imgUpdate(value) {
   togleImgForm()
-  board.value[0].board_img = value.board_img
+  board.value.board_img = value.board_img
 
 }
 

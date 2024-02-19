@@ -1,6 +1,9 @@
 <template>
   <main>
+   
       <div class="p-4 w-full">
+        <Info v-show="msg" :message="msg" :icon-type="iconType" />
+
         <div class="" v-if="isLoading">
         <router-link
                   :to="{
@@ -218,7 +221,7 @@ import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import SmtForm from "../components/SmtForm.vue";
 import CardCheck from "../components/CardCheck.vue";
-
+import  Info from "../components/Info.vue"
 
 const smt = ref({});
 
@@ -226,7 +229,8 @@ const smt = ref({});
 
 const showForm = ref(false);
 const isLoading = ref(false);
-
+const iconType = ref(false);
+const msg = ref("");
 
 const props = defineProps({
   smt_number: String,
@@ -253,7 +257,20 @@ async function callApi() {
 
 function updateSmt(value) {
   togleSmtForm();
-  smt.value = value;
+
+
+  if (typeof value === 'number') {
+      msg.value =  "Aggiornametno non riuscito"
+      iconType.value =  false
+  }
+  else{
+  smt.value = value; 
+  msg.value =  "Aggiornametno avvenuto con successo"
+  iconType.value =  true
+  }
+  
+
+  setTimeout(() => msg.value = "", 5000)
 }
 
 

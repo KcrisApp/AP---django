@@ -30,9 +30,9 @@
               >
                 {{ annuncements.announcement_title }}
               </h5>
-              <p class="mb-2 text-base text-neutral-600 dark:text-neutral-200 line-clamp-1" >
-                {{ annuncements.announcement_content }}
-              </p>
+              <div v-html="annuncements.html" class="mb-2 text-base text-neutral-600 dark:text-neutral-200 line-clamp-1" >
+                
+              </div>
               <p class="font-semibold  text-gray-900 text-sm">
                  Data: {{ annuncements.created_at }}
                 </p>
@@ -41,7 +41,16 @@
                 <button
                 class="mt-4 block w-full  rounded bg-green-600 px-4 py-1 text-sm font-medium text-white shadow hover:bg-green-800 focus:outline-none focus:ring"
               >
-                Leggi
+           
+                <router-link
+                    :to="{
+                      name: 'announcement-details',
+                      params: { uuid: annuncements.uuid },
+                    }"
+               
+                  >
+                  Leggi
+                  </router-link>
               </button>
               </div>
               

@@ -59,13 +59,13 @@
                   >
                     <div class="flex items-center ps-3">
                       <input
-                        id="vue-checkbox-list"
+                        id="fridge_temperature"
                         type="checkbox"
                         v-model="fridge_temperature"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="vue-checkbox-list"
+                        for="fridge_temperature"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Temperatura frigo</label
                       >
@@ -76,13 +76,13 @@
                   >
                     <div class="flex items-center ps-3">
                       <input
-                        id="react-checkbox-list"
+                        id="cream_expiration"
                         type="checkbox"
                         v-model="cream_expiration"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="react-checkbox-list"
+                        for="cream_expiration"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Scadenza crema</label
                       >
@@ -93,13 +93,13 @@
                   >
                     <div class="flex items-center ps-3">
                       <input
-                        id="angular-checkbox-list"
+                        id="cream_deposit"
                         type="checkbox"
                         v-model="cream_deposit"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="angular-checkbox-list"
+                        for="cream_deposit"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Deposito crema</label
                       >
@@ -108,13 +108,13 @@
                   <li class="w-full dark:border-gray-600">
                     <div class="flex items-center ps-3">
                       <input
-                        id="laravel-checkbox-list"
+                        id="pick_and_place_setup"
                         type="checkbox"
                         v-model="pick_and_place_setup"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="laravel-checkbox-list"
+                        for="pick_and_place_setup"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >PeP setup</label
                       >
@@ -129,13 +129,13 @@
                   >
                     <div class="flex items-center ps-3">
                       <input
-                        id="vue-checkbox-list"
+                        id="frame_status"
                         type="checkbox"
                         v-model="frame_status"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="vue-checkbox-list"
+                        for="frame_status"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Controllo lamina</label
                       >
@@ -146,13 +146,13 @@
                   >
                     <div class="flex items-center ps-3">
                       <input
-                        id="react-checkbox-list"
+                        id="board_check"
                         type="checkbox"
                         v-model="board_check"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="react-checkbox-list"
+                        for="board_check"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Controllo scheda</label
                       >
@@ -163,13 +163,13 @@
                   >
                     <div class="flex items-center ps-3">
                       <input
-                        id="angular-checkbox-list"
+                        id="oven_parameters"
                         type="checkbox"
                         v-model="oven_parameters"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="angular-checkbox-list"
+                        for="oven_parameters"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Parametri forno</label
                       >
@@ -178,13 +178,13 @@
                   <li class="w-full dark:border-gray-600">
                     <div class="flex items-center ps-3">
                       <input
-                        id="laravel-checkbox-list"
+                        id="check_status"
                         type="checkbox"
                         v-model="check_status"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="laravel-checkbox-list"
+                        for="check_status"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Controllo parametri</label
                       >
@@ -564,8 +564,7 @@ async function sentData() {
     });
     emit("save-data", response.data);
   } catch (error) {
-    error = error;
-    alert(error);
+    emit("save-data", error.response.status);
   }
 }
 function triggerCloseModal() {

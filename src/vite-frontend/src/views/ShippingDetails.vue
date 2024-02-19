@@ -1,7 +1,7 @@
 <template>
   <main>
 
-  
+    <Info v-show="msg" :message="msg" :icon-type="iconType" />
       <div class="p-4 w-full">
 
         <div class="">
@@ -138,6 +138,7 @@ import { ref, onMounted, computed } from "vue";
 import CardCheck from "../components/CardCheck.vue";
 import ShippingForm from "../components/ShippingForm.vue";
 import Alert from "@/components/Alert.vue";
+import  Info from "../components/Info.vue"
 
 const shipping = ref([]);
 const showForm = ref(false);
@@ -145,7 +146,8 @@ const search = ref("");
 const showAlert = ref(false);
 const showModModal = ref(false);
 const singleShip = ref({})
-
+const iconType = ref(false);
+const msg = ref("");
 
 
 const props = defineProps({
@@ -230,10 +232,22 @@ const updateSingleShip = (value) =>{
 
 function updateShipping(value) {
   togleModal();
-  shipping.value.unshift(value);
+  
+
+  if (typeof value === 'number') {
+      msg.value =  "Aggiornametno non riuscito"
+      iconType.value =  false
+  }
+  else{
+    shipping.value.unshift(value);
+  msg.value =  "Aggiornametno avvenuto con successo"
+  iconType.value =  true
+  }
+  setTimeout(() => msg.value = "", 5000)
 }
 
 const updateDeleteShipping = uuidDelete => {
+  
   shipping.value = shipping.value.filter(ship => { return ship.uuid !== uuidDelete })
   }
 

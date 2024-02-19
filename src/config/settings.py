@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'widget_tweaks',
+    'django_quill',
     #Authentication
     'rest_framework.authtoken',
     'django_registration',

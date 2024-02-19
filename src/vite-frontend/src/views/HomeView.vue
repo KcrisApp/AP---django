@@ -30,7 +30,7 @@
                 >
                 <RouterLink
                   to="/boards"
-                  class="block w-full rounded px-12 py-3 text-sm font-medium text-blue-600 shadow hover:text-blue-700 hover:bg-slate-100 focus:outline-none focus:ring sm:w-auto"
+                  class="block w-full rounded px-12 py-3 text-sm font-medium text-blue-600 shadow hover:text-blue-700 bg-slate-300 hover:bg-slate-400 focus:outline-none focus:ring sm:w-auto"
                   >Schede</RouterLink
                 >
                 <button
@@ -64,7 +64,7 @@
 
 <script setup>
 import QrcodeScan from "../components/QrcodeScan.vue";
-import { endpoints, administrationEndpoint } from "../common/endpoints";
+import { administrationEndpoint } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import { useDateFormat } from "../use/useDateFormat";

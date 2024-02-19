@@ -4,8 +4,16 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueHtmlToPaper from 'vue-html-to-paper';
+
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
+
 import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue"; // import lottie-vuejs
 import { library } from "@fortawesome/fontawesome-svg-core";
+
+
+
 import {faLaptopCode, 
         faHardDrive, 
         faFolderPlus, 
@@ -82,7 +90,9 @@ app.use(router)
 app.use(createPinia())
 app.use(VueHtmlToPaper, options);
 app.use(LottieAnimation); // add lottie-animation to your global scope
-app.component("font-awesome-icon", FontAwesomeIcon)
+app.component('QuillEditor', QuillEditor) 
 
+app.component("font-awesome-icon", FontAwesomeIcon)
+app.component('QuillEditor');
 
 app.mount('#app')

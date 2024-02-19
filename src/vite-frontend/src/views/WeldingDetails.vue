@@ -1,7 +1,7 @@
 <template>
   <main>
    
-      <Info v-show="msg" :message="msg" icon-type="" title="Success" />
+      <Info v-show="msg" :message="msg" :icon-type="iconType" />
 
     
       <div class="p-4 w-full">
@@ -136,6 +136,7 @@ const welding = ref({});
 
 const showForm = ref(false);
 const isLoading = ref(false);
+const iconType = ref(false);
 const msg = ref("");
 
 
@@ -158,16 +159,26 @@ async function callApi() {
 
   } catch (error) {
     alert(error);
+    
   }
 }
 
 
 
 function updateWelding(value) {
-  
+  console.log(value)
   togleWeldingForm();
-  welding.value = value;
-  msg.value =  "Campi aggiornati con successo"
+
+  if (typeof value === 'number') {
+      msg.value =  "Aggiornametno non riuscito"
+      iconType.value =  false
+  }
+  else{
+  welding.value = value; 
+  msg.value =  "Aggiornametno avvenuto con successo"
+  iconType.value =  true
+  }
+  
 
   setTimeout(() => msg.value = "", 5000)
  

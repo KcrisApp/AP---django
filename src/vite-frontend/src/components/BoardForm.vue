@@ -163,7 +163,7 @@ const props = defineProps({
 
 
 
-const customer = ref();
+const customer = ref("");
 const board_name = ref("");
 const board_code = ref("");
 const board_rev = ref("");
@@ -186,8 +186,8 @@ async function sentData(){
   let endpoint = endpoints["boardsCRUD"];
       let method = "POST";
       if (props.boardArr) {
-        endpoint += `${props.boardArr.uuid}/`;
-        method = "PUT";
+        endpoint += `${props.boardArr.id}/`;
+        method = "PATCH";
       }
       try {
 
@@ -203,10 +203,9 @@ async function sentData(){
         });
       
         emit("save-data", response.data);
-        customer.value = ""
-        board_code.value = ""
-        board_name.value = ""
-        board_rev.value = ""
+
+    
+       
 
       } catch (error) {
         error = error;

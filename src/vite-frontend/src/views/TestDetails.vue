@@ -1,7 +1,7 @@
 <template>
   <main>
 
-
+    <Info v-show="msg" :message="msg" :icon-type="iconType" />
       <div class="w-full p-4">
 
 
@@ -112,11 +112,12 @@ import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import TestForm from "../components/TestForm.vue";
 import CardCheck from "../components/CardCheck.vue";
-
+import  Info from "../components/Info.vue"
 
 const tests = ref({});
 const showForm = ref(false);
-
+const iconType = ref(false);
+const msg = ref("");
 
 const props = defineProps({
   test_number: String,
@@ -141,7 +142,19 @@ console.log(tests);
 
 function updateTest(value) {
   togleTestForm();
-  tests.value=value
+
+  if (typeof value === 'number') {
+      msg.value =  "Aggiornametno non riuscito"
+      iconType.value =  false
+  }
+  else{
+  tests.value = value; 
+  msg.value =  "Aggiornametno avvenuto con successo"
+  iconType.value =  true
+  }
+  
+
+  setTimeout(() => msg.value = "", 5000)
 }
 
 

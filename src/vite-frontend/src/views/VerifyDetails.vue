@@ -1,7 +1,7 @@
 <template>
   <main>
 
-
+    <Info v-show="msg" :message="msg" :icon-type="iconType" />
       <div class="p-4 w-full">
 
 
@@ -90,7 +90,7 @@
     <VerifyForm
       v-show="showForm"
       @close-modal="togleVerifyForm"
-      @save-data="updateTest"
+      @save-data="updateVerify"
       v-if="isLoading"
       :verify="verify"
     />
@@ -105,12 +105,15 @@ import { ref, onMounted, computed } from "vue";
 import Alert from "../components/Alert.vue";
 import VerifyForm from "../components/VerifyForm.vue";
 import { useRouter, useRoute } from "vue-router";
+import  Info from "../components/Info.vue"
 
 const verify = ref({});
 
 const isLoading = ref(false);
 const showForm = ref(false);
 
+const iconType = ref(false);
+const msg = ref("");
 
 const router = useRouter();
 const route = useRoute();
@@ -137,7 +140,21 @@ async function callApi() {
 
 function updateVerify(value) {
   togleVerifyForm();
+  console.log(value)
+
+
+  if (typeof value === 'number') {
+      msg.value =  "Aggiornametno non riuscito"
+      iconType.value =  false
+  }
+  else{
   verify.value = value
+  msg.value =  "Aggiornametno avvenuto con successo"
+  iconType.value =  true
+  }
+  
+
+  setTimeout(() => msg.value = "", 5000)
 }
 
 

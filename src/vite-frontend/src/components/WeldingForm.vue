@@ -211,8 +211,9 @@ async function sentData() {
 
    
   } catch (error) {
-    error = error;
-    alert(error);
+
+    emit("save-data", error.response.status);
+
   }
 }
 function triggerCloseModal() {
