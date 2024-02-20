@@ -117,15 +117,25 @@ const router = createRouter({
 
     },
     {
-      path: "/:catchAll(.*)",
-      name: "page-not-found",
-      component: () => import("../views/NotFound.vue"),
+      path: "/announcement-list/",
+      name: "announcement-list",
+      // route level code-splitting
+      // this generates a separate chunk (QuestionView.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/AnnouncementList.vue"),
+
     },
     {
       path: "/stats/",
       name: "stat-page",
       component: () => import("../views/Stats.vue"),
     },
+    {
+      path: "/:catchAll(.*)",
+      name: "page-not-found",
+      component: () => import("../views/NotFound.vue"),
+    },
+  
   ]
 })
 
