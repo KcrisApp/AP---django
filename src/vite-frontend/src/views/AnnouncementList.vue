@@ -1,38 +1,68 @@
 <template>
   <main>
+    <div class="p-4 w-full">
+      <section class="my-2 mx-5">
+        <!-- Bacheca -->
 
-
-    
-      <div class="p-4 w-full">
-
-       
-      
-
-        
-        <section class="my-2 mx-5">
-          <!-- Bacheca -->
-
-          <h1 class="text-lg font-semibold sm:text-3xl my-5 text-blue-900">
-            Bacheca
-          </h1>
-          <hr class="my-5" />
-          <div v-for="an in announcement">
-            <Annuncement class="my-4" :annuncements="an" />
+        <h1 class="text-lg font-semibold sm:text-3xl my-5 text-blue-900">
+          Bacheca
+        </h1>
+        <div class="flex-2">
+          <div class="">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              ></div>
+              <input
+                type="search"
+                id="default-search"
+                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Cerca per titolo"
+                v-model="search"
+              />
+            </div>
           </div>
-        </section>
-        
+        </div>
+        <hr class="my-5" />
+        <div v-for="an in paginatedData">
+          <Annuncement class="my-4" :annuncements="an" />
+        </div>
+      </section>
 
-   
-  </div>
+      <!-- Testpagination -->
+      <div class="text-center mt-4">
+        <nav aria-label="Page navigation example">
+          <ul class="inline-flex -space-x-px text-sm">
+            <li v-show="pageNumber !== 0">
+              <a
+                @click.prevent="prevPage"
+                class="disabled flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >Previous</a
+              >
+            </li>
+            <li v-for="p in pageCounter">
+              <a
+                @click.prevent="setPage(p)"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >{{ p }}</a
+              >
+            </li>
 
-
-
-
-
+            <li v-show="pageNumber < pageCounter - 1">
+              <a
+                @click.prevent="nextPage"
+                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >Next</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!-- Testpagination -->
+    </div>
   </main>
 </template>
 <script setup>
-
 import { administrationEndpoint } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
@@ -40,16 +70,15 @@ import { ref, onMounted, computed } from "vue";
 // import OrderForm from "../components/OrderForm.vue";
 
 import { useRouter, useRoute } from "vue-router";
-import { useStoreUser } from '../stores/storeUsers'
-import  Info from "../components/Info.vue"
+import { useStoreUser } from "../stores/storeUsers";
+import Info from "../components/Info.vue";
 import Annuncement from "../components/Annuncement.vue";
-// access the `store` 
-const store = useStoreUser()
-console.log(store.first_name)
-
+// access the `store`
+const store = useStoreUser();
+console.log(store.first_name);
 
 const announcement = ref([]);
-const myContent = ref("")
+const search = ref("");
 
 const iconType = ref(false);
 const msg = ref("");
@@ -57,11 +86,43 @@ const msg = ref("");
 const showModal = ref(false);
 const showForm = ref(false);
 
-
-const isLoading = ref(false)
+const isLoading = ref(false);
 
 const router = useRouter();
 const route = useRoute();
+
+// Pagination
+const pageCounter = ref(0);
+const size = ref(15);
+const pageNumber = ref(0);
+
+const paginatedData = computed(() => {
+  const start = pageNumber.value * size.value;
+  const end = start + size.value;
+
+  let a = announcement.value.filter((annuncement_value) =>
+    annuncement_value.announcement_title
+      .toLowerCase()
+      .includes(search.value.toLowerCase())
+  );
+
+  pageCounter.value = Math.ceil(a.length / size.value);
+  console.log(pageCounter.value);
+
+  return a.slice(start, end);
+});
+
+const setPage = (page) => {
+  pageNumber.value = page - 1;
+};
+
+const nextPage = () => {
+  pageNumber.value++;
+};
+
+const prevPage = () => {
+  pageNumber.value === 0 ? (pageNumber.value = 0) : pageNumber.value--;
+};
 
 const props = defineProps({
   uuid: String,
@@ -71,13 +132,6 @@ const props = defineProps({
 const orderCount = computed(() => {
   return order.value.length;
 });
-
-
-
-
-
-
-
 
 async function callApi() {
   let endpoint = administrationEndpoint["announcementCRUD"];
@@ -90,30 +144,20 @@ async function callApi() {
   }
 }
 
-
-
-
-
 function updateBoard(value) {
-  togleForm()
-  if (typeof value === 'number') {
-      msg.value =  "Aggiornametno non riuscito"
-      iconType.value =  false
+  togleForm();
+  if (typeof value === "number") {
+    msg.value = "Aggiornametno non riuscito";
+    iconType.value = false;
+  } else {
+    console.log(value);
+    board.value = value;
+    msg.value = "Aggiornametno avvenuto con successo";
+    iconType.value = true;
   }
-  else{
-  console.log(value)
-  board.value = value
-  msg.value =  "Aggiornametno avvenuto con successo"
-  iconType.value =  true
-  }
-  
 
-  setTimeout(() => msg.value = "", 5000)
-
-
-
+  setTimeout(() => (msg.value = ""), 5000);
 }
-
 
 function togleAlert() {
   showAlert.value = !showAlert.value;
@@ -131,6 +175,5 @@ function togleImgForm() {
 // lifecycle hooks
 onMounted(() => {
   callApi();
-
 });
 </script>
