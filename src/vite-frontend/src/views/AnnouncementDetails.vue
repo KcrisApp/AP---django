@@ -33,9 +33,9 @@
    
   </div>
 
-  <QuillEditor  :content="myContent"  contentType="html"/>
+  <QuillEditor  v-model:content="myContent"  contentType="html"/>
 
-
+<p v-html="myContent"></p>
 
   </main>
 </template>

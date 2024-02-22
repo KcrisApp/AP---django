@@ -4,24 +4,34 @@
       <section class="my-2 mx-5">
         <!-- Bacheca -->
 
-        <h1 class="text-lg font-semibold sm:text-3xl my-5 text-blue-900">
-          Bacheca
-        </h1>
-        <div class="flex-2">
-          <div class="">
-            <div class="relative">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-              ></div>
-              <input
-                type="search"
-                id="default-search"
-                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Cerca per titolo"
-                v-model="search"
-              />
-            </div>
+        <div class="flex justify-between gap-2 flex-wrap">
+          <h1 class="text-2xl flex-1">
+            <font-awesome-icon icon="hard-drive" class="text-blue-950" />
+            Comunicati
+          </h1>
+          <div class="flex-2">
+            <form class="">
+              <div class="relative">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+                ></div>
+                <input
+                  type="search"
+                  id="default-search"
+                  class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Cerca per nome scheda"
+                  v-model="search"
+                />
+              </div>
+            </form>
           </div>
+          <button
+            v-if="store.company_role == 'M'"
+            class="hover:bg-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
+            @click="togleModal"
+          >
+            <font-awesome-icon icon="folder-plus" /> Add
+          </button>
         </div>
         <hr class="my-5" />
         <div v-for="an in paginatedData">
@@ -60,6 +70,7 @@
       </div>
       <!-- Testpagination -->
     </div>
+    <AnnouncementForm />
   </main>
 </template>
 <script setup>
@@ -71,7 +82,7 @@ import { ref, onMounted, computed } from "vue";
 
 import { useRouter, useRoute } from "vue-router";
 import { useStoreUser } from "../stores/storeUsers";
-import Info from "../components/Info.vue";
+import AnnouncementForm from "../components/AnnouncementForm.vue";
 import Annuncement from "../components/Annuncement.vue";
 // access the `store`
 const store = useStoreUser();
