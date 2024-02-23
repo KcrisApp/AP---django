@@ -53,12 +53,12 @@
 
                     <div class="mb-6 mt-4">
                       <label
-                        for="orderNumber"
+                        for="titleForm"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Titolo</label
                       >
                       <input
-                        type="text"
+                        type="titleForm"
                         id="orderNumber"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
@@ -67,7 +67,22 @@
                       />
                     </div>
 
-                    <QuillEditor ref="myEditor"  v-model:content="text_content" />
+                    <div class="mb-6 mt-4">
+                      <label
+                        for="content"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Titolo</label
+                      >
+                      <textarea
+                        type="text"
+                        id="content"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder=""
+                        required
+                        v-model="text_content"
+                      />
+                    </div>
+             
               
                 
                     <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
@@ -141,9 +156,7 @@ console.log(delta.ops)
   let data = {
     announcement_type:type.value,
     announcement_title:title.value,
-    announcement_content: 
-
-    
+    announcement_content:text_content.value 
   }
   try {
     const response = await axios({
