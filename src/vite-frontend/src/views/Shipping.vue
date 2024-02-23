@@ -78,7 +78,15 @@
               :key="s.uuid"
             >
               <td class="whitespace-nowrap px-6 py-4 font-medium">
+                <router-link
+                  :to="{
+                    name: 'order-details',
+                    params: { order_number: s.order_number },
+                  }"
+                  class="hover:text-green-600"
+                >
                 {{ s.order_number }}
+                </router-link>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
                 <CardCheck :status="s.shipping_check" text="" />

@@ -26,6 +26,7 @@
     "vue-qrcode-component": "^2.1.1",
     "vue-qrcode-reader": "^5.5.2",
     "vue-router": "^4.2.4",
+    "vue-wysiwyg": "^1.7.2",
     "vuetify": "^3.3.22"
   },
   "devDependencies": {

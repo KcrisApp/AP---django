@@ -36,7 +36,8 @@ import {faLaptopCode,
         faCamera,
         faCircleInfo,
         faTriangleExclamation,
-        faPassport     } from "@fortawesome/free-solid-svg-icons";
+        faPassport,
+      faUserTie     } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { createPinia } from 'pinia'
 
@@ -64,6 +65,7 @@ library.add(faTarpDroplet);
 library.add(faCamera);
 library.add(faCircleInfo);
 library.add(faTriangleExclamation);
+library.add(faUserTie);
 
 
 const options = {

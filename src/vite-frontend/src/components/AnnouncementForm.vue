@@ -40,12 +40,12 @@
                       >Tipo di annuncio:</label
                     >
                     <select
-                   
+                    v-model="type"
                       id="status"
                       class="p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
-                      <option selected value="false">Avviso</option>
-                      <option value="true">Comunicato</option>
+                      <option selected value="avviso">Avviso</option>
+                      <option value="comunicato">Comunicato</option>
                     </select>
                     </div>
 
@@ -63,12 +63,12 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
-                        v-model="firma"
+                        v-model="title"
                       />
                     </div>
 
-                    <QuillEditor  v-model:content="text_content"  contentType="html"/>
-                    <p v-html="text_content"></p>
+                    <QuillEditor ref="myEditor"  v-model:content="text_content" />
+              
                 
                     <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                       <button
@@ -99,7 +99,7 @@
 import { ref, defineEmits, onMounted } from "vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-
+import { administrationEndpoint } from "../common/endpoints";
 // const props = defineProps({
 //   smt: {
 //     type: Object,
@@ -109,14 +109,41 @@ import { axios } from "../common/api.service";
 
 
 const text_content = ref("")
-
+const title = ref("")
+const type = ref("Avviso")
+const myEditor = ref(null)
 const emit = defineEmits(["close-modal", "save-data"]);
 
-async function sentData() {
-  let endpoint = endpoints["smtCRUD"] + `${props.smt.uuid}/`;
-  let method = "PATCH";
-  let data = {
+// async function sentData() {
+//   let endpoint = endpoints["smtCRUD"] + `${props.smt.uuid}/`;
+//   let method = "PATCH";
+//   let data = {
  
+//   }
+//   try {
+//     const response = await axios({
+//       method: method,
+//       url: endpoint,
+//       data: data
+//     });
+//     emit("save-data", response.data);
+//   } catch (error) {
+//     emit("save-data", error.response.status);
+//   }
+// }
+
+async function sentData() {
+
+const delta = myEditor.value.getContents();
+console.log(delta.ops)
+  let endpoint = administrationEndpoint["announcementCRUD"];
+  let method = "POST";
+  let data = {
+    announcement_type:type.value,
+    announcement_title:title.value,
+    announcement_content: 
+
+    
   }
   try {
     const response = await axios({
@@ -126,6 +153,7 @@ async function sentData() {
     });
     emit("save-data", response.data);
   } catch (error) {
+    console.log(error)
     emit("save-data", error.response.status);
   }
 }

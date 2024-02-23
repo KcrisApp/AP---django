@@ -32,6 +32,7 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-
             </a>
          </li>
          </div>
+         
          <div class="pb-4">
             <span class="p-2">Benvenuto {{ store.first_name }}</span>
             <p class="text-sm text-slate-500 p-2">{{ formatted }}</p> 
@@ -72,11 +73,38 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-
             </a>
          </li>
          <li>
+            <a
+            @click="dropdownShow = !dropdownShow" 
+            class=" flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
+               <font-awesome-icon icon="user-tie" />
+               <span class="text-sm ml-2">Administration</span>
+            </a>
+            
+            <ul 
+            :class="dropdownShow ? 'hidden': ''"
+            id="dropdown-example" 
+            class=" py-2 space-y-2">
+                  <li>
+                     <a class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <RouterLink to="/announcement-list/" class="text-sm ml-2">Comunicati</RouterLink>
+                     </a>
+                  </li>
+                  <!-- <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
+                  </li>
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
+                  </li> -->
+            </ul>
+         </li>
+         <li>
             <a class="flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900  dark:hover:bg-gray-700 group">
                <font-awesome-icon icon="chart-pie" />
                <RouterLink to="/stats/" class="text-sm ml-2">Statistiche</RouterLink>
             </a>
          </li>
+  
+         
          <hr class="h-px my-8 bg-slate-300 border-0 dark:bg-gray-700">
          <!-- <li>
             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -93,7 +121,10 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-
             </a>
          </li>
       </ul>
+     
+
    </div>
+   
 </aside>
 
 <div class="p-4 sm:ml-64">
@@ -117,6 +148,7 @@ const store = useStoreUser()
 
 
 const sideBarHide = ref(true)
+const dropdownShow = ref(true)
 
 const hideSidebar = () =>{
     sideBarHide.value = true

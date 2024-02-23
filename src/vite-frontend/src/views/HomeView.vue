@@ -47,11 +47,13 @@
         <section class="my-28 mx-5">
           <!-- Bacheca -->
 
-          <h1 class="text-lg font-semibold sm:text-3xl my-5 text-blue-900">
-            Bacheca
+          <h1 class="text-md font-semibold sm:text-3xl my-5 text-blue-900">
+            Bacheca: 
+            <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 ">{{ annuncementsCount }}</span>
           </h1>
+          
           <hr class="my-5" />
-          <div v-for="an in announcement">
+          <div v-for="an in firstFiveAnnouncement">
             <Annuncement class="my-4" :annuncements="an" />
           </div>
         </section>
@@ -76,6 +78,20 @@ const announcement = ref([]);
 const togleModalScan = () => {
   showScanModal.value = !showScanModal.value;
 };
+
+const firstFiveAnnouncement = computed( () =>{
+
+  return announcement.value.slice(0,5)
+}
+
+)
+
+const annuncementsCount = computed( () =>{
+  return announcement.value.length
+}
+
+)
+
 
 async function callApi() {
   let endpoint = administrationEndpoint["announcementCRUD"];

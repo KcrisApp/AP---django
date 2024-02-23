@@ -30,7 +30,7 @@
               >
                 {{ annuncements.announcement_title }}
               </h5>
-              <div v-html="annuncements.html" class="mb-2 text-base text-neutral-600 dark:text-neutral-200 line-clamp-1" >
+              <div v-html="annuncements.announcement_content" class="mb-2 text-base text-neutral-600 dark:text-neutral-200 line-clamp-1" >
                 
               </div>
               <p class="font-semibold  text-gray-900 text-sm">

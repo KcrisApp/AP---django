@@ -21,7 +21,7 @@
       <p class="mb-2">{{ announcement.created_at }}</p>  
       <h1 class="text-lg font-bold">{{ announcement.announcement_title }}</h1>
 
-      <div class="mt-5" v-html="announcement.html"></div>
+      <div class="mt-5" v-html="announcement.announcement_content"></div>
       <p class="mt-5 font-medium text-right">La direzione</p>
     
       </div>
