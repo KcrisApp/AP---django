@@ -62,21 +62,6 @@
                       />
                     </div>
 
-                    <div class="mb-6">
-                      <label
-                        for="orderNumber"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Ordine del processo</label
-                      >
-                      <input
-                        type="number"
-                        id="orderNumber"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder=""
-                        required
-                        v-model="step_order"
-                      />
-                    </div>
                     
                     <div class="mb-6">
                       <label
@@ -158,23 +143,11 @@ const props = defineProps({
 });
 
 const step_color = ref("#B41F1F");
-const step_order = ref(1);
 const step_description = ref("");
 const step_name = ref("");
 const step_type = ref("Verifica");
 
 
-
-// const note = ref(props.tests.note);
-// const non_compliance = ref(props.tests.non_compliance);
-// const missing_component = ref(props.tests.missing_component);
-// const serialnumber = ref(props.tests.serialnumber);
-
-// const ict = ref(props.tests.ict);
-// const aoi = ref(props.tests.aoi);
-// const xray = ref(props.tests.xray);
-// const functional = ref(props.tests.functional);
-// const status = ref(props.tests.status);
 
 const emit = defineEmits(["close-modal", "save-data"]);
 
@@ -184,7 +157,7 @@ if(props.steps){
         step_name.value = props.steps.step_name
         step_description.value = props.steps.step_description
         step_color.value = props.steps.step_color
-        step_order.value = props.steps.step_order
+   
 }
 
 async function sentData() {
@@ -211,7 +184,6 @@ async function sentData() {
         step_name: step_name.value,
         step_description: step_description.value,
         step_color: step_color.value,
-        step_order: step_order.value,
         board: props.board
       },
 
@@ -220,7 +192,8 @@ async function sentData() {
 
    
   } catch (error) {
-    emit("save-data", error.response.status);
+    console.log(error)
+    // emit("save-data", error.response.status);
   }
 }
 function triggerCloseModal() {

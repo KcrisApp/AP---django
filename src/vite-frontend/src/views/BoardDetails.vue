@@ -214,24 +214,47 @@ const props = defineProps({
 
  async function onChangeStepOrder(e){
 
+  let item = e.moved || e.added
+  if(!item) return
+
+
+  let index = item.newIndex
+
+  let currentStep = steps.value[index]
+  let prevStep = steps.value[index - 1]
+  let nextStep = steps.value[index + 1]
   
-  const newIndex = e.moved.newIndex
-  const oldIndex = e.moved.oldIndex
-  const uuid = e.moved.element.uuid
-
-  const found = steps.value.find((element) => element.step_order == newIndex);
+  let position = Math.round(currentStep.step_order)
 
 
-  await axios.all([
-      axios.patch(endpoints["productionstepCRUD"]+`${uuid}/`,{step_order:newIndex}),
-      axios.patch(endpoints["productionstepCRUD"]+`${found.uuid}/`,{step_order:oldIndex})
-    ])
-      .then(axios.spread((data1, data2) => {
-     console.log(data1)
-     console.log(data2)
+  if (prevStep && nextStep) {
+    // console.log('pre  + next')
+    // console.log('pre',prevStep.step_order)
+    // console.log('next',nextStep.step_order)
+    position = Math.round((prevStep.step_order + nextStep.step_order ) / 2)
 
-       
-      }));
+  }else if(prevStep){
+    // console.log("pre")
+    // console.log('pre',prevStep.step_order)
+  
+    position = Math.round(prevStep.step_order + (prevStep.step_order / 2))
+
+  }else if(nextStep){
+    // console.log("next")
+    // console.log('next',nextStep.step_order)
+    position =  Math.round(nextStep.step_order  / 2)
+  }
+
+  // console.log(currentStep)
+  // console.log(prevStep)
+  // console.log(nextStep)
+  console.log(position)
+  try {
+    let response  = await axios.patch(endpoints["productionstepCRUD"]+`${currentStep.uuid}/`,{step_order:position})
+    // console.log(response)
+  } catch (error) {
+    console.log(error)
+  }
 
 }
 // a computed ref
@@ -326,7 +349,7 @@ async function deleteStep(uuid) {
 
 const saveDataStep = (newStep) => {
   togleStepForm()
-  steps.value.unshift(newStep)
+  steps.value.push(newStep)
 }
 const updateDeleteStep = uuidDelete => {
   steps.value = steps.value.filter(step => { return step.uuid !== uuidDelete })

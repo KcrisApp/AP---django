@@ -44,7 +44,7 @@ class ProductionSteps(TimeStampedModel):
     step_name = models.CharField(max_length=180)
     step_description = models.CharField(max_length=180)
     step_color = ColorField(default='#FF0000')
-    step_order = models.IntegerField(default=0)
+    step_order = models.IntegerField(default=6000,blank=True)
 
     board = models.ForeignKey(Board, on_delete= models.CASCADE, related_name="phase")
     def __str__(self):
@@ -54,7 +54,7 @@ class ProductionSteps(TimeStampedModel):
 
         verbose_name = "Step"
         verbose_name_plural = "Steps"
-
+        ordering = ['step_order']
 # Order model 
 
 class Order(TimeStampedModel):

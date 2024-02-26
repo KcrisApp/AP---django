@@ -9,7 +9,7 @@
        
         class="py-2 rounded-md bg-blue-950 text-white">
         <h5 class="px-2 text-md font-medium">
-            {{ step.step_order }} - {{ step.step_name }}
+          {{ step.step_name }}
        
         </h5>
         
@@ -29,10 +29,10 @@
                 </div>
         </div>
           <div class="flex flex-col justify-between flex-grow mt-4">
+       
             <span 
-           
-            class="text-black text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ step.step_type }}</span>
-           
+            :style="{ 'background-color': step.step_color }"
+            class="text-black text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">          {{ step.step_type }}</span>
            
           </div>
         </div>
