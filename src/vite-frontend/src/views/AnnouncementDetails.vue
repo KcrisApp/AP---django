@@ -33,9 +33,7 @@
    
   </div>
 
-  <QuillEditor  v-model:content="myContent"  contentType="html"/>
 
-<p v-html="myContent"></p>
 
   </main>
 </template>
@@ -56,7 +54,7 @@ console.log(store.first_name)
 
 
 const announcement = ref({});
-const myContent = ref("")
+
 
 const iconType = ref(false);
 const msg = ref("");

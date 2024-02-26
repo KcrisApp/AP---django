@@ -1,6 +1,4 @@
 <template>
-<li>
-
 
 <div class="p-2 max-w-sm ">
         <div 
@@ -9,8 +7,7 @@
        
         class="py-2 rounded-md bg-blue-950 text-white">
         <h5 class="px-2 text-md font-medium">
-            {{ step.step_order }} - {{ step.step_name }}
-       
+            {{ order }} - {{ title }}
         </h5>
         
         </div>
@@ -18,7 +15,7 @@
           
           <div class="flex flex-col justify-between flex-grow">
               <p class="leading-relaxed text-base dark:text-gray-300">
-                {{ step.step_description }}
+                  {{ content }}
               </p>
             
           </div>
@@ -30,8 +27,8 @@
         </div>
           <div class="flex flex-col justify-between flex-grow mt-4">
             <span 
-           
-            class="text-black text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ step.step_type }}</span>
+            :style="{ 'background-color': color}"
+            class="text-black text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ rep }}</span>
            
            
           </div>
@@ -40,7 +37,6 @@
         </div>
       
     </div>
-</li>
 </template>
 
 <script setup>
@@ -49,10 +45,28 @@ import { ref, defineEmits } from "vue";
 const emit = defineEmits(["mod-step", "delete-step"]);
 
 const props = defineProps({
-  step: {
-    type:Object,
+  color: {
+    type:String,
+    required:true
+},
+title: {
+    type:String,
+    required:true
+},
+content: {
+    type:String,
+    required:true
+},
+
+order:{
+    type: Number,
+    required:true
+},
+rep:{
+    type: String,
     required:true
 }
+
 });
 
 const showActionBtn = ref(false)
@@ -70,20 +84,3 @@ const modSignal = () => {
 
 
 </script>
-
-<style scoped>
-.drag > div{
-    transform: rotate(5deg);
-
-}
-.ghost{
-
-    border-radius: 6px;
- 
-    border: 2px rgb(19, 44, 65) ;
-    border-style: dashed;
-}
-.ghost > div{
-    visibility: hidden;
-}
-</style>

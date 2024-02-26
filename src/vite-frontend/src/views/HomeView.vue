@@ -81,7 +81,7 @@ const togleModalScan = () => {
 
 const firstFiveAnnouncement = computed( () =>{
 
-  return announcement.value.slice(0,5)
+  return announcement.value.slice(0,10)
 }
 
 )

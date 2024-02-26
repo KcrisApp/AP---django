@@ -70,7 +70,11 @@
       </div>
       <!-- Testpagination -->
     </div>
-    <AnnouncementForm />
+    <AnnouncementForm 
+    v-show="showModal"
+    @close-modal="togleModal"
+    @save-data="updateAnnouncement"
+    />
   </main>
 </template>
 <script setup>
@@ -155,14 +159,14 @@ async function callApi() {
   }
 }
 
-function updateBoard(value) {
-  togleForm();
+function updateAnnouncement(value) {
+  togleModal();
   if (typeof value === "number") {
     msg.value = "Aggiornametno non riuscito";
     iconType.value = false;
   } else {
     console.log(value);
-    board.value = value;
+    announcement.value.push(value);
     msg.value = "Aggiornametno avvenuto con successo";
     iconType.value = true;
   }
@@ -180,9 +184,7 @@ function togleModal() {
 function togleForm() {
   showForm.value = !showForm.value;
 }
-function togleImgForm() {
-  showFormImg.value = !showFormImg.value;
-}
+
 // lifecycle hooks
 onMounted(() => {
   callApi();

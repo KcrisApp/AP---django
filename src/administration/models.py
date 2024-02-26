@@ -13,7 +13,7 @@ class Announcement(TimeStampedModel):
     uuid = models.UUIDField(default=uuid_lib.uuid4 ,editable=False)
     announcement_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default="comunicato")
     announcement_title = models.CharField(max_length=50, default="", null=False)
-    announcement_content = QuillField()
+    announcement_content = models.TextField()
 
     def __str__(self):
        

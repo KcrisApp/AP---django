@@ -149,8 +149,6 @@ const emit = defineEmits(["close-modal", "save-data"]);
 
 async function sentData() {
 
-const delta = myEditor.value.getContents();
-console.log(delta.ops)
   let endpoint = administrationEndpoint["announcementCRUD"];
   let method = "POST";
   let data = {
