@@ -29,8 +29,10 @@
     "vue-qrcode-reader": "^5.5.2",
     "vue-router": "^4.2.4",
     "vue-wysiwyg": "^1.7.2",
+    "vue3-xlsx": "^1.1.2",
     "vuedraggable": "^4.1.0",
-    "vuetify": "^3.3.22"
+    "vuetify": "^3.3.22",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",

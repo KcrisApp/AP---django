@@ -106,9 +106,9 @@
 
 
         <button class=" hover:border-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 rounded"
-          :class="showSteps ? 'hover:bg-red-500' : 'bg-blue-500 text-white hover:bg-blue-900'" @click="togleStepView">
+          :class="showSteps ? 'hover:bg-red-500' : 'bg-lime-400 text-gray-800 hover:bg-blue-900'" @click="togleStepView">
           {{ showSteps ? 'Nascondi fasi produttive' : 'Mostra fasi produttive' }}
-
+  <span v-show="!showSteps" class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500">{{ stepCount }}</span>
         </button>
 
       </div>
@@ -121,7 +121,7 @@
         <div class="flex justify-between my-4">
 
 
-          <h4 class="text-2xl ml-5">Fasi produttive</h4>
+          <h4 class="text-xl ml-5 text-blue-900 font-bold">Fasi produttive</h4>
 
           <div class="flex gap-2">
             <button v-if="store.company_role == 'M'"
@@ -143,11 +143,15 @@
           drag-class="drag"
           ghost-class="ghost"
           @change="onChangeStepOrder"
+          :disabled="dragDisable"
           >
-            <template #item="{ element }">
+            <template #item="{ element, index }">
+             
               <StepCard :id="element.uuid" 
               :step="element"
-         
+              @delete-step="deleteStep(element.uuid)"
+              @mod-step="modStep(element)"
+              :index="index"
              /> 
             </template>
           </draggable>
@@ -189,6 +193,8 @@ const store = useStoreUser()
 console.log(store.first_name)
 
 
+
+
 const board = ref({});
 const order = ref([]);
 const steps = ref([]);
@@ -204,6 +210,7 @@ const showSteps = ref(false)
 const showStepsForm = ref(false)
 const showModStepsForm = ref(false)
 const isLoading = ref(false)
+const dragDisable = ref(false)
 const singleStep = ref({})
 const router = useRouter();
 const route = useRoute();
@@ -212,6 +219,7 @@ const props = defineProps({
   uuid: String,
 });
 
+// gestione drag and drop delle card per gli step di produzione
  async function onChangeStepOrder(e){
 
   let item = e.moved || e.added
@@ -252,6 +260,7 @@ const props = defineProps({
   try {
     let response  = await axios.patch(endpoints["productionstepCRUD"]+`${currentStep.uuid}/`,{step_order:position})
     // console.log(response)
+    currentStep.step_order = position
   } catch (error) {
     console.log(error)
   }
@@ -261,14 +270,17 @@ const props = defineProps({
 const orderCount = computed(() => {
   return order.value.length;
 });
+const stepCount = computed(() => {
+  return steps.value.length;
+});
 
 const orderNumber = computed(() => {
   return board.value.id
 })
-const orderSteps = computed(() => {
-  return steps.value.sort((a, b) => a.step_order - b.step_order);
-}
-)
+// const orderSteps = computed(() => {
+//   return steps.value.sort((a, b) => a.step_order - b.step_order);
+// }
+// )
 
 const modStep = (step) => {
   singleStep.value = step
@@ -404,9 +416,14 @@ function togleStepForm() {
 function togleImgForm() {
   showFormImg.value = !showFormImg.value;
 }
+const chekUserPermission = () =>{
+  if (store.company_role == 'M') {
+    dragDisable.value = false
+  }
+}
 // lifecycle hooks
 onMounted(() => {
   callApiBoard();
-
+  chekUserPermission()
 });
 </script>

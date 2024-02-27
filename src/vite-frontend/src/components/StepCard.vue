@@ -1,8 +1,13 @@
 <template>
 <li>
-
-
+  <div class="ml-2">
+    
+    <span class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500"><font-awesome-icon icon="diagram-project" /> Fase {{ index + 1 }}</span>
+    <!-- <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500">Fase {{ index + 1 }}</span> -->
+  
+  </div>
 <div class="p-2 max-w-sm ">
+  
         <div 
         class="border border-slate-100 flex rounded-lg h-full bg-slate-50 dark:bg-gray-800  flex-col">
         <div 
@@ -51,6 +56,10 @@ const emit = defineEmits(["mod-step", "delete-step"]);
 const props = defineProps({
   step: {
     type:Object,
+    required:true
+},
+index: {
+    type:Number,
     required:true
 }
 });

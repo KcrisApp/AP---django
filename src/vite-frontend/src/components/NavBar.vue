@@ -84,7 +84,7 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  sm:translate-
             :class="dropdownShow ? 'hidden': ''"
             id="dropdown-example" 
             class=" py-2 space-y-2">
-                  <li>
+                  <li @click="dropdownShow = !dropdownShow" >
                      <a class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <RouterLink to="/announcement-list/" class="text-sm ml-2">Comunicati</RouterLink>
                      </a>
