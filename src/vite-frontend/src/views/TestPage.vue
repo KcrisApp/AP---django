@@ -26,18 +26,20 @@ function exportFile() {
 </script> -->
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { read, utils, writeFileXLSX } from 'xlsx';
 const datatable = ref([])
 const file = ref(null)
 const colNumber = ref(0)
 const rowSelectArray = ref([])
-const onLoad = ref(false)
-const selected = ref([])
-// const classSelector = ref(['border-red-500 border-solid border-4','border-green-500 border-solid border-4','border-blue-500 border-solid border-4'])
-const classSelector = ref([])
-const typeCol = ['','border-red-500 border-solid border-4','border-orange-500 border-solid border-4','border-grey-500 border-solid border-4','border-blue-500 border-solid border-4','border-purple-500 border-solid border-4']
 
+const onLoad = ref(false)
+const tableShow = ref(true)
+
+const classSelector = ref([])
+const colOrder = ref([])
+const typeCol = ['','border-red-500 border-solid border-4','border-orange-500 border-solid border-4','border-grey-500 border-solid border-4','border-blue-500 border-solid border-4','border-purple-500 border-solid border-4']
+const bomResult = ref([])
 
   function onChange(event) {
         onLoad.value = true
@@ -70,14 +72,25 @@ const typeCol = ['','border-red-500 border-solid border-4','border-orange-500 bo
           reader.readAsBinaryString(file.value);
         }
         onLoad.value = false
+        tableShow.value = true
       }
 
-const addToList = (id) =>{
+
+  function exportFile() {
+
+    const ws = utils.json_to_sheet(bomResult.value);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, "Data");
+    writeFileXLSX(wb, "BOM_normalized.xlsx");
+
+  }
+
+
+  const addToList = (id) =>{
     console.log(id)
     rowSelectArray.value = datatable.value.slice(id)
     console.log(rowSelectArray.value)
-   
-    // evt.currentTarget.classList.add('bg-green-500');
+
 }
 
 
@@ -90,21 +103,48 @@ const selCol = (evt) =>{
 
 
     classSelector.value[evt.target.id] = typeCol[evt.target.value]
+    colOrder.value[evt.target.id] = evt.target.value
 
 }
 
+const createBom = () =>{
+  rowSelectArray.value.forEach(element =>{
+    // console.log(`Drowing ref: ${element[colOrder.value.indexOf('1')]}`)
+    // console.log(`Partnumber: ${element[colOrder.value.indexOf('2')]}`)
+    // console.log(`Qta: ${element[colOrder.value.indexOf('3')]}`)
+    // console.log(`Description: ${element[colOrder.value.indexOf('4')]}`)
+    // console.log(`Value: ${element[colOrder.value.indexOf('5')]}`)
+    let arrToPush = [element[colOrder.value.indexOf('1')],element[colOrder.value.indexOf('2')],element[colOrder.value.indexOf('3')],element[colOrder.value.indexOf('4')],element[colOrder.value.indexOf('5')]]
+    bomResult.value.push(arrToPush)
+    tableShow.value = false
+  })
+ 
+}
+
+const codeCount = computed(()=>{
+  return bomResult.value.length
+})
+
+const backToFile = () =>{
+  bomResult.value = []
+  tableShow.value = !tableShow.value
+}
 
 </script>
 
 
 
 <template>
+   <h1 class="text-2xl mb-4 text-blue-900">
+              <font-awesome-icon icon="laptop-code" class="text-blue-950" />
+
+             BOM Creator
+            </h1>
  
-<!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
-<div class="mb-3">
+<div class="mb-3 border rounded-md bg-gray-200 p-5">
   <label
     for="formFile"
-    class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+    class="mb-2 inline-block text-blue-900 font-semibold text-xl dark:text-neutral-200 "
     >Import .xlsx file</label
   >
   <input
@@ -113,8 +153,22 @@ const selCol = (evt) =>{
     @change="onChange"
     id="formFile" />
 </div>
+<button
+v-if="tableShow"
+  @click="createBom"
+ class="btn bg-green-600 px-4 py-2 rounded-md m-2 text-white">Crea
+</button>
+<button
+v-if="!tableShow"
+  @click="backToFile"
+ class="btn bg-red-600 px-4 py-2 rounded-md m-2 text-white">Indietro
+</button>
 
-
+<button
+v-if="!tableShow"
+  @click="exportFile"
+ class="btn bg-emerald-500 px-4 py-2 rounded-md m-2 text-white">esporta .xlxs file
+</button>
 
 
 <div
@@ -130,22 +184,20 @@ class="my-5">
 </div>
 
 
-<!-- <pre>
-  {{ datatable }}
-</pre> -->
-<div>
-    {{ selected }}
-</div>
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto over">
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+  <h5>Numero codici: {{ codeCount }}</h5>
+    <table 
+    v-if="tableShow"
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto over">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th v-for="n in colNumber" scope="col" class="px-6 py-3">
+                <th v-for="n in colNumber" scope="col" class="px-6 py-3 text-lg">
                     <select  @change="selCol($event)" :id="n-1" :ref="n-1">
                       <option value="0">-</option>
-                      <option value="1">Partnumber</option>
-                      <option value="2">Drawing ref</option>
+                      <option value="1">Drawing ref</option>
+                      <option value="2">Partnumber</option>
                       <option value="3">Qta</option>
                       <option value="4">Description</option>
                       <option value="5">Value</option>
@@ -172,6 +224,43 @@ class="my-5">
                 :class="rowSelectArray.includes(row) ? classSelector[id] :''"
                 scope="row" 
                 class="px-6 py-4 font-medium  whitespace-nowrap dark:text-white0">{{ r }}</th>
+            
+            </td>
+            
+          </tr>
+          
+        </tbody>
+    </table>
+
+    <table 
+    v-if="!tableShow"
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto over mt-4">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">Drowing Ref</th>
+                <th scope="col" class="px-6 py-3">Partnumber</th>
+                <th scope="col" class="px-6 py-3">Qta</th>
+                <th scope="col" class="px-6 py-3">Description</th>
+                <th scope="col" class="px-6 py-3">Value</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+          <tr 
+          v-for="(row, idx) in bomResult" 
+          :key="idx" 
+     
+         >
+         <!-- :class = "id == 2 ?'border-red-500 border-solid border-4':''" -->
+            <td 
+            class=" border-b dark:border-gray-700" 
+            v-for="(r, id) in row">
+             
+                <th 
+                :id="id"
+                scope="row" 
+                class="px-6 py-4 font-medium  whitespace-nowrap dark:text-white0">{{ r }}
+              </th>
             
             </td>
             
