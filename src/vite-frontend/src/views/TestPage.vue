@@ -75,13 +75,14 @@ const bomResult = ref([])
         tableShow.value = true
       }
 
-
+// Create xlsx BOM
   function exportFile() {
 
     const ws = utils.json_to_sheet(bomResult.value);
     const wb = utils.book_new();
     utils.book_append_sheet(wb, ws, "Data");
     writeFileXLSX(wb, "BOM_normalized.xlsx");
+    
 
   }
 
@@ -107,6 +108,7 @@ const selCol = (evt) =>{
 
 }
 
+
 const createBom = () =>{
   rowSelectArray.value.forEach(element =>{
     // console.log(`Drowing ref: ${element[colOrder.value.indexOf('1')]}`)
@@ -121,6 +123,33 @@ const createBom = () =>{
  
 }
 
+// Create expanded BOM
+const expandedBom = () =>{
+
+   let tempArr = []
+   bomResult.value.forEach(ele => {
+    
+     let arrPart = ele.slice(1)
+     const singleDrowingArr = ele[0].split(" ");
+     
+     singleDrowingArr.forEach(d =>{
+        let arr =[d, ...arrPart]
+        tempArr.push(arr)
+      })
+   
+      
+      
+    })
+    console.log(tempArr)
+   
+    const ws = utils.json_to_sheet(tempArr);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, "Data");
+    writeFileXLSX(wb, "BOM_exp.xlsx");
+ 
+}
+
+// Conteggio codici
 const codeCount = computed(()=>{
   return bomResult.value.length
 })
@@ -141,7 +170,7 @@ const backToFile = () =>{
              BOM Creator
             </h1>
  
-<div class="mb-3 border rounded-md bg-gray-200 p-5">
+<div class="mb-3 border rounded-md bg-gray-100 p-5">
   <label
     for="formFile"
     class="mb-2 inline-block text-blue-900 font-semibold text-xl dark:text-neutral-200 "
@@ -167,7 +196,12 @@ v-if="!tableShow"
 <button
 v-if="!tableShow"
   @click="exportFile"
- class="btn bg-emerald-500 px-4 py-2 rounded-md m-2 text-white">esporta .xlxs file
+ class="btn bg-emerald-500 px-4 py-2 rounded-md m-2 text-white text-sm">Download BOM
+</button>
+<button
+v-if="!tableShow"
+  @click="expandedBom"
+ class="btn bg-cyan-600 px-4 py-2 rounded-md m-2 text-white text-sm">Download BOM expand
 </button>
 
 
