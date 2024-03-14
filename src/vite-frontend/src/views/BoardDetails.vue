@@ -9,8 +9,8 @@
         @close-alert="togleAlert" @confirm="deleteBoard(board.uuid)" />
       <BoardForm v-if="isLoading" v-show="showForm" @close-modal="togleForm" @save-data="updateBoard"
         v-bind:boardArr="board" />
-      <!-- <OrderForm v-show="showModal" v-bind:board_id="b.id" @close-modal="togleModal" @save-data="updateOrder"/> -->
-      <ModalImg v-show="showFormImg" @close-alert="togleImgForm" v-bind:board_id="board.id" @save-img="imgUpdate" />
+      <OrderForm v-if="isLoading"  v-show="showModal" v-bind:board_id="board.id" @close-modal="togleModal" @save-data="updateOrder"/>
+      <ModalImg v-if="isLoading" v-show="showFormImg" @close-alert="togleImgForm" v-bind:board_id="board.id" @save-img="imgUpdate" />
       <div class="flex justify-between my-4 flex-wrap">
         <h1 class="text-2xl mb-4">
           <font-awesome-icon icon="hard-drive" class="text-blue-950" />
@@ -178,7 +178,7 @@ import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import Alert from "../components/Alert.vue";
-// import OrderForm from "../components/OrderForm.vue";
+import OrderForm from "../components/OrderForm.vue";
 import StepForm from "../components/StepForm.vue";
 import BoardForm from "../components/BoardForm.vue";
 import ModalImg from "../components/ModalImg.vue";
@@ -367,10 +367,10 @@ const updateDeleteStep = uuidDelete => {
   steps.value = steps.value.filter(step => { return step.uuid !== uuidDelete })
 }
 
-// function updateOrder(value) {
-//   togleModal()
-//   order.value.unshift(value);
-// }
+function updateOrder(value) {
+  togleModal()
+  order.value.unshift(value);
+}
 
 function updateBoard(value) {
   togleForm()
