@@ -15,7 +15,13 @@
           v-bind:order_id="o.board"
           v-bind:order="o"
           @close-modal="togleModal"
-          @save-data="updateOrder"
+          @save-data="togleModal"
+        />
+        <ModalFile
+          v-show="showFormFile"
+          @close-alert="togleModalFile"
+          v-bind:order_id="o.id"
+          @save-file="fileUpdate"
         />
         <div class="flex flex-wrap gap-4 justify-between my-4">
           <h1 class="text-2xl">
@@ -75,19 +81,60 @@
          
         </div>
         <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
-          <p><b>Foglio di caratterizzazione:</b></p>
+          <p><b>Moduli:</b></p>
           <hr class="my-2" />
+          <div class="flex gap-6">
           <router-link
               :to="{
                 name: 'foglio-caratterizzazione',
                 params: { uuid: o.uuid },
               }"
             >
-              <h3 class="text-3xl hover:text-blue-800">
-                <font-awesome-icon icon="passport" />
+              <h3 class="text-xl hover:text-blue-800">
+                <font-awesome-icon icon="passport" /> Foglio caratterizzazione
               </h3>
             </router-link>
+            <router-link
+              :to="{
+                name: 'foglio-cestello',
+                params: { uuid: o.uuid },
+              }"
+            >
+            
+              <h3 class="text-xl hover:text-blue-800">
+                <font-awesome-icon icon="passport" />
+                Cartellino 
+              </h3>
+            </router-link>
+          </div>
         </div>
+
+
+
+        <!-- Section topographic file -->
+        <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
+          <div class="flex justify-between">
+            <p><b>File:</b></p>
+            <font-awesome-icon icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFile"/>
+          </div>
+         
+          <hr class="my-2" />
+          <p
+          v-if="o.order_filetopographic"
+          >
+          <a :href="o.order_filetopographic" target=”_blank” class="text-green-700">
+            <font-awesome-icon icon="file-pdf" class="text-2xl"/>
+            Topographic
+          </a>
+           </p>
+        </div>
+
+
+
+
+
+
+
         <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
           <p><b>Note di processo:</b></p>
           <hr class="my-1" />
@@ -148,6 +195,7 @@ import { ref, onMounted } from "vue";
 import Alert from "../components/Alert.vue";
 import { useRouter, useRoute } from "vue-router";
 import OrderForm from "../components/OrderForm.vue";
+import ModalFile from "../components/ModalFile.vue";
 
 import QrcodeVue from "qrcode.vue";
 import { useStoreUser } from '../stores/storeUsers'
@@ -161,6 +209,7 @@ const route = useRoute();
 const order = ref([]);
 const showAlert = ref(false);
 const showModal = ref(false);
+const showFormFile = ref(false);
 
 const props = defineProps({
   order_number: String,
@@ -214,7 +263,18 @@ function togleAlert() {
 function togleModal() {
   showModal.value = !showModal.value;
 }
+function togleModalFile() {
+  showFormFile.value = !showFormFile.value;
+}
 
+
+function fileUpdate(value) {
+  console.log(value)
+  togleModalFile();
+  order.value[0].order_filetopographic = value.order_filetopographic;
+
+  
+}
 // lifecycle hooks
 onMounted(() => {
   callApi();

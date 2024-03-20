@@ -5,11 +5,10 @@
         <section class="">
           <div class="mb-4">
             <div class="mx-auto max-w-xl text-center">
-              <lottie-animation
-                path="../assets/lottie/home.json"
-             
-              />
+       
 
+                <!-- <img src="http://127.0.0.1:8000/static/img/logo.png" alt="Mce logo"  width="150"> -->
+         
               <h1 class="text-3xl font-extrabold sm:text-5xl">
                 Benvenuto sul portale
                 <strong class="font-extrabold text-blue-800 sm:block">

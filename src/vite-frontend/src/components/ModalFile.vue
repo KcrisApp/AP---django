@@ -31,12 +31,11 @@
          
            
             <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-              <h2 class="font-semibold text-xl leading-6 text-gray-900" id="modal-title">Immagine scheda</h2>
+              <h2 class="font-semibold text-xl leading-6 text-gray-900" id="modal-title">File topografico</h2>
               <div class="mt-2">
                 
                   <div>
-                  <img :src="previewImage" class="uploading-image" />
-                  <input type="file" accept="image/jpeg" @change=uploadImage>
+                  <input type="file" accept="pdf" @change=uploadFile>
                 </div>
                 
               </div>
@@ -45,7 +44,7 @@
         
         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 gap-2">
          
-          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset  hover:bg-red-900 sm:mt-0 sm:w-auto" @click="postImg">Save</button>
+          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset  hover:bg-red-900 sm:mt-0 sm:w-auto" @click="postFile">Save</button>
           <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md  px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset  hover:bg-gray-200 sm:mt-0 sm:w-auto" @click="closeModal">Cancel</button>
         </div>
       </div>
@@ -63,52 +62,32 @@ import { axios } from "../common/api.service";
 import { ref, defineEmits } from "vue";
 
 const props = defineProps({
-    board_id: {
+    order_id: {
         type: Number,
-        required: true
-            },
-    side: {
-        type: Boolean,
         required: true
             },
     
 }
 )
-const previewImage = ref(null)
-const image = ref(null)
-const emit = defineEmits(["close-alert", "save-img"]);
+
+const file = ref(null)
+const emit = defineEmits(["close-alert", "save-file"]);
 
 function closeModal() {
   emit("close-alert")
 }
 
 
-function uploadImage(e){
-    image.value = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(image.value);
-    reader.onload = e =>{
-        previewImage.value = e.target.result;
-          console.log(previewImage.value);
-        }
+function uploadFile(e){
+    file.value = e.target.files[0];
       }
 
-async function postImg() {
+async function postFile() {
         var fd = new FormData();
 
-        var sideImg = "board_img"
 
-        fd.append("board_img", image.value);
-        let endpoint = endpoints["updateImgBoard"]+`${props.board_id}`;
-
-        if (props.side) {
-
-          sideImg = "board_img_bot"
-          endpoint = endpoints["updateImgBoardBot"]+`${props.board_id}`;
-        }
-
-        fd.append(sideImg, image.value);
-        
+        fd.append("order_filetopographic", file.value);
+        let endpoint = endpoints["updateTopographicFile"]+`${props.order_id}`;
         console.log(endpoint)
 
         try {
@@ -121,9 +100,7 @@ async function postImg() {
                     },
                   })
             console.log(response)
-            previewImage.value = null
-            image.value = null
-            emit("save-img", response.data);
+            emit("save-file", response.data);
           
         } catch (error) {
           alert(error)

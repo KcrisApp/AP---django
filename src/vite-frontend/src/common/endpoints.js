@@ -11,6 +11,8 @@ const endpoints = {
   weldingCRUD: `${productionEndPoint}welding/`,
   verifyCRUD: `${productionEndPoint}verify/`,
   updateImgBoard: `${productionEndPoint}boardImgUpdate/`,
+  updateImgBoardBot: `${productionEndPoint}boardImgUpdateBot/`,
+  updateTopographicFile: `${productionEndPoint}topographicOrder/`,
   production: `${productionEndPoint}production/`,
   usersDetail: "/auth/users/me/",
 };

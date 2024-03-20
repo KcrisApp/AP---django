@@ -29,21 +29,22 @@
           v-show="showFormImg"
           @close-alert="togleImgForm"
           v-bind:board_id="board.id"
+          v-bind:side="sideType"
           @save-img="imgUpdate"
         />
       </div>
 
-      <div class="flex justify-between my-4 flex-wrap">
-        <h1 class="text-2xl mb-4">
+      <div class="flex flex-wrap gap-4 justify-between my-4">
+        <h1 class="text-2xl">
           <font-awesome-icon icon="hard-drive" class="text-blue-950" />
           Scheda: {{ board.board_name }}
         </h1>
         <div
-          class="flex gap-2 sm:text-sm md:text-md"
+          class="flex gap-2"
           v-if="store.company_role == 'M'"
         >
           <button
-            class="hover:bg-blue-500 hover:border-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
+            class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
             @click="togleModal"
           >
             <!-- <font-awesome-icon icon="folder-plus" /> Add order -->
@@ -64,34 +65,54 @@
           </button>
         </div>
       </div>
-
-      <hr class="my-2" />
+      <hr class="my-2">
       <div class="flex bg-slate-50 p-4 gap-4 rounded-xl flex-wrap">
-        <div class="col">
-          <img class="h-auto max-w-xs" :src="board.board_img" />
-          <button
-            v-if="store.company_role == 'M'"
-            class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
-            @click="togleImgForm"
-          >
-            Carica/Modifica
-          </button>
-        </div>
-        <div class="col">
+       
+       
           <p>
             Codice: <b> {{ board.board_code }}</b>
           </p>
-          <p class="mt-2">
+          <p >
             Revisione: <b> {{ board.board_rev }}</b>
           </p>
 
           <p>
             Data di creazione: <b> {{ board.created_at }}</b>
           </p>
-          <p class="mt-2">
+          <p>
             Cliente: <b> {{ board.customer }}</b>
           </p>
+      
+      </div>
+
+      <hr class="my-2" />
+      <div class=" bg-slate-50 p-4 rounded-xl">
+        <h3 class="text-xl font-semibold mb-4">Immagini</h3>
+     
+      <div class="flex gap-4  flex-wrap justify-start">
+        <div class="col">
+          <h5 class="font-semibold">TOP side</h5>
+          <img class="h-auto max-w-xs" :src="board.board_img" />
+          <button
+            v-if="store.company_role == 'M'"
+            class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
+            @click="togleImgForm(false)"
+          >
+            Carica/Modifica
+          </button>
         </div>
+        <div class="col">
+          <h5 class="font-semibold">BOT side</h5>
+          <img class="h-auto max-w-xs" :src="board.board_img_bot" />
+          <button
+            v-if="store.company_role == 'M'"
+            class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
+            @click="togleImgForm(true)"
+          >
+            Carica/Modifica
+          </button>
+        </div>
+      </div>
       </div>
       <div class="flex justify-between mt-4">
         <h4 class="text-2xl">Ordini</h4>
@@ -109,6 +130,7 @@
             <th scope="col" class="px-6 py-4">Numero ordine</th>
             <th scope="col" class="px-6 py-4">Quantità</th>
             <th scope="col" class="px-6 py-4">Data creazione</th>
+            <th scope="col" class="px-6 py-4">Revisione</th>
           </tr>
         </thead>
         <tbody>
@@ -132,6 +154,7 @@
               {{ o.order_quantity }}
             </td>
             <td class="whitespace-nowrap px-6 py-2">{{ o.created_at }}</td>
+            <td class="whitespace-nowrap px-6 py-2">{{ o.order_customization }}</td>
           </tr>
         </tbody>
       </table>
@@ -255,6 +278,7 @@ const showStepsForm = ref(false);
 const showModStepsForm = ref(false);
 const isLoading = ref(false);
 const dragDisable = ref(false);
+const sideType = ref(false);
 const singleStep = ref({});
 const router = useRouter();
 
@@ -366,8 +390,8 @@ async function callApiBoard() {
   }
 }
 
-async function deleteBoard(uuid) {
-  let endpoint = `${endpoints["boardsCRUD"]}${uuid}/`;
+async function deleteBoard() {
+  let endpoint = `${endpoints["boardsCRUD"]}${props.uuid}/`;
 
   try {
     const response = await axios.delete(endpoint);
@@ -421,8 +445,20 @@ function updateBoard(value) {
   setTimeout(() => (msg.value = ""), 5000);
 }
 function imgUpdate(value) {
-  togleImgForm();
-  board.value.board_img = value.board_img;
+  console.log(value)
+  togleImgForm(sideType.value);
+
+  if (sideType.value) {
+    board.value.board_img_bot = value.board_img_bot;
+   
+ 
+  }
+  else{
+
+    board.value.board_img = value.board_img;
+   
+  }
+  
 }
 
 function togleAlert() {
@@ -441,7 +477,8 @@ function togleStepView() {
 function togleStepForm() {
   showStepsForm.value = !showStepsForm.value;
 }
-function togleImgForm() {
+function togleImgForm(sideValue) {
+  sideType.value = sideValue
   showFormImg.value = !showFormImg.value;
 }
 const chekUserPermission = () => {

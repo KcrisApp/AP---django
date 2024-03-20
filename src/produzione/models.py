@@ -16,6 +16,7 @@ class Board(TimeStampedModel):
     board_code = models.CharField(max_length=180)
     board_rev = models.CharField(max_length=30)
     board_img = models.ImageField(upload_to="img", default='img/no-image.jpg')
+    board_img_bot = models.ImageField(upload_to="img", default='img/no-image.jpg')
     board_file = models.FileField(null=True, blank=True)
     
 
@@ -46,6 +47,8 @@ class ProductionSteps(TimeStampedModel):
     step_color = ColorField(default='#FF0000')
     step_order = models.IntegerField(default=6000,blank=True)
 
+ 
+
     board = models.ForeignKey(Board, on_delete= models.CASCADE, related_name="phase")
     def __str__(self):
         return self.step_name
@@ -66,7 +69,7 @@ class Order(TimeStampedModel):
     order_process_note = models.TextField(blank=True, null=True)
     order_serialnumber = models. CharField(max_length=120, blank=True, null=True)
     order_customization = models.CharField(max_length=120, blank=True, default="")
-
+    order_filetopographic = models.FileField(upload_to='topographic', default="")
     board = models.ForeignKey(Board, on_delete= models.CASCADE, related_name="order")
 
     def __str__(self):

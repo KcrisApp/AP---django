@@ -8,7 +8,7 @@ from produzione.api.permissions import IsManagerOrReadOnly
 
 
 from produzione.models import Welding, Board, Order, Smt, Test, Verify, Shipping, ProductionSteps
-from produzione.api.serializer import WeldingSerializer, BoardSerializer, OrderSerializer, SmtSerializer, TestSerializer, VerifySerializer, BoardImagesSerializer, ShippingSerializer, ProductionStepSerializer, ProductionDetailsSerializer
+from produzione.api.serializer import OrderTopographicSerializer, BoardImagesBotSerializer, WeldingSerializer, BoardSerializer, OrderSerializer, SmtSerializer, TestSerializer, VerifySerializer, BoardImagesSerializer, ShippingSerializer, ProductionStepSerializer, ProductionDetailsSerializer
 
 # Orders views V2
 class OrderViewset(viewsets.ModelViewSet):
@@ -16,6 +16,12 @@ class OrderViewset(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
     lookup_field = "order_number"
+
+
+class OrderTopographicView(generics.UpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderTopographicSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
 
 #Board views V2
 class BoardViewSet(viewsets.ModelViewSet):
@@ -70,6 +76,11 @@ class ProductionStepViewset(viewsets.ModelViewSet):
 class BoardImgUpdate(generics.UpdateAPIView):
     queryset = Board.objects.all()
     serializer_class = BoardImagesSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
+
+class BoardImgUpdateBot(generics.UpdateAPIView):
+    queryset = Board.objects.all()
+    serializer_class = BoardImagesBotSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
 
 # Test views

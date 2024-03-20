@@ -7,7 +7,7 @@
   >
 
     <div
-      class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"
+      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
     ></div>
 
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -28,7 +28,7 @@
           class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
         >
           <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-            <div class="">
+            <div class="sm:flex sm:items-start">
               <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                 <h2
                   class="text-base font-semibold leading-6 text-gray-900 mb-6"
@@ -39,7 +39,9 @@
                 <hr class="mb-4" />
                 <div class="mt-2">
                   <form @submit.prevent="sentData">
-                    <div class="mb-6">
+                   
+                      <div class="flex flex-wrap -mx-3 mb-6">
+                      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <label
                         for="orderNumber"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -55,7 +57,7 @@
                       />
                     </div>
                   
-                    <div class="mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <label
                         for="qta"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -72,7 +74,7 @@
                         v-model="order_quantity"
                       />
                     </div>
-                    <div class="mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <label
                         for="sn"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -86,7 +88,7 @@
                         v-model="order_serialnumber"
                       />
                     </div>
-                    <div class="mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <label
                         for="order_customization"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -100,7 +102,7 @@
                         v-model="order_customization"
                       />
                     </div>
-                    <div class="mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <label
                         for="procesNote"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -116,9 +118,7 @@
                     </div>
                    
 
-                    <div
-                      class=" px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
-                    >
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <button
            
                         class="mt-3 inline-flex w-full justify-center mx-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-500 hover:text-white sm:mt-0 sm:w-auto"
@@ -132,6 +132,7 @@
                       >
                         Cancel
                       </button>
+                    </div>
                     </div>
                   </form>
                 </div>

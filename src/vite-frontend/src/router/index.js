@@ -107,6 +107,16 @@ const router = createRouter({
 
     },
     {
+      path: "/foglio-cestello/:uuid",
+      name: "foglio-cestello",
+      // route level code-splitting
+      // this generates a separate chunk (QuestionView.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/FoglioCestello.vue"),
+      props: true
+
+    },
+    {
       path: "/announcement-details/:uuid",
       name: "announcement-details",
       // route level code-splitting

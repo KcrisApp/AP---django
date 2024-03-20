@@ -32,6 +32,15 @@ class OrderSerializer(serializers.ModelSerializer):
 
     #     return data
 
+class OrderTopographicSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = ("order_filetopographic",)
+            
+
+
+
 class BoardSerializer(serializers.ModelSerializer):
 
     order = OrderSerializer(many=True, read_only=True)
@@ -123,6 +132,14 @@ class BoardImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = ("board_img",)
+        
+class BoardImagesBotSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Board
+        fields = ("board_img_bot",)
+
+
 
 
 
