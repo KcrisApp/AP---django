@@ -23,7 +23,7 @@
                   </p>
             </div>
             </div>
-            <div class="px-2 py-1 flex">
+            <div class="px-6 py-4 flex">
               <div class="flex-1 ">
                 <h5
                 class="mb-2 text-md font-medium leading-tight text-neutral-800 dark:text-neutral-50"
@@ -39,7 +39,7 @@
               </div>
               <div>
                 <button
-                class="mt-4 block w-full  rounded bg-green-600 px-4 py-1 text-sm font-medium text-white shadow hover:bg-green-800 focus:outline-none focus:ring"
+                class="mt-4 block w-full  rounded bg-blue-900 px-4 py-1 text-sm font-medium text-white shadow hover:bg-green-800 focus:outline-none focus:ring"
               >
            
                 <router-link

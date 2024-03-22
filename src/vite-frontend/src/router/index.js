@@ -1,5 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Ordini from '../views/Ordini.vue'
+import Tools from '../views/Tools.vue'
+import Boards from '../views/Boards.vue'
+import Shipping from '../views/Shipping.vue'
+import ShippingDetails from '../views/ShippingDetails.vue'
+import BoardDetails from '../views/BoardDetails.vue'
+import OrderDetails from '../views/OrderDetails.vue'
+import TestDetails from '../views/TestDetails.vue'
+import SmtDetails from '../views/SmtDetails.vue'
+import WeldingDetails from '../views/WeldingDetails.vue'
+import VerifyDetails from '../views/VerifyDetails.vue'
+import CaratterizzazioneProdotto from '../views/CaratterizzazioneProdotto.vue'
+import FoglioCestello from '../views/FoglioCestello.vue'
+import AnnouncementDetails from '../views/AnnouncementDetails.vue'
+import AnnouncementList from '../views/AnnouncementList.vue'
+import Stats from '../views/Stats.vue'
+import TestPage from '../views/TestPage.vue'
+import NotFound from '../views/NotFound.vue'
+
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -12,32 +31,32 @@ const router = createRouter({
     {
       path:'/ordini/',
       name:'ordini',
-      component: () => import ('../views/Ordini.vue')
+      component: () => Ordini
 
     },
     {
       path:'/tools/',
       name:'tools',
-      component: () => import ('../views/Tools.vue')
+      component: () => Tools
 
     },
     {
       path:'/boards/',
       name:'boards',
-      component: () => import ('../views/Boards.vue')
+      component: () => Boards
 
     },
     {
       path:'/shipping/',
       name:'shipping',
-      component: () => import ('../views/Shipping.vue'),
+      component: () => Shipping
 
 
     },
     {
       path:'/shipping/:order_id',
       name:'shipping-details',
-      component: () => import ('../views/ShippingDetails.vue'),
+      component: () => ShippingDetails,
       props: true
 
     },
@@ -47,7 +66,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/BoardDetails.vue"),
+      component: () => BoardDetails,
       props: true,
     },
     {
@@ -56,7 +75,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/OrderDetails.vue"),
+      component: () => OrderDetails,
       props: true,
     },
     {
@@ -65,7 +84,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/TestDetails.vue"),
+      component: () => TestDetails,
       props: true,
     },
     {
@@ -74,7 +93,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/SmtDetails.vue"),
+      component: () => SmtDetails,
       props: true,
     },
     ,
@@ -84,7 +103,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/WeldingDetails.vue"),
+      component: () => WeldingDetails,
       props: true,
     },
     {
@@ -93,7 +112,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/VerifyDetails.vue"),
+      component: () => VerifyDetails,
       props: true,
     },
     {
@@ -102,7 +121,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/CaratterizzazioneProdotto.vue"),
+      component: () => CaratterizzazioneProdotto,
       props: true
 
     },
@@ -112,7 +131,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/FoglioCestello.vue"),
+      component: () => FoglioCestello,
       props: true
 
     },
@@ -122,7 +141,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AnnouncementDetails.vue"),
+      component: () => AnnouncementDetails,
       props: true
 
     },
@@ -132,23 +151,23 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AnnouncementList.vue"),
+      component: () => AnnouncementList,
 
     },
     {
       path: "/stats/",
       name: "stat-page",
-      component: () => import("../views/Stats.vue"),
+      component: () => Stats,
     },
     {
       path: "/test-page/",
       name: "test-page",
-      component: () => import("../views/TestPage.vue"),
+      component: () => TestPage,
     },
     {
       path: "/:catchAll(.*)",
       name: "page-not-found",
-      component: () => import("../views/NotFound.vue"),
+      component: () => NotFound,
     },
   
   ]

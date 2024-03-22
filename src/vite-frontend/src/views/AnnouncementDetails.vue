@@ -47,7 +47,7 @@ import { ref, onMounted, computed } from "vue";
 
 import { useRouter, useRoute } from "vue-router";
 import { useStoreUser } from '../stores/storeUsers'
-import  Info from "../components/Info.vue"
+
 // access the `store` 
 const store = useStoreUser()
 console.log(store.first_name)

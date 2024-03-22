@@ -29,7 +29,7 @@
             Ordine: {{ o.order_number }}
           </h1>
 
-          <div class="flex gap-2"  v-if="store.company_role == 'M'">
+          <div class="flex gap-2"  v-if="store.permissionAccess">
             <button
               class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
               @click="togleModal"
@@ -122,7 +122,7 @@
           <p
           v-if="o.order_filetopographic"
           >
-          <a :href="o.order_filetopographic" target=”_blank” class="text-green-700">
+          <a v-if="store.permissionAccess" :href="o.order_filetopographic" target=”_blank” class="text-green-700">
             <font-awesome-icon icon="file-pdf" class="text-2xl"/>
             Topographic
           </a>
@@ -202,7 +202,7 @@ import { useStoreUser } from '../stores/storeUsers'
 
 // access the `store` 
 const store = useStoreUser()
-console.log(store.first_name)
+
 const router = useRouter();
 const route = useRoute();
 

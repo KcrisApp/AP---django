@@ -21,5 +21,5 @@ class CustomUserForm(RegistrationForm):
 
     class Meta(RegistrationForm.Meta):
         model = CustomUser
-        fields = ("username", "email", "name","company_role")
+        fields = ("username", "email", "name","company_role","department")
   

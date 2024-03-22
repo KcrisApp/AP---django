@@ -261,7 +261,7 @@ import draggable from "vuedraggable";
 
 // access the `store`
 const store = useStoreUser();
-console.log(store.first_name);
+
 
 const board = ref({});
 const order = ref([]);

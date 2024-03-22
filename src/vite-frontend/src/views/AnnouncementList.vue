@@ -90,7 +90,7 @@ import AnnouncementForm from "../components/AnnouncementForm.vue";
 import Annuncement from "../components/Annuncement.vue";
 // access the `store`
 const store = useStoreUser();
-console.log(store.first_name);
+// console.log(store.first_name);
 
 const announcement = ref([]);
 const search = ref("");

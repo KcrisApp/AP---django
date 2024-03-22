@@ -18,8 +18,6 @@ def create_departments(sender, instance, created, **kwargs):
 def create_step_order_number(sender, instance, **kwargs):
 
     if instance._state.adding:
-        print ('Instance created!')
-
 
         try:
             step = ProductionSteps.objects.all().filter(board=instance.board).reverse()[0]
@@ -40,7 +38,7 @@ def create_step_order_number(sender, instance, **kwargs):
 
 @receiver(pre_save, sender=Board)
 def auto_delete_old_img_signal(sender, instance, **kwargs):
-    print("Sono passato da qui per cancellare img vecchie")
+    
     if not instance.pk:
         return False
     
@@ -86,9 +84,6 @@ def auto_delete_img_on_delete_signal(sender, instance, **kwargs):
 
         if os.path.isfile(instance.board_img.path):
             os.remove(instance.board_img.path)
-
-
-
 
 
 

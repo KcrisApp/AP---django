@@ -34,7 +34,7 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
          </div>
          
          <div class="pb-4">
-            <span class="p-2">Benvenuto {{ store.first_name }}</span>
+            <span class="p-2">Benvenuto {{ store.userData.first_name }}</span>
             <p class="text-sm text-slate-500 p-2">{{ formatted }}</p> 
          </div>
          <hr class="h-px my-8 bg-slate-300 border-0 dark:bg-gray-700">
@@ -72,8 +72,8 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
                <RouterLink to="/tools/" class="text-sm ml-2">Tools</RouterLink>
             </a>
          </li>
-         <li>
-            <a
+         <li v-if="store.permissionAccess">
+            <a 
             @click="dropdownShow = !dropdownShow" 
             class=" flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
                <font-awesome-icon icon="user-tie" />
@@ -87,6 +87,15 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
                   <li @click="dropdownShow = !dropdownShow" >
                      <a class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                         <RouterLink to="/announcement-list/" class="text-sm ml-2">Comunicati</RouterLink>
+                     </a>
+                  </li>
+                  <li
+                  v-if="store.permissionAccess"
+                   @click="dropdownShow = !dropdownShow" >
+                     <a
+                     href="/accounts/register/" 
+                     class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-14 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        Add user
                      </a>
                   </li>
                   <!-- <li>
@@ -135,7 +144,7 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
  
 
 <script setup>
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { RouterLink, RouterView } from 'vue-router'
 import { useStoreUser } from '../stores/storeUsers'
 import { useDateFormat, useNow } from '@vueuse/core'
@@ -156,4 +165,6 @@ const hideSidebar = () =>{
 const showSidebar = () =>{
     sideBarHide.value = false
 }
+
+
 </script>  

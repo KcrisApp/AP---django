@@ -9,8 +9,16 @@ class CustomUser(AbstractUser):
         ("C", "Custumer"),
         ("M", "Manager")
     ]
+    DEPARTMENT = [
+        ("O", "Office"),
+        ("T", "Testing"),
+        ("V", "Verify"),
+        ("S", "SMT"),
+        ("W", "Welding")
+    ]
     name = models.CharField(max_length=120)
     company_role = models.CharField(max_length=1, choices=ROLES)
+    department = models.CharField(max_length=1, choices=DEPARTMENT)
     
 
     def __str__(self):

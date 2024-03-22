@@ -3,13 +3,6 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import VueHtmlToPaper from 'vue-html-to-paper';
-
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
-
-
-import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue"; // import lottie-vuejs
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 
@@ -75,21 +68,6 @@ library.add(faFilePdf);
 library.add(faCirclePlus);
 
 
-const options = {
-        name: '_blank',
-        specs: [
-          'fullscreen=yes',
-          'titlebar=yes',
-          'scrollbars=yes'
-        ],
-        styles: [
-          'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
-          'https://unpkg.com/kidlat-css/css/kidlat.css'
-        ],
-        timeout: 1000, // default timeout before the print window appears
-        autoClose: true, // if false, the window will not close after printing
-        windowTitle: window.document.title, // override the window title
-      }
 
 const app = createApp(App);
 
@@ -97,11 +75,6 @@ const app = createApp(App);
 
 app.use(router)
 app.use(createPinia())
-app.use(VueHtmlToPaper, options);
-app.use(LottieAnimation); // add lottie-animation to your global scope
-app.component('QuillEditor', QuillEditor) 
-
 app.component("font-awesome-icon", FontAwesomeIcon)
-app.component('QuillEditor');
 
 app.mount('#app')

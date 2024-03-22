@@ -125,7 +125,7 @@ import { useStoreUser } from "../stores/storeUsers";
 
 // access the `store`
 const store = useStoreUser();
-console.log(store.first_name);
+// console.log(store.first_name);
 
 const boards = ref([]);
 const showForm = ref(false);
