@@ -48,6 +48,7 @@
               <th scope="col" class="px-6 py-4">Codice</th>
               <th scope="col" class="px-6 py-4">Data creazione</th>
               <th scope="col" class="px-2 py-4">Revisione</th>
+            
              
             </tr>
           </thead>
@@ -58,7 +59,7 @@
               :key="board.uuid"
             >
               <td class="whitespace-nowrap px-6 py-4 font-medium hover:text-green-600">
-       
+                
                 <router-link
                     :to="{
                       name: 'board-details',
@@ -68,6 +69,9 @@
                   >
                   {{ board.board_name }}
                   </router-link>
+                  <span v-if="board.alert_info">
+              <font-awesome-icon icon="bell" class=" text-red-700 ml-2"/>
+            </span>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
                 {{ board.board_code }}
@@ -75,8 +79,10 @@
               <td class="whitespace-nowrap px-6 py-4">
                 {{ board.created_at }}
               </td>
-              <td class="whitespace-nowrap px-4 py-4">{{ board.board_rev }}</td>
-           
+              <td class="whitespace-nowrap px-4 py-4">{{ board.board_rev }}
+              
+              </td>
+         
             </tr>
           </tbody>
         </table>

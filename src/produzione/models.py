@@ -18,7 +18,7 @@ class Board(TimeStampedModel):
     board_img = models.ImageField(upload_to="img", default='img/no-image.jpg')
     board_img_bot = models.ImageField(upload_to="img", default='img/no-image.jpg')
     board_file = models.FileField(null=True, blank=True)
-    
+    alert_info = models.CharField(max_length=180 ,default="", blank=True)
 
     def __str__(self):
         return self.board_name

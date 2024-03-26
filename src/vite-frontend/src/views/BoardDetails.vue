@@ -41,7 +41,7 @@
         </h1>
         <div
           class="flex gap-2"
-          v-if="store.company_role == 'M'"
+         
         >
           <button
             class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
@@ -83,8 +83,26 @@
             Cliente: <b> {{ board.customer }}</b>
           </p>
       
-      </div>
+      </div> 
 
+
+      
+      <div 
+      v-if="board.alert_info"
+      class=" bg-slate-50 text-lg  rounded-xl mt-4 bg-red-50">
+     
+       <div class="flex flex-wrap items-center px-4 pt-4 gap-2 ">
+        <font-awesome-icon icon="bell" class=" text-red-700"/>
+        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-sm font-medium text-red-700 ring-1 ring-inset ring-red-600/10">Alert</span>
+          
+       </div>
+       <p class="px-4 py-2 text-sm">
+            {{ board.alert_info }} 
+        </p>
+         
+      </div> 
+
+      
       <hr class="my-2" />
       <div class=" bg-slate-50 p-4 rounded-xl">
         <h3 class="text-xl font-semibold mb-4">Immagini</h3>

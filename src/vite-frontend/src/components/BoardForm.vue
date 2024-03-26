@@ -116,8 +116,25 @@
                           v-model="board_rev"
                         />
                       </div>
+                    
                     </div>
 
+                    <div class="mb-6">
+                      <label
+                        for="alert"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Alert</label
+                      >
+                      <textarea
+                        v-model="board_alert"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        name="procesNote"
+                        id="procesNote"
+                        cols="30"
+                        rows="3"
+                      ></textarea>
+                  
+                    </div>
                     <div
                       class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
                     >
@@ -167,6 +184,7 @@ const customer = ref("");
 const board_name = ref("");
 const board_code = ref("");
 const board_rev = ref("");
+const board_alert = ref("");
 
 const router = useRouter()
 const route = useRoute()
@@ -178,6 +196,7 @@ if (props.boardArr) {
   board_name.value = props.boardArr.board_name
   board_code.value = props.boardArr.board_code
   board_rev.value = props.boardArr.board_rev
+  board_alert.value = props.boardArr.alert_info
 }
 
 
@@ -198,7 +217,8 @@ async function sentData(){
           data: { customer: customer.value,
                   board_name: board_name.value,
                   board_code: board_code.value,
-                  board_rev: board_rev.value
+                  board_rev: board_rev.value,
+                  alert_info: board_alert.value
           },
         });
       

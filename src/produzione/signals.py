@@ -2,6 +2,11 @@ from django.db.models.signals import post_save, pre_save, post_delete
 from django.dispatch import receiver
 from produzione.models import Order, Test, Smt, Verify, Welding, ProductionSteps, Board
 import os
+
+
+#ORDER SIGNALS
+#***********************************************************************************#
+
 #Signal If create is true i create a new istance of Smt Ict and Verify
 @receiver(post_save, sender=Order)
 def create_departments(sender, instance, created, **kwargs):
@@ -12,6 +17,49 @@ def create_departments(sender, instance, created, **kwargs):
         Verify.objects.create(order=instance)
         Welding.objects.create(order=instance)
 
+
+# Signal to delete old topographic file on update order
+
+@receiver(pre_save, sender=Order)
+def auto_delete_old_file_signal(sender, instance, **kwargs):
+   
+    if not instance.pk:
+        return False
+    
+    try:
+        oldFileTopographic = Order.objects.get(pk=instance.pk).order_filetopographic
+
+    except Order.DoesNotExist:
+        return False
+
+    # Delete old  order_filetopographic
+    newFileTopographic = instance.order_filetopographic
+    
+    if not oldFileTopographic == newFileTopographic:
+    
+        if os.path.isfile(oldFileTopographic.path):
+
+            os.remove(oldFileTopographic.path)
+
+
+
+
+# Signal to delete old img top and bot when img field is update
+
+@receiver(post_delete, sender=Order)
+def auto_delete_img_on_delete_signal(sender, instance, **kwargs):
+    
+
+    # Delete order_filetopographic 
+    if instance.order_filetopographic:
+
+        if os.path.isfile(instance.order_filetopographic.path):
+            os.remove(instance.order_filetopographic.path)
+
+
+
+#STEPS SIGNALS
+#***********************************************************************************#
 
 #Signal for create auto increment number order
 @receiver(pre_save, sender=ProductionSteps) 
@@ -33,6 +81,9 @@ def create_step_order_number(sender, instance, **kwargs):
         print ('Instance updated!')
         pass
     
+
+#BOARD SIGNALS
+#***********************************************************************************#
 
 # Signal to delete old img top and bot when img field is update
 
@@ -87,42 +138,4 @@ def auto_delete_img_on_delete_signal(sender, instance, **kwargs):
 
 
 
-
-# Signal to delete old topographic file on update order
-
-@receiver(pre_save, sender=Order)
-def auto_delete_old_file_signal(sender, instance, **kwargs):
-   
-    if not instance.pk:
-        return False
-    
-    try:
-        oldFileTopographic = Order.objects.get(pk=instance.pk).order_filetopographic
-
-    except Order.DoesNotExist:
-        return False
-
-    # Delete old  order_filetopographic
-    newFileTopographic = instance.order_filetopographic
-    
-    if not oldFileTopographic == newFileTopographic:
-    
-        if os.path.isfile(oldFileTopographic.path):
-
-            os.remove(oldFileTopographic.path)
-
-
-
-
-# Signal to delete old img top and bot when img field is update
-
-@receiver(post_delete, sender=Order)
-def auto_delete_img_on_delete_signal(sender, instance, **kwargs):
-    
-
-    # Delete order_filetopographic 
-    if instance.order_filetopographic:
-
-        if os.path.isfile(instance.order_filetopographic.path):
-            os.remove(instance.order_filetopographic.path)
 

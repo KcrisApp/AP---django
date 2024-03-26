@@ -1,0 +1,7 @@
+- Fixare dimensione menu per tablet -> OK
+- gestione permessi user
+- Inserimento BOM -> Da completare
+- Inserimento ALERT in  board model
+- Eliminare vecchie immagini -> OK
+- Eliminare vecchie file topografici -> OK
+- Creare bot whatsapp

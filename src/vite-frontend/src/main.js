@@ -33,7 +33,8 @@ import {faLaptopCode,
         faDiagramProject,
         faFilePdf,
         faUserTie,
-        faCirclePlus
+        faCirclePlus,
+        faBell
       } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { createPinia } from 'pinia'
@@ -66,6 +67,7 @@ library.add(faUserTie);
 library.add(faDiagramProject);
 library.add(faFilePdf);
 library.add(faCirclePlus);
+library.add(faBell);
 
 
 
