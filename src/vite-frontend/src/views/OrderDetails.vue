@@ -2,6 +2,7 @@
   <main>
 
       <div class="p-4 w-full" v-for="o in order">
+
         <Alert
           v-show="showAlert"
           icon-type="error"
@@ -28,7 +29,7 @@
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
             Ordine: {{ o.order_number }}
           </h1>
-
+         
           <div class="flex gap-2"  v-if="store.permissionAccess">
             <button
               class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
@@ -44,6 +45,19 @@
             </button>
           </div>
         </div>
+        <div class="">
+        <router-link
+                  :to="{
+                    name: 'board-details',
+                      params: { uuid: o.board },
+                  }"
+                  class="hover:text-green-600"
+                >
+                <font-awesome-icon icon="arrow-left-long" /> Back to {{ o.board_name }}
+                
+                </router-link>
+            
+        </div>
 
         <hr class="my-5" />
         <div class="flex bg-slate-100 p-4  gap-10 flex-wrap rounded-md">
@@ -57,6 +71,9 @@
           </div>
 
           <div class="flex-1">
+            <p>
+              Scheda: <b>{{ o.board_name }}</b>
+            </p>
             <p>
               Numero d'ordine: <b> {{ o.order_number }}</b>
             </p>
@@ -115,14 +132,14 @@
         <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
           <div class="flex justify-between">
             <p><b>File:</b></p>
-            <font-awesome-icon icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFile"/>
+            <font-awesome-icon v-if="store.permissionAccess"  icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFile"/>
           </div>
          
           <hr class="my-2" />
           <p
           v-if="o.order_filetopographic"
           >
-          <a v-if="store.permissionAccess" :href="o.order_filetopographic" target=”_blank” class="text-green-700">
+          <a :href="o.order_filetopographic" target=”_blank” class="text-red-700">
             <font-awesome-icon icon="file-pdf" class="text-2xl"/>
             Topographic
           </a>

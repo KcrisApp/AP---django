@@ -45,7 +45,7 @@ table{
 </style>
 
 <template>
-        <div class="  flex justify-between mx-12 my-4 " v-if="isLoading">
+        <div class="  flex justify-between ml-24 mr-24 my-4 " v-if="isLoading">
         <router-link
                   :to="{
                     name: 'order-details',
@@ -186,7 +186,7 @@ table{
 </pre> -->
 <button  
         @click="printContent"
-        class="my-4 mx-14 py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white">
+        class="my-4 mx-24 py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white">
         Save to PDF
     </button>
 </template>

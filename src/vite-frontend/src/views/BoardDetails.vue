@@ -89,14 +89,16 @@
       
       <div 
       v-if="board.alert_info"
-      class=" bg-slate-50 text-lg  rounded-xl mt-4 bg-red-50">
+      class="  text-lg  rounded-xl mt-4 bg-red-50">
      
        <div class="flex flex-wrap items-center px-4 pt-4 gap-2 ">
         <font-awesome-icon icon="bell" class=" text-red-700"/>
         <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-sm font-medium text-red-700 ring-1 ring-inset ring-red-600/10">Alert</span>
-          
+       
        </div>
+       
        <p class="px-4 py-2 text-sm">
+        <hr class="pb-2">
             {{ board.alert_info }} 
         </p>
          
@@ -112,7 +114,7 @@
           <h5 class="font-semibold">TOP side</h5>
           <img class="h-auto max-w-xs" :src="board.board_img" />
           <button
-            v-if="store.company_role == 'M'"
+          
             class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
             @click="togleImgForm(false)"
           >
@@ -123,7 +125,7 @@
           <h5 class="font-semibold">BOT side</h5>
           <img class="h-auto max-w-xs" :src="board.board_img_bot" />
           <button
-            v-if="store.company_role == 'M'"
+           
             class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
             @click="togleImgForm(true)"
           >
@@ -184,7 +186,7 @@
           :class="
             showSteps
               ? 'hover:bg-red-500'
-              : 'bg-lime-400 text-gray-800 hover:bg-blue-900'
+              : 'bg-green-700 text-white hover:bg-blue-900'
           "
           @click="togleStepView"
         >

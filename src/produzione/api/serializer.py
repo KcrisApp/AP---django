@@ -8,6 +8,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     # created_at = serializers.SerializerMethodField()
     board_name= serializers.SerializerMethodField()
+
     customer= serializers.SerializerMethodField()
     order_verify = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_smt = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
