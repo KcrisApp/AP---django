@@ -6,7 +6,7 @@ from django.db import models
 from colorfield.fields import ColorField
 from core.models import TimeStampedModel
 import uuid as uuid_lib
-
+import datetime
 # Board model.
 class Board(TimeStampedModel):
 
@@ -58,8 +58,9 @@ class ProductionSteps(TimeStampedModel):
         verbose_name = "Step"
         verbose_name_plural = "Steps"
         ordering = ['step_order']
-# Order model 
 
+# Order model 
+        
 class Order(TimeStampedModel):
 
     uuid = models.UUIDField(default=uuid_lib.uuid4 ,editable=False)
@@ -69,7 +70,8 @@ class Order(TimeStampedModel):
     order_process_note = models.TextField(blank=True, null=True)
     order_serialnumber = models. CharField(max_length=120, blank=True, null=True)
     order_customization = models.CharField(max_length=120, blank=True, default="")
-    order_filetopographic = models.FileField(upload_to='topographic', default="")
+    order_filetopographic = models.FileField(upload_to='topographic', default="", blank=True)
+    shipping_date = models.DateField(auto_now=False, auto_now_add=False, default="2024-03-03")
     board = models.ForeignKey(Board, on_delete= models.CASCADE, related_name="order")
 
     def __str__(self):
@@ -95,7 +97,7 @@ class Test(TimeStampedModel):
     note = models.CharField(max_length=120, default="", null=True,blank=True)
     firma = models.CharField(max_length=120, default="", null=True, blank=True)
     status = models.BooleanField(default=False)
-    # create_new = models.BooleanField(default=False)
+  
    
     order = models.OneToOneField(Order,on_delete= models.CASCADE, related_name="order_test")
 

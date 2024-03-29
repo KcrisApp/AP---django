@@ -30,7 +30,7 @@
 
               Verifica
             </h1>
-            <p class="mt-2">Data: {{ verify.created_at }}</p>
+            <p class="mt-2">Data: {{ useDateFormat(verify.created_at) }}</p>
             <p class="mt-2">Ordine: {{ verify.order_number }}</p>
           </div>
 
@@ -101,12 +101,10 @@
 
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { ref, onMounted, computed } from "vue";
-import Alert from "../components/Alert.vue";
+import { ref, onMounted } from "vue";
 import VerifyForm from "../components/VerifyForm.vue";
-import { useRouter, useRoute } from "vue-router";
 import  Info from "../components/Info.vue"
-
+import {useDateFormat } from "../use/useDateFormat"
 const verify = ref({});
 
 const isLoading = ref(false);
@@ -115,8 +113,6 @@ const showForm = ref(false);
 const iconType = ref(false);
 const msg = ref("");
 
-const router = useRouter();
-const route = useRoute();
 
 const props = defineProps({
   verify_number: String,

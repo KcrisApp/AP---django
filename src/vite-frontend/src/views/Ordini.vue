@@ -37,7 +37,7 @@
             <tr>
               <th scope="col" class="px-6 py-4">Numero ordine</th>
               <th scope="col" class="px-6 py-4">Quantità</th>
-              <th scope="col" class="px-6 py-4">Data creazione</th>
+              <th scope="col" class="px-6 py-4">Data di consegna</th>
               <th scope="col" class="px-6 py-4">Scheda</th>
               <th scope="col" class="px-6 py-4"></th>
             </tr>
@@ -56,7 +56,7 @@
               </td>
               <td class="whitespace-nowrap px-6 py-4">
            
-              {{ useDateFormat( order.created_at) }}
+              {{ useDateFormat( order.shipping_date) }}
 
 
               </td>
@@ -163,12 +163,6 @@ const prevPage = () => {
 }
 
 
-
-const formatDate = (date) => {
-  const dateTime = new Date(date).toLocaleString().split(',')[0];
-  
-  return dateTime
-}
 
 async function callApi() {
   let endpoint = endpoints["ordersCRUD"];

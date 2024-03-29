@@ -28,7 +28,7 @@
               Saldatura 
             </h1>
             
-            <p class="mt-2">Data: {{ welding.created_at }}</p>
+            <p class="mt-2">Data: {{ useDateFormat(welding.created_at) }}</p>
             <p class="mt-2">Ordine: {{ welding.order_number }}</p>
           </div>
 
@@ -125,10 +125,10 @@
 
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import WeldingForm from "../components/WeldingForm.vue";
 import  Info from "../components/Info.vue"
-
+import {useDateFormat } from "../use/useDateFormat"
 
 const welding = ref({});
 

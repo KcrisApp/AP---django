@@ -110,6 +110,20 @@
                     </div>
                     <div class="mb-6">
                       <label
+                        for="sn"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Data di spedizione:</label
+                      >
+                      <input
+                        type="date"
+                        id="shipping_date"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required
+                        v-model="shipping_date"
+                      />
+                    </div>
+                    <div class="mb-6">
+                      <label
                         for="procesNote"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Note di processo</label
@@ -164,7 +178,7 @@
 import { ref, defineEmits } from "vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { useRouter, useRoute } from "vue-router";
+
 
 const props = defineProps({
   board_id: {
@@ -181,9 +195,9 @@ const order_quantity = ref("");
 const order_process_note = ref("");
 const order_serialnumber = ref("");
 const order_customization = ref("");
+const shipping_date = ref(null);
 
-const router = useRouter();
-const route = useRoute();
+
 
 const emit = defineEmits(["close-modal", "save-data"]);
 
@@ -195,6 +209,7 @@ if (props.order) {
   order_process_note.value = props.order.order_process_note
   order_serialnumber.value = props.order.order_serialnumber
   order_customization.value = props.order.order_customization
+  shipping_date.value = props.order.shipping_date
 }
 
 
@@ -217,6 +232,7 @@ async function sentData() {
         order_process_note: order_process_note.value,
         order_serialnumber: order_serialnumber.value,
         order_customization: order_customization.value,
+        shipping_date: shipping_date.value,
         board: props.board_id
       },
     });

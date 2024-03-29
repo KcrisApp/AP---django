@@ -1,7 +1,5 @@
 <template>
   <main>
-    <Info v-show="msg" :message="msg" :icon-type="iconType" />
-
     <div class="p-4 w-full">
       <Alert
         v-show="showAlert"
@@ -44,7 +42,7 @@
          
         >
           <button
-            class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
+            class="hover:bg-blue-400 hover:border-blue-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
             @click="togleModal"
           >
             <!-- <font-awesome-icon icon="folder-plus" /> Add order -->
@@ -65,6 +63,24 @@
           </button>
         </div>
       </div>
+      
+
+      <div 
+      v-if="board.alert_info"
+      class="  text-lg  rounded-xl mt-4 bg-red-50 text-red-700 shadow-md">
+     
+       <div class="flex flex-wrap items-center px-4 pt-4 gap-2 ">
+        <font-awesome-icon icon="bell" class=" text-red-700"/>
+        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-sm font-medium text-red-700 ring-1 ring-inset ring-red-600/10">Alert</span>
+       
+       </div>
+       
+       <p class="px-4 py-2 text-sm font-medium">
+        <hr class="pb-2">
+            {{ board.alert_info }} 
+        </p>
+         
+      </div> 
       <hr class="my-2">
       <div class="flex bg-slate-50 p-4 gap-4 rounded-xl flex-wrap">
        
@@ -77,7 +93,7 @@
           </p>
 
           <p>
-            Data di creazione: <b> {{ board.created_at }}</b>
+            Data di creazione: <b> {{ useDateFormat(board.created_at)}}</b>
           </p>
           <p>
             Cliente: <b> {{ board.customer }}</b>
@@ -85,24 +101,6 @@
       
       </div> 
 
-
-      
-      <div 
-      v-if="board.alert_info"
-      class="  text-lg  rounded-xl mt-4 bg-red-50">
-     
-       <div class="flex flex-wrap items-center px-4 pt-4 gap-2 ">
-        <font-awesome-icon icon="bell" class=" text-red-700"/>
-        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-sm font-medium text-red-700 ring-1 ring-inset ring-red-600/10">Alert</span>
-       
-       </div>
-       
-       <p class="px-4 py-2 text-sm">
-        <hr class="pb-2">
-            {{ board.alert_info }} 
-        </p>
-         
-      </div> 
 
       
       <hr class="my-2" />
@@ -149,7 +147,7 @@
           <tr>
             <th scope="col" class="px-6 py-4">Numero ordine</th>
             <th scope="col" class="px-6 py-4">Quantità</th>
-            <th scope="col" class="px-6 py-4">Data creazione</th>
+            <th scope="col" class="px-6 py-4">Data di consegna</th>
             <th scope="col" class="px-6 py-4">Revisione</th>
           </tr>
         </thead>
@@ -173,7 +171,7 @@
             <td class="whitespace-nowrap px-6 py-2">
               {{ o.order_quantity }}
             </td>
-            <td class="whitespace-nowrap px-6 py-2">{{ o.created_at }}</td>
+            <td class="whitespace-nowrap px-6 py-2">{{ useDateFormat(o.shipping_date) }}</td>
             <td class="whitespace-nowrap px-6 py-2">{{ o.order_customization }}</td>
           </tr>
         </tbody>
@@ -274,11 +272,11 @@ import StepForm from "../components/StepForm.vue";
 import BoardForm from "../components/BoardForm.vue";
 import ModalImg from "../components/ModalImg.vue";
 import StepCard from "../components/StepCard.vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { useStoreUser } from "../stores/storeUsers";
 import Info from "../components/Info.vue";
 import draggable from "vuedraggable";
-
+import {useDateFormat } from "../use/useDateFormat"
 // access the `store`
 const store = useStoreUser();
 

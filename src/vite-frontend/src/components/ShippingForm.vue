@@ -64,7 +64,7 @@
                       <input
                         type="number"
                         min="0"
-                        max="10000"
+                        :max="max_board"
                         step="1"
                         id="qta"
                         class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -150,10 +150,10 @@
   </div>
 </template>
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref, defineEmits, computed } from "vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { useRouter, useRoute } from "vue-router";
+
 
 const props = defineProps({
  
@@ -164,7 +164,11 @@ const props = defineProps({
   ship:{
     type:Object,
     required:false
-  }
+  },
+  max_shipping_board:{
+    type:Number,
+    required:true
+  },
 });
 
 
@@ -178,13 +182,13 @@ const shipping_date = ref(date);
 const shipping_check = ref(false);
 const shipping_missing_components = ref("");
 const firma = ref("");
+const max_board = ref(props.max_shipping_board)
 
 const emit = defineEmits(["close-modal", "save-data"]);
 
 if (props.ship) {
 
   const d = (new Date(props.ship.shipping_date).getTime()) - tzoffset
-  console.log(d)
   const date = new Date(d).toISOString().slice(0, 16)
 
   shipping_quantity.value = props.ship.shipping_qta
@@ -192,6 +196,8 @@ if (props.ship) {
   shipping_check.value = props.ship.shipping_check
   shipping_missing_components.value = props.ship.shipping_missing_components
   firma.value = props.ship.firma
+
+  max_board.value = props.max_shipping_board + shipping_quantity.value
 }
 
 async function sentData() {

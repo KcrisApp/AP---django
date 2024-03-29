@@ -173,7 +173,7 @@ table{
 
     <tr v-for="s in order_shipping_ref">
         <td class="text-center">{{s.shipping_qta}}</td>
-        <td class="text-center">{{s.shipping_date}}</td>
+        <td class="text-center">{{useDateFormat(s.shipping_date)}}</td>
         <td class="text-center">{{s.shipping_missing_components}}</td>
         <td class="text-center">{{s.shipping_check ? 'OK' : 'NO'}}</td>
         <td class=""></td>
@@ -201,9 +201,9 @@ table{
 
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import html2pdf from "html2pdf.js";
-
+import {useDateFormat } from "../use/useDateFormat"
 
 const order_smt_ref = ref({});
 const order_verify_ref = ref({});

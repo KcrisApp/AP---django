@@ -38,7 +38,9 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
             <p class="text-sm text-slate-500 p-2">{{ formatted }}</p> 
          </div>
          <hr class="h-px my-8 bg-slate-300 border-0 dark:bg-gray-700">
-         <li>
+         <li
+         @click="hideSidebar"
+         >
             <a class="flex items-center p-2 text-blue-950 rounded-lg  dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
               
                <font-awesome-icon icon="table-columns" class="text-lg"/>
@@ -46,7 +48,9 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
              
             </a>
          </li>
-         <li>
+         <li
+         @click="hideSidebar"
+         >
             <a class="flex items-center p-2 text-blue-950 rounded-lg  dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
               
                <font-awesome-icon icon="table-list" class=" text-lg" />
@@ -54,25 +58,32 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
              
             </a>
          </li>
-         <li>
+         <li
+         @click="hideSidebar"
+         >
             <a class="flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
                <font-awesome-icon icon="microchip" class="text-lg"/>
                <RouterLink to="/boards" class="text-sm ml-2">Schede</RouterLink>
             </a>
          </li>
-         <li>
+         <li
+         @click="hideSidebar"
+         >
             <a class="flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
                <font-awesome-icon icon="truck-fast" class="text-lg"/>
                <RouterLink to="/shipping" class="text-sm ml-2">Spedizioni</RouterLink>
             </a>
          </li>
-         <li>
+         <li
+         @click="hideSidebar"
+         >
             <a class="flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
                <font-awesome-icon icon="toolbox"  class="text-lg"/>
                <RouterLink to="/tools/" class="text-sm ml-2">Tools</RouterLink>
             </a>
          </li>
-         <li v-if="store.permissionAccess">
+         <li 
+         v-if="store.permissionAccess">
             <a 
             @click="dropdownShow = !dropdownShow" 
             class=" flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
@@ -106,7 +117,9 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
                   </li> -->
             </ul>
          </li>
-         <li>
+         <li
+         @click="hideSidebar"
+         >
             <a class="flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900  dark:hover:bg-gray-700 group">
                <font-awesome-icon icon="chart-pie" />
                <RouterLink to="/stats/" class="text-sm ml-2">Statistiche</RouterLink>
@@ -144,7 +157,7 @@ class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  xl:translate-
  
 
 <script setup>
-import { ref, onBeforeMount } from "vue";
+import { ref } from "vue";
 import { RouterLink, RouterView } from 'vue-router'
 import { useStoreUser } from '../stores/storeUsers'
 import { useDateFormat, useNow } from '@vueuse/core'

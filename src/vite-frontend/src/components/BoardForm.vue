@@ -43,7 +43,12 @@
                   class="text-base font-semibold leading-6 text-gray-900 mb-6"
                   id="modal-title"
                 >
-                  <b>NUOVA SCHEDA</b>
+                  <b v-if="title">
+                    Modifica scheda
+                  </b>
+                  <b v-else>
+                    Nuova scheda
+                  </b>
                 </h2>
                 <hr class="mb-4" />
                 <div class="mt-2">
@@ -52,14 +57,16 @@
                       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label
                           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                          for="grid-first-name"
+                          for="customer"
                         >
                           Cliente
                         </label>
                         <input
-                          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                          class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                           type="text"
                           placeholder=""
+                          id="customer"
+                          name="customer"
                           v-model="customer"
                         />
                         <!-- <p class="text-red-500 text-xs italic">
@@ -70,14 +77,15 @@
                       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label
                           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                          for="grid-first-name"
+                          for="board_name"
                         >
                           Nome scheda
                         </label>
                         <input
-                          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                          class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                           type="text"
-                          placeholder=""
+                          name="board_name"
+                          id="board_name"
                           v-model="board_name"
                         />
                         <!-- <p class="text-red-500 text-xs italic">
@@ -87,14 +95,15 @@
                       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label
                           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                          for="grid-first-name"
+                          for="board_code"
                         >
                           Codice
                         </label>
                         <input
-                          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                          class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                           type="text"
-                          placeholder=""
+                       id="board_code"
+                       name="board_code"
                           v-model="board_code"
                         />
                         <!-- <p class="text-red-500 text-xs italic">
@@ -105,14 +114,15 @@
                       <div class="w-full md:w-1/2 px-3">
                         <label
                           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                          for="grid-last-name"
+                          for="board_rev"
                         >
                           Revisione
                         </label>
                         <input
                           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                           type="text"
-                          placeholder=""
+                         id="board_rev"
+                         name="board_rev"
                           v-model="board_rev"
                         />
                       </div>
@@ -128,8 +138,8 @@
                       <textarea
                         v-model="board_alert"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="alert"
+                        id="alert"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -163,11 +173,14 @@
   </div>
 </template>
 <script setup>
-import { ref, defineEmits } from "vue";
+
+// Import
+import { ref, defineEmits, computed } from "vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service"
-import { useRouter, useRoute } from 'vue-router'
 
+
+// Definition of Props
 
 const props = defineProps({
     boardArr: {
@@ -177,19 +190,11 @@ const props = defineProps({
 }
 )
 
-
-
-
 const customer = ref("");
 const board_name = ref("");
 const board_code = ref("");
 const board_rev = ref("");
 const board_alert = ref("");
-
-const router = useRouter()
-const route = useRoute()
-
-const emit = defineEmits(["close-modal", "save-data"]);
 
 if (props.boardArr) {
   customer.value = props.boardArr.customer
@@ -199,6 +204,22 @@ if (props.boardArr) {
   board_alert.value = props.boardArr.alert_info
 }
 
+
+// Computed 
+
+const title = computed(()=>{
+  return props.boardArr ? true : false
+})
+
+
+
+//  Signal
+const emit = defineEmits(["close-modal", "save-data"]);
+
+
+
+
+// Function
 
 async function sentData(){
  
@@ -232,6 +253,7 @@ async function sentData(){
         alert(error)
       }
 }
+
 function triggerCloseModal() {
   // emit an event to delete an answer instance
 
@@ -241,4 +263,5 @@ function triggerCloseModal() {
   }
   emit("close-modal");
 }
+
 </script>

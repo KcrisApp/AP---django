@@ -16,7 +16,7 @@
           v-bind:order_id="o.board"
           v-bind:order="o"
           @close-modal="togleModal"
-          @save-data="togleModal"
+          @save-data="updateOrder"
         />
         <ModalFile
           v-show="showFormFile"
@@ -60,7 +60,7 @@
         </div>
 
         <hr class="my-5" />
-        <div class="flex bg-slate-100 p-4  gap-10 flex-wrap rounded-md">
+        <div class="flex bg-slate-100 p-4  gap-10 flex-wrap rounded-md shadow-md">
           <div class="flex-0">
             <qrcode-vue
               class="my-2"
@@ -70,7 +70,7 @@
             />
           </div>
 
-          <div class="flex-1">
+          <div class="flex-1 ">
             <p>
               Scheda: <b>{{ o.board_name }}</b>
             </p>
@@ -86,7 +86,7 @@
           </div>
           <div class="flex-1">
             <p>
-              Data di creazione: <b>{{ formatDate(o.created_at) }} </b>
+              Data di creazione: <b>{{ useDateFormat(o.created_at) }} </b>
             </p>
             <p>
               Cliente: <b> {{ o.customer }}</b>
@@ -95,9 +95,19 @@
               Personalizzazione: <b> {{ o.order_customization }}</b>
             </p>
           </div>
+
+          <div class="flex-1 text-lg p-4 bg-slate-200 rounded-md shadow-md">
+            
+            <p class="flex justify-center">
+              Data di spedizione: 
+            </p>
+            <p class="flex justify-center">
+              <b>  {{ useDateFormat(o.shipping_date) }}</b>
+            </p>
+          </div>
          
         </div>
-        <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
+        <div class="bg-gray-100 my-4 p-4 rounded-md text-sm">
           <p><b>Moduli:</b></p>
           <hr class="my-2" />
           <div class="flex gap-6">
@@ -210,10 +220,10 @@ import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted } from "vue";
 import Alert from "../components/Alert.vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import OrderForm from "../components/OrderForm.vue";
 import ModalFile from "../components/ModalFile.vue";
-
+import {useDateFormat } from "../use/useDateFormat"
 import QrcodeVue from "qrcode.vue";
 import { useStoreUser } from '../stores/storeUsers'
 
@@ -221,7 +231,7 @@ import { useStoreUser } from '../stores/storeUsers'
 const store = useStoreUser()
 
 const router = useRouter();
-const route = useRoute();
+
 
 const order = ref([]);
 const showAlert = ref(false);
@@ -232,11 +242,7 @@ const props = defineProps({
   order_number: String,
 });
 
-const formatDate = (date) => {
-  const dateTime = new Date(date).toLocaleString().split(",")[0];
 
-  return dateTime;
-};
 async function callApi() {
   const endpoint = `${endpoints["ordersCRUD"]}${props.order_number}/`;
 
@@ -272,6 +278,7 @@ function updateOrder(value) {
   order.value[0].order_quantity = value.order_quantity;
   order.value[0].order_serialnumber = value.order_serialnumber;
   order.value[0].order_customization = value.order_customization;
+  order.value[0].shipping_date = value.shipping_date;
 }
 
 function togleAlert() {

@@ -5,8 +5,8 @@
             <div
               class="border-b-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50"
             >
-            <div class="flex">
-
+            <div class="flex justify-between mx-2">
+              <div class="flex">
               <font-awesome-icon
                     v-if="annuncements.announcement_type === 'comunicato'" 
                     icon="circle-info"
@@ -21,6 +21,11 @@
                   <p class="text-sm font-semibold leading-6 text-gray-900 ml-4 pt-1">
                    {{ annuncements.announcement_type }}
                   </p>
+                  
+
+
+                  </div>
+           
             </div>
             </div>
             <div class="px-6 py-4 flex">
@@ -52,14 +57,19 @@
                   Leggi
                   </router-link>
               </button>
-              </div>
+
               
-             
-            </div>
+              </div>
+      
+              </div>
+
           </div>
+
           
+         
 </template>
 <script setup>
+
 
 const props = defineProps({
   annuncements:{
@@ -67,4 +77,6 @@ const props = defineProps({
     required: true
   }
 })
+
+
 </script>

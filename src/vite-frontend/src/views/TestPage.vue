@@ -26,7 +26,7 @@ function exportFile() {
 </script> -->
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, computed } from "vue";
 import { read, utils, writeFileXLSX } from 'xlsx';
 const datatable = ref([])
 const file = ref(null)
@@ -42,7 +42,9 @@ const typeCol = ['','border-red-500 border-solid border-4','border-orange-500 bo
 const bomResult = ref([])
 
   function onChange(event) {
-        onLoad.value = true
+    onLoad.value = true
+    try {
+      
         let colArray = []
 
         file.value = event.target.files ? event.target.files[0] : null;
@@ -73,6 +75,10 @@ const bomResult = ref([])
         }
         onLoad.value = false
         tableShow.value = true
+    } catch (error) {
+      alert(error)
+    }
+       
       }
 
 // Create xlsx BOM

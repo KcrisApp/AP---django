@@ -26,7 +26,7 @@
 
               SMT 
             </h1>
-            <p class="mt-2">Data: {{ smt.created_at }}</p>
+            <p class="mt-2">Data: {{ useDateFormat(smt.created_at) }}</p>
             <p class="mt-2">Ordine: {{ smt.order_number }}</p>
           </div>
 
@@ -218,11 +218,11 @@
 
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import SmtForm from "../components/SmtForm.vue";
 import CardCheck from "../components/CardCheck.vue";
 import  Info from "../components/Info.vue"
-
+import {useDateFormat } from "../use/useDateFormat"
 const smt = ref({});
 
 

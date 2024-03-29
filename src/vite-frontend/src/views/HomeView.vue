@@ -61,7 +61,7 @@
         <section class="my-4 shadow-md p-4 rounded-md border">
           <div class="flex justify-between">
           <h1 class="text-md font-semibold sm:text-2xl  text-lime-600">
-            Ultimi ordini:
+            Ultimi 5 ordini:
             
           </h1>
           <span
@@ -91,7 +91,6 @@ import QrcodeScan from "../components/QrcodeScan.vue";
 import { administrationEndpoint, endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
-import { useDateFormat } from "../use/useDateFormat";
 import Annuncement from "../components/Annuncement.vue";
 import OrderCard from "../components/OrderCard.vue";
 

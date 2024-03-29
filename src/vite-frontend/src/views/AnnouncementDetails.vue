@@ -1,24 +1,68 @@
 <template>
   <main>
 
-
+    <Info v-show="msg" :message="msg" :icon-type="iconType" />
     
-      <div class="p-4 w-full">
+      <div class="px-4 w-full">
 
        
         <!-- <OrderForm v-show="showModal" v-bind:board_id="b.id" @close-modal="togleModal" @save-data="updateOrder"/> -->
         
         <div class="flex justify-between my-4 flex-wrap">
-          <h1 class="text-2xl mb-4">
+          <h1 class="text-2xl mb-2">
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
             Bacheca
           </h1>
+          <div class="flex gap-2">
+            <button
+              class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
+              @click="togleModal"
+            >
+            Modifica 
+            </button>
           
+          <button
+              class="bg-red-600 hover:bg-red-900 text-white font-semibold hover:text-white py-1 px-6 border rounded"
+              @click="togleAlert"
+            >
+              Elimina
+            </button>
+          </div>
+          
+              
+          </div>
+          <router-link
+                  :to="{
+                    name: 'announcement-list'}"
+                  class="hover:text-green-600"
+                >
+                <font-awesome-icon icon="arrow-left-long" /> Back to list
+                
+                </router-link>
+            
+          <hr class="my-6" />
 
-        <hr class="my-2" />
-      </div>
       <div class="bg-slate-50 p-4 gap-4 rounded-xl">
-      <p class="mb-2">{{ announcement.created_at }}</p>  
+        <div class="flex mb-4">
+              <font-awesome-icon
+                    v-if="announcement.announcement_type === 'comunicato'" 
+                    icon="circle-info"
+                    class="text-4xl text-blue-800"
+                  />
+
+                  <font-awesome-icon 
+                  v-if="announcement.announcement_type === 'avviso'" 
+                  icon="triangle-exclamation" 
+                  class="text-3xl text-yellow-500" />
+
+                  <p class="text-sm font-semibold leading-6 text-gray-900 ml-4 pt-1">
+                   {{ announcement.announcement_type }}
+                  </p>
+                  
+
+
+                  </div>
+      <p class="mb-2">{{ useDateFormat(announcement.created_at) }}</p>  
       <h1 class="text-lg font-bold">{{ announcement.announcement_title }}</h1>
 
       <div class="mt-5" v-html="announcement.announcement_content"></div>
@@ -34,7 +78,21 @@
   </div>
 
 
-
+  <Alert
+          v-show="showAlert"
+          icon-type="error"
+          title="Attenzione"
+          message="Sei sicuro di voler eliminare l'annuncio"
+          @close-alert="togleAlert"
+          @confirm="deleteAnnouncement"
+        />
+  <AnnouncementForm 
+  v-if="isLoading"
+    v-show="showModal"
+    @close-modal="togleModal"
+    @save-data="updateAnnouncement"
+    :announcement="announcement"
+    />
   </main>
 </template>
 <script setup>
@@ -42,10 +100,11 @@
 import { administrationEndpoint } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
-
-// import OrderForm from "../components/OrderForm.vue";
-
-import { useRouter, useRoute } from "vue-router";
+import Alert from "../components/Alert.vue";
+import AnnouncementForm from "../components/AnnouncementForm.vue";
+import Info from "../components/Info.vue";
+import { useDateFormat } from "../use/useDateFormat";
+import { useRouter} from "vue-router";
 import { useStoreUser } from '../stores/storeUsers'
 
 // access the `store` 
@@ -61,21 +120,19 @@ const msg = ref("");
 
 const showModal = ref(false);
 const showForm = ref(false);
+const showAlert = ref(false);
+
 
 
 const isLoading = ref(false)
 
 const router = useRouter();
-const route = useRoute();
+
 
 const props = defineProps({
   uuid: String,
 });
 
-// a computed ref
-const orderCount = computed(() => {
-  return order.value.length;
-});
 
 
 
@@ -83,6 +140,7 @@ const orderCount = computed(() => {
 
 
 
+// Async function
 
 async function callApi() {
   isLoading.value = false
@@ -100,25 +158,35 @@ async function callApi() {
   }
 }
 
+async function deleteAnnouncement() {
+  let endpoint = `${administrationEndpoint["announcementCRUD"]}${props.uuid}/`;
+
+  try {
+    const response = await axios.delete(endpoint);
+    togleAlert();
+    router.push({ name: "announcement-list" });
+  } catch (error) {
+    alert(error);
+  }
+}
 
 
-function updateBoard(value) {
-  togleForm()
+
+function updateAnnouncement(value) {
+  togleModal()
   if (typeof value === 'number') {
       msg.value =  "Aggiornametno non riuscito"
       iconType.value =  false
   }
   else{
   console.log(value)
-  board.value = value
+  announcement.value = value
   msg.value =  "Aggiornametno avvenuto con successo"
   iconType.value =  true
   }
   
 
   setTimeout(() => msg.value = "", 5000)
-
-
 
 }
 
@@ -133,9 +201,7 @@ function togleModal() {
 function togleForm() {
   showForm.value = !showForm.value;
 }
-function togleImgForm() {
-  showFormImg.value = !showFormImg.value;
-}
+
 // lifecycle hooks
 onMounted(() => {
   callApi();

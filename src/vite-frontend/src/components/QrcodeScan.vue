@@ -29,10 +29,6 @@
                 <div class="mb-4">
                   <p class="error">{{ error }}</p>
 
-                  <p class="decode-result my-4">
-                    Last result: <b>{{ result }}</b>
-                  </p>
-
                   <qrcode-stream  :paused="false" @detect="onDetect" @error="onError" :track="paintOutline"/>
                 </div>
                 <div class="flex gap-4 justify-center">

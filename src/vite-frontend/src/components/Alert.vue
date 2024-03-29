@@ -58,8 +58,11 @@
 
 
 <script setup>
-import { ref, defineEmits } from "vue";
 
+// Import
+import { defineEmits } from "vue";
+
+// Definition of Props
 const props = defineProps({
     iconType: {
         type: String,
@@ -76,8 +79,10 @@ const props = defineProps({
 }
 )
 
+//  Signal
 const emit = defineEmits(["close-alert", "confirm"]);
 
+// Function
 function closeModal() {
   emit("close-alert")
 }

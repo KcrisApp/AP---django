@@ -26,7 +26,6 @@
             </form>
           </div>
           <button
-            v-if="store.company_role == 'M'"
             class="hover:bg-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
             @click="togleModal"
           >
@@ -34,7 +33,7 @@
           </button>
         </div>
         <hr class="my-5" />
-        <div v-for="an in paginatedData">
+        <div v-for="an in paginatedData" :key="an.uuid">
           <Annuncement class="my-4" :annuncements="an" />
         </div>
       </section>
@@ -81,13 +80,10 @@
 import { administrationEndpoint } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
-
-// import OrderForm from "../components/OrderForm.vue";
-
-import { useRouter, useRoute } from "vue-router";
 import { useStoreUser } from "../stores/storeUsers";
 import AnnouncementForm from "../components/AnnouncementForm.vue";
 import Annuncement from "../components/Annuncement.vue";
+
 // access the `store`
 const store = useStoreUser();
 // console.log(store.first_name);
@@ -101,10 +97,6 @@ const msg = ref("");
 const showModal = ref(false);
 const showForm = ref(false);
 
-const isLoading = ref(false);
-
-const router = useRouter();
-const route = useRoute();
 
 // Pagination
 const pageCounter = ref(0);

@@ -71,7 +71,7 @@
                       <label
                         for="content"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Titolo</label
+                        >Testo</label
                       >
                       <textarea
                         type="text"
@@ -99,7 +99,7 @@
                         Cancel
                       </button>
                     </div>
-              
+
                 </div>
               </div>
             </div>
@@ -111,46 +111,43 @@
 </template>
 
 <script setup>
-import { ref, defineEmits, onMounted } from "vue";
-import { endpoints } from "../common/endpoints";
+
+// Import
+import { ref, defineEmits } from "vue";
 import { axios } from "../common/api.service";
 import { administrationEndpoint } from "../common/endpoints";
-// const props = defineProps({
-//   smt: {
-//     type: Object,
-//     required: false,
-//   },
-// });
+
+const props = defineProps({
+
+  announcement: {
+    type: Object,
+    required: false,
+  },
+});
 
 
 const text_content = ref("")
 const title = ref("")
 const type = ref("Avviso")
-const myEditor = ref(null)
 const emit = defineEmits(["close-modal", "save-data"]);
 
-// async function sentData() {
-//   let endpoint = endpoints["smtCRUD"] + `${props.smt.uuid}/`;
-//   let method = "PATCH";
-//   let data = {
- 
-//   }
-//   try {
-//     const response = await axios({
-//       method: method,
-//       url: endpoint,
-//       data: data
-//     });
-//     emit("save-data", response.data);
-//   } catch (error) {
-//     emit("save-data", error.response.status);
-//   }
-// }
+if (props.announcement) {
+  text_content.value = props.announcement.announcement_content
+  title.value = props.announcement.announcement_title
+  type.value = props.announcement.announcement_type
+}
+// Function
 
 async function sentData() {
 
   let endpoint = administrationEndpoint["announcementCRUD"];
-  let method = "POST";
+  let method = "POST" 
+
+  if (props.announcement) {
+    endpoint += `${props.announcement.uuid}/`;
+    method = "PATCH";
+  }
+
   let data = {
     announcement_type:type.value,
     announcement_title:title.value,

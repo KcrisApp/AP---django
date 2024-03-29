@@ -21,18 +21,25 @@
             >
             {{ order.board_name }}
             </h5>
+            <hr class="my-2">
             <div class="mb-2 text-base text-neutral-600 dark:text-neutral-200 " >
               <div class="flex gap-4">
                 <p><b>Quantità:</b> {{ order.order_quantity }}</p>
                 <p><b>Personalizzazione:</b> {{ order.order_customization }}</p>
                 <p><b>Serialnumber:</b> {{ order.order_serialnumber }}</p>
+              
               </div>
               
             </div>
-            
+            <hr class="my-2">
             <p class="font-semibold  text-gray-900 text-sm">
-               Data: {{ order.created_at }}
+               Data: {{ useDateFormat(order.created_at) }}
               </p>
+            </div>
+
+            <div class="mx-24 p-4 rounded-md bg-slate-100 text-xs">
+              <p class="text-neutral-600"><b>Data di consegna:</b></p>
+              <p class=""> {{ useDateFormat(order.shipping_date) }}</p>
             </div>
             <div>
               <button
@@ -57,6 +64,7 @@
         
 </template>
 <script setup>
+import {useDateFormat } from "../use/useDateFormat"
 
 const props = defineProps({
 order:{
