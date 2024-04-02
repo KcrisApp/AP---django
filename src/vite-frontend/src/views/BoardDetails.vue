@@ -38,6 +38,7 @@
           Scheda: {{ board.board_name }}
         </h1>
         <div
+        v-if="store.permissionAccess"
           class="flex gap-2"
          
         >
@@ -112,7 +113,7 @@
           <h5 class="font-semibold">TOP side</h5>
           <img class="h-auto max-w-xs" :src="board.board_img" />
           <button
-          
+          v-if="store.permissionAccess"
             class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
             @click="togleImgForm(false)"
           >
@@ -123,7 +124,7 @@
           <h5 class="font-semibold">BOT side</h5>
           <img class="h-auto max-w-xs" :src="board.board_img_bot" />
           <button
-           
+          v-if="store.permissionAccess"
             class="hover:bg-slate-500 hover:border-slate-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded mt-4"
             @click="togleImgForm(true)"
           >
@@ -208,7 +209,7 @@
 
           <div class="flex gap-2">
             <button
-              v-if="store.company_role == 'M'"
+            v-if="store.permissionAccess"
               class="hover:bg-blue-500 hover:border-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-4 border border-blue-950 rounded"
               @click="togleStepForm"
             >
@@ -227,7 +228,7 @@
             drag-class="drag"
             ghost-class="ghost"
             @change="onChangeStepOrder"
-            :disabled="dragDisable"
+            :disabled="!store.permissionAccess"
           >
             <template #item="{ element, index }">
               <StepCard
@@ -273,10 +274,10 @@ import BoardForm from "../components/BoardForm.vue";
 import ModalImg from "../components/ModalImg.vue";
 import StepCard from "../components/StepCard.vue";
 import { useRouter } from "vue-router";
-import { useStoreUser } from "../stores/storeUsers";
 import Info from "../components/Info.vue";
 import draggable from "vuedraggable";
 import {useDateFormat } from "../use/useDateFormat"
+import { useStoreUser } from "../stores/storeUsers";
 // access the `store`
 const store = useStoreUser();
 

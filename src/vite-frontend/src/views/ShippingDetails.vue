@@ -27,7 +27,8 @@
 
         <div class="flex gap-2">
           <button
-            v-if="orderQta !== orderQtaDelivered"
+            
+            v-if="orderQta !== orderQtaDelivered && store.isShippingUser"
             class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
             @click="togleModal"
           >
@@ -93,7 +94,9 @@
             <td class="whitespace-nowrap py-4">
               {{ s.firma }}
             </td>
-            <td class="py-4">
+            <td 
+            v-if="store.isShippingUser"
+            class="py-4">
               <div
                 class="flex justify-center gap-4"
                 @click="openModShipping(s)"
@@ -104,7 +107,9 @@
                 />
               </div>
             </td>
-            <td class="py-4">
+            <td 
+            v-if="store.isShippingUser"
+            class="py-4">
               <div class="flex justify-center gap-4" @click="togleAlert">
                 <font-awesome-icon
                   icon="trash"
@@ -152,6 +157,9 @@ import ShippingForm from "../components/ShippingForm.vue";
 import Alert from "@/components/Alert.vue";
 import Info from "../components/Info.vue";
 import {useDateFormat } from "../use/useDateFormat"
+import { useStoreUser } from "../stores/storeUsers"
+
+const store = useStoreUser();
 
 const shipping = ref([]);
 const showForm = ref(false);

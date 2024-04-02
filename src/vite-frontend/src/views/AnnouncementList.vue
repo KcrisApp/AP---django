@@ -10,7 +10,7 @@
             Comunicati
           </h1>
           <div class="flex-2">
-            <form class="">
+            <div class="">
               <div class="relative">
                 <div
                   class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
@@ -19,13 +19,14 @@
                   type="search"
                   id="default-search"
                   class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Cerca per nome scheda"
+                  placeholder="Cerca per titolo"
                   v-model="search"
                 />
               </div>
-            </form>
+            </div>
           </div>
           <button
+            v-if="store.permissionAccess"
             class="hover:bg-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
             @click="togleModal"
           >
@@ -95,7 +96,6 @@ const iconType = ref(false);
 const msg = ref("");
 
 const showModal = ref(false);
-const showForm = ref(false);
 
 
 // Pagination
@@ -135,10 +135,7 @@ const props = defineProps({
   uuid: String,
 });
 
-// a computed ref
-const orderCount = computed(() => {
-  return order.value.length;
-});
+
 
 async function callApi() {
   let endpoint = administrationEndpoint["announcementCRUD"];
@@ -166,16 +163,11 @@ function updateAnnouncement(value) {
   setTimeout(() => (msg.value = ""), 5000);
 }
 
-function togleAlert() {
-  showAlert.value = !showAlert.value;
-}
+
 function togleModal() {
   showModal.value = !showModal.value;
 }
 
-function togleForm() {
-  showForm.value = !showForm.value;
-}
 
 // lifecycle hooks
 onMounted(() => {

@@ -14,7 +14,8 @@ class CustomUser(AbstractUser):
         ("T", "Testing"),
         ("V", "Verify"),
         ("S", "SMT"),
-        ("W", "Welding")
+        ("W", "Welding"),
+        ("A", "Shipping")
     ]
     name = models.CharField(max_length=120)
     company_role = models.CharField(max_length=1, choices=ROLES)

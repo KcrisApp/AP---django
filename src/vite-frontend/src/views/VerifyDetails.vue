@@ -36,6 +36,7 @@
 
           <div class="flex gap-2">
             <button
+            v-if="store.isVerifyUser"
               class="hover:bg-amber-400 max-h-8 text-blue-950 font-semibold hover:text-white  px-4 border hover:border-none text-sm border-blue-950 rounded"
               @click="togleVerifyForm"
             >
@@ -105,6 +106,9 @@ import { ref, onMounted } from "vue";
 import VerifyForm from "../components/VerifyForm.vue";
 import  Info from "../components/Info.vue"
 import {useDateFormat } from "../use/useDateFormat"
+import { useStoreUser } from "../stores/storeUsers";
+// access the `store`
+const store = useStoreUser();
 const verify = ref({});
 
 const isLoading = ref(false);

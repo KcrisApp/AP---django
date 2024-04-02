@@ -30,7 +30,7 @@
 
 
 
-          <div
+          <!-- <div
             class="max-w-sm p-6 bg-slate-100 border border-gray-100 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           >
           
@@ -57,7 +57,7 @@
   
 
           </button>
-          </div>
+          </div> -->
           
 
         </div>

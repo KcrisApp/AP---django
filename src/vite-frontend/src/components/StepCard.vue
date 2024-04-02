@@ -27,7 +27,9 @@
               </p>
             
           </div>
-          <div class="p-2" @mouseenter="togleActionBtn" @mouseleave="togleActionBtn">
+          <div 
+          v-if="store.permissionAccess"
+          class="p-2" @mouseenter="togleActionBtn" @mouseleave="togleActionBtn">
                 <div  v-show="showActionBtn"  class="flex mt-2 justify-end gap-4">
                 <font-awesome-icon icon="pen-to-square"  class="text-blue-950 hover:text-green-500" @click="modSignal"/>
                 <font-awesome-icon icon="trash"  class="text-red-900 hover:text-red-500" @click="deleteSignal"/>
@@ -50,6 +52,10 @@
 
 <script setup>
 import { ref, defineEmits } from "vue";
+import { useStoreUser } from '../stores/storeUsers'
+
+// access the `store` 
+const store = useStoreUser()
 
 const emit = defineEmits(["mod-step", "delete-step"]);
 

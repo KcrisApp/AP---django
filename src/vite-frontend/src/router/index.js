@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useStoreUser } from "../stores/storeUsers"
+
 import HomeView from '../views/HomeView.vue'
 import Ordini from '../views/Ordini.vue'
 import Tools from '../views/Tools.vue'
@@ -18,6 +20,7 @@ import AnnouncementList from '../views/AnnouncementList.vue'
 import Stats from '../views/Stats.vue'
 import TestPage from '../views/TestPage.vue'
 import NotFound from '../views/NotFound.vue'
+
 
 
 const router = createRouter({
@@ -163,6 +166,13 @@ const router = createRouter({
       path: "/test-page/",
       name: "test-page",
       component: () => TestPage,
+      beforeEnter: (to, from) => {
+        // reject the navigation
+        const store = useStoreUser()
+
+       return store.permissionAccess ?  true :  "/"
+     
+      },
     },
     {
       path: "/:catchAll(.*)",
@@ -172,5 +182,6 @@ const router = createRouter({
   
   ]
 })
+
 
 export default router

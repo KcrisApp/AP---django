@@ -32,6 +32,7 @@
 
           <div class="flex gap-2">
             <button
+            v-if="store.isSmtUser"
             class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
               @click="togleSmtForm"
             >
@@ -223,6 +224,10 @@ import SmtForm from "../components/SmtForm.vue";
 import CardCheck from "../components/CardCheck.vue";
 import  Info from "../components/Info.vue"
 import {useDateFormat } from "../use/useDateFormat"
+import { useStoreUser } from "../stores/storeUsers";
+// access the `store`
+const store = useStoreUser();
+
 const smt = ref({});
 
 

@@ -112,6 +112,7 @@
           <hr class="my-2" />
           <div class="flex gap-6">
           <router-link
+          v-if="store.isOfficeUser"
               :to="{
                 name: 'foglio-caratterizzazione',
                 params: { uuid: o.uuid },

@@ -13,7 +13,9 @@
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
             Bacheca
           </h1>
-          <div class="flex gap-2">
+          <div 
+          v-if="store.permissionAccess"
+          class="flex gap-2">
             <button
               class="hover:bg-amber-400 hover:border-amber-400 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
               @click="togleModal"
@@ -109,7 +111,7 @@ import { useStoreUser } from '../stores/storeUsers'
 
 // access the `store` 
 const store = useStoreUser()
-console.log(store.first_name)
+
 
 
 const announcement = ref({});
