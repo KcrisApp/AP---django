@@ -31,7 +31,7 @@
           <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
               <th scope="col" class="px-6 py-4">Ordine</th>
-              <th scope="col" class="px-6 py-4">Controllo</th>
+              <th scope="col" class="px-6 py-4">Collaudo</th>
               <th scope="col" class="px-6 py-4">Qtà</th>
               <th scope="col" class="px-2 py-4">Data</th>
        
