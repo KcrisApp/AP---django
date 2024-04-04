@@ -5,7 +5,11 @@ IDEE
 - Inserimento ALERT in  board model -> OK
 - Creare bot whatsapp
 - Filtrare ordini per data di spedizione
-
+- Creare sistema di log azioni utente
+- Inserire tool calcolo prezzi collaudo 
+- Inserire tool calcolo prezzi assemblaggio 
+- Inserire tool calcolo prezzi assemblaggio powatec -> da sistemare aspetto grafico
+- Creare pannello e db impostazioni
 
 BUG
 ########################################################################

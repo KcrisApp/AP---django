@@ -31,7 +31,7 @@
 
               Collaudo: {{ tests.order_number }}
             </h1>
-            <p class="mt-2">Data: {{ useDateFormat(tests.created_at) }}</p>
+            <p class="mt-2">Data: {{ useDateFormatted(tests.created_at) }}</p>
           </div>
 
           <div class="flex gap-2">
@@ -114,7 +114,7 @@ import { ref, onMounted, computed } from "vue";
 import TestForm from "../components/TestForm.vue";
 import CardCheck from "../components/CardCheck.vue";
 import  Info from "../components/Info.vue"
-import {useDateFormat } from "../use/useDateFormat"
+import { useDateFormatted } from "../use/useDateFormatted";
 import { useStoreUser } from "../stores/storeUsers";
 // access the `store`
 const store = useStoreUser();

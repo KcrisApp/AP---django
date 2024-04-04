@@ -26,7 +26,7 @@
 
               SMT 
             </h1>
-            <p class="mt-2">Data: {{ useDateFormat(smt.created_at) }}</p>
+            <p class="mt-2">Data: {{ useDateFormatted(smt.created_at) }}</p>
             <p class="mt-2">Ordine: {{ smt.order_number }}</p>
           </div>
 
@@ -223,7 +223,7 @@ import { ref, onMounted } from "vue";
 import SmtForm from "../components/SmtForm.vue";
 import CardCheck from "../components/CardCheck.vue";
 import  Info from "../components/Info.vue"
-import {useDateFormat } from "../use/useDateFormat"
+import { useDateFormatted } from "../use/useDateFormatted";
 import { useStoreUser } from "../stores/storeUsers";
 // access the `store`
 const store = useStoreUser();

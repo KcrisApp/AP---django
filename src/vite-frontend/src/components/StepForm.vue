@@ -48,15 +48,14 @@
                   <div>
                     <div class="mb-6">
                       <label
-                        for="orderNumber"
+                        for="step_name"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Step name</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="step_name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder=""
                         required
                         v-model="step_name"
                       />
@@ -65,15 +64,15 @@
                     
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="step_description"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Descrizione del processo</label
                       >
                       <textarea
                         v-model="step_description"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="step_description"
+                        id="step_description"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -81,11 +80,11 @@
                     </div>
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="step_type"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Zona del process</label
+                        >Zona del processo</label
                       >
-                      <select v-model="step_type" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <select v-model="step_type" name="step_type" id="step_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected value="Verifica">Verifica</option>
                         <option value="Smt">Smt</option>
                         <option value="Collaudo">Collaudo</option>

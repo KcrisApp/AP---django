@@ -64,7 +64,7 @@
 
 
                   </div>
-      <p class="mb-2">{{ useDateFormat(announcement.created_at) }}</p>  
+      <p class="mb-2">{{ useDateFormatted(announcement.created_at) }}</p>  
       <h1 class="text-lg font-bold">{{ announcement.announcement_title }}</h1>
 
       <div class="mt-5" v-html="announcement.announcement_content"></div>
@@ -101,11 +101,11 @@
 
 import { administrationEndpoint } from "../common/endpoints";
 import { axios } from "../common/api.service";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import Alert from "../components/Alert.vue";
 import AnnouncementForm from "../components/AnnouncementForm.vue";
 import Info from "../components/Info.vue";
-import { useDateFormat } from "../use/useDateFormat";
+import { useDateFormatted } from "../use/useDateFormatted";
 import { useRouter} from "vue-router";
 import { useStoreUser } from '../stores/storeUsers'
 

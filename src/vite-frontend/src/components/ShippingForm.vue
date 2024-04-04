@@ -43,13 +43,14 @@
                   <form @submit.prevent="sentData">
                     <div class="mb-6">
                       <input
-                        id="react-checkbox-list"
+                        id="shipping_check"
+                        name="shipping_check"
                         type="checkbox"
                         v-model="shipping_check"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="react-checkbox-list"
+                        for="shipping_check"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Collaudo</label
                       >
@@ -74,12 +75,13 @@
                     </div>
                     <div class="mb-6">
                       <label
-                        for="datetime"
+                        for="shipping_date"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Data</label
                       >
                       <input 
-                       
+                      id="shipping_date"
+                      name="shipping_date"
                       type="datetime-local" 
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                       placeholder="Select date"
@@ -107,20 +109,20 @@
                     <hr>
                     <div class="mb-6 mt-4">
                       <label
-                        for="orderNumber"
+                        for="firma"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Firma operatore</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="firma"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
                         v-model="firma"
                       />
                     </div>
-                   
+    
 
                     <div
                       class=" px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
@@ -182,9 +184,14 @@ const shipping_date = ref(date);
 const shipping_check = ref(false);
 const shipping_missing_components = ref("");
 const firma = ref("");
+
 const max_board = ref(props.max_shipping_board)
 
+
+
 const emit = defineEmits(["close-modal", "save-data"]);
+
+
 
 if (props.ship) {
 
@@ -199,6 +206,7 @@ if (props.ship) {
 
   max_board.value = props.max_shipping_board + shipping_quantity.value
 }
+
 
 async function sentData() {
   let endpoint = endpoints["shippingCRUD"];
@@ -225,7 +233,9 @@ async function sentData() {
       },
     });
 
+  
     emit("save-data", response.data);
+
   } catch (error) {
     emit("save-data", error.response.status);
   }

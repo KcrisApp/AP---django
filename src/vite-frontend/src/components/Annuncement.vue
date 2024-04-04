@@ -39,7 +39,7 @@
                 
               </div>
               <p class="font-semibold  text-gray-900 text-sm">
-                 Data: {{ annuncements.created_at }}
+                 Data: {{ useDateFormatted(annuncements.created_at) }}
                 </p>
               </div>
               <div>
@@ -69,7 +69,7 @@
          
 </template>
 <script setup>
-
+import { useDateFormatted } from '../use/useDateFormatted';
 
 const props = defineProps({
   annuncements:{

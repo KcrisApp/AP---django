@@ -54,15 +54,15 @@
                     
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="changes_after_testing"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Modifica dopo collaudo</label
                       >
                       <textarea
                         v-model="changes_after_testing"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="changes_after_testing"
+                        id="changes_after_testing"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -70,15 +70,15 @@
                     </div>
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="missing_component"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Componenti mancanti</label
                       >
                       <textarea
                         v-model="missing_component"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="missing_component"
+                        id="missing_component"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -86,15 +86,15 @@
                     </div>
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="manual_work"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Lavorazioni manuali</label
                       >
                       <textarea
                         v-model="manual_work"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="manual_work"
+                        id="manual_work"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -103,13 +103,13 @@
                     <hr>
                     <div class="mb-6 mt-4">
                       <label
-                        for="orderNumber"
+                        for="firma"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Firma operatore</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="firma"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
@@ -143,7 +143,7 @@
 </template>
 
 <script setup>
-import { ref, defineEmits, onMounted } from "vue";
+import { ref, defineEmits } from "vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 

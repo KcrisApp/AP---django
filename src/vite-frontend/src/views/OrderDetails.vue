@@ -1,7 +1,9 @@
 <template>
   <main>
 
-      <div class="p-4 w-full" v-for="o in order">
+      <div
+        v-if="onLoad" 
+       class="p-4 w-full" v-for="o in order">
 
         <Alert
           v-show="showAlert"
@@ -86,7 +88,7 @@
           </div>
           <div class="flex-1">
             <p>
-              Data di creazione: <b>{{ useDateFormat(o.created_at) }} </b>
+              Data di creazione: <b>{{ useDateFormatted(o.created_at) }} </b>
             </p>
             <p>
               Cliente: <b> {{ o.customer }}</b>
@@ -102,8 +104,13 @@
               Data di spedizione: 
             </p>
             <p class="flex justify-center">
-              <b>  {{ useDateFormat(o.shipping_date) }}</b>
+              <b>  {{ useDateFormatted(o.shipping_date) }}</b>
             </p>
+            <p class="flex justify-center">
+              <hr>
+              <ElapsedDays :dateTime="o.shipping_date" />
+            </p>
+
           </div>
          
         </div>
@@ -205,7 +212,7 @@
             Collaudi
           </router-link>
           <router-link
-            :to="{ name: 'shipping-details', params: { order_id: o.id } }"
+            :to="{ name: 'shipping-details', params: { order_id: o.id, order_qta:o.order_quantity }}"
             class="py-2 px-6 border border-blue-950 rounded-md bg-gray-50 hover:bg-blue-900 hover:text-white"
           >
             Spedizioni
@@ -224,14 +231,21 @@ import Alert from "../components/Alert.vue";
 import { useRouter } from "vue-router";
 import OrderForm from "../components/OrderForm.vue";
 import ModalFile from "../components/ModalFile.vue";
-import {useDateFormat } from "../use/useDateFormat"
+import  ElapsedDays  from '../components/ElapsedDays.vue'
 import QrcodeVue from "qrcode.vue";
 import { useStoreUser } from '../stores/storeUsers'
-
+import { useDateFormatted } from "../use/useDateFormatted"
 // access the `store` 
 const store = useStoreUser()
 
 const router = useRouter();
+
+
+
+
+
+
+
 
 
 const order = ref([]);
@@ -239,12 +253,16 @@ const showAlert = ref(false);
 const showModal = ref(false);
 const showFormFile = ref(false);
 
+const onLoad = ref(false);
+
 const props = defineProps({
   order_number: String,
 });
 
 
 async function callApi() {
+  
+  onLoad.value = false
   const endpoint = `${endpoints["ordersCRUD"]}${props.order_number}/`;
 
   try {
@@ -254,6 +272,7 @@ async function callApi() {
     order.value.push(response.data);
 
     console.log(response.data);
+    onLoad.value = true
   } catch (error) {
     alert(error);
   }

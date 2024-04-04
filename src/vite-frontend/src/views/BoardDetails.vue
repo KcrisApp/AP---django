@@ -94,7 +94,7 @@
           </p>
 
           <p>
-            Data di creazione: <b> {{ useDateFormat(board.created_at)}}</b>
+            Data di creazione: <b> {{ useDateFormatted(board.created_at) }}</b>
           </p>
           <p>
             Cliente: <b> {{ board.customer }}</b>
@@ -172,7 +172,7 @@
             <td class="whitespace-nowrap px-6 py-2">
               {{ o.order_quantity }}
             </td>
-            <td class="whitespace-nowrap px-6 py-2">{{ useDateFormat(o.shipping_date) }}</td>
+            <td class="whitespace-nowrap px-6 py-2">{{ useDateFormatted(o.shipping_date) }}</td>
             <td class="whitespace-nowrap px-6 py-2">{{ o.order_customization }}</td>
           </tr>
         </tbody>
@@ -273,10 +273,11 @@ import StepForm from "../components/StepForm.vue";
 import BoardForm from "../components/BoardForm.vue";
 import ModalImg from "../components/ModalImg.vue";
 import StepCard from "../components/StepCard.vue";
+import { useDateFormatted } from "../use/useDateFormatted";
 import { useRouter } from "vue-router";
 import Info from "../components/Info.vue";
 import draggable from "vuedraggable";
-import {useDateFormat } from "../use/useDateFormat"
+
 import { useStoreUser } from "../stores/storeUsers";
 // access the `store`
 const store = useStoreUser();

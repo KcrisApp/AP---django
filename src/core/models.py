@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Time stamp model
 class TimeStampedModel(models.Model):
 
     created_at = models.DateField(auto_now_add=True)
@@ -8,3 +8,8 @@ class TimeStampedModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+# Log sys 
+# class Logger(TimeStampedModel):
+#     pass

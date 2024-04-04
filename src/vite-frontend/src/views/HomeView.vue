@@ -2,19 +2,19 @@
   <main>
     <div class="container-fluid flex min-h-screen">
       <div class="w-full">
-        <section class="shadow-md px-4 py-16 rounded-md border bg-gray-100">
+        <section class="shadow-md px-4 py-16 rounded-md border bg-blue-950">
           <div class="mb-4">
             <div class="mx-auto max-w-xl text-center">
               <!-- <img src="http://127.0.0.1:8000/static/img/logo.png" alt="Mce logo"  width="150"> -->
 
-              <h1 class="text-3xl font-extrabold sm:text-5xl">
+              <h1 class="text-3xl font-extrabold sm:text-5xl text-gray-100">
                 Benvenuto sul portale
-                <strong class="font-extrabold text-blue-800 sm:block">
+                <strong class="font-extrabold  sm:block">
                   Mce - AP
                 </strong>
               </h1>
 
-              <p class="mt-4 sm:text-xl/relaxed">
+              <p class="mt-4 sm:text-xl/relaxed text-gray-100">
                 Da qui potrai accedere agli ordini in produzione e alle relative
                 schede.
               </p>
@@ -110,7 +110,7 @@ const firstFiveAnnouncement = computed(() => {
   return announcement.value.slice(0, 3);
 });
 const firstFiveOrder = computed(() => {
-  return orders.value.slice(0, 3);
+  return orders.value.slice(0, 5);
 });
 
 const annuncementsCount = computed(() => {

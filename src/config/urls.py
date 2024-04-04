@@ -22,6 +22,7 @@ from core.views import IndexTemplateView
 from users.forms import CustomUserForm
 
 urlpatterns = [
+    path('admin/clearcache/', include('clearcache.urls')),
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("auth/", include("djoser.urls")),

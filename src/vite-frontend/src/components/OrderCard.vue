@@ -33,13 +33,14 @@
             </div>
             <hr class="my-2">
             <p class="font-semibold  text-gray-900 text-sm">
-               Data: {{ useDateFormat(order.created_at) }}
+               Data: {{ useDateFormatted(order.created_at) }}
               </p>
             </div>
 
             <div class="mx-24 p-4 rounded-md bg-slate-100 text-xs">
               <p class="text-neutral-600"><b>Data di consegna:</b></p>
-              <p class=""> {{ useDateFormat(order.shipping_date) }}</p>
+              <p class=""> {{ useDateFormatted(order.shipping_date) }}</p>
+              <p class="mt-4"><ElapsedDays :dateTime="order.shipping_date" /></p>
             </div>
             <div>
               <button
@@ -64,7 +65,8 @@
         
 </template>
 <script setup>
-import {useDateFormat } from "../use/useDateFormat"
+import  ElapsedDays  from '../components/ElapsedDays.vue'
+import { useDateFormatted } from '../use/useDateFormatted';
 
 const props = defineProps({
 order:{

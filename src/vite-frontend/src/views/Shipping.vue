@@ -61,7 +61,7 @@
               <td class="whitespace-nowrap px-6 py-4">
                 {{ s.shipping_qta }}
               </td>
-              <td class="whitespace-nowrap px-4 py-4">{{ useDateFormat(s.shipping_date) }}</td>
+              <td class="whitespace-nowrap px-4 py-4">{{ s.shipping_date }}</td>
               
             </tr>
           </tbody>
@@ -107,9 +107,14 @@ import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import CardCheck from "../components/CardCheck.vue";
-import {useDateFormat } from "../use/useDateFormat"
+
+
 const shipping = ref([]);
 const showForm = ref(false);
+
+
+
+
 
 const search = ref("");
 

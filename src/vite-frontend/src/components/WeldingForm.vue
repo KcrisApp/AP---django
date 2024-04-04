@@ -50,8 +50,8 @@
                 </h3>
                 
                 <div class="flex items-center">
-                    <label for="status" class="block mr-2 text-md font-medium  dark:text-white">Macchina:</label>
-                    <select v-model="soldering_type" id="macchina" class="p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <label for="soldering_type" class="block mr-2 text-md font-medium  dark:text-white">Macchina:</label>
+                    <select v-model="soldering_type" id="soldering_type" class="p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       <option selected value= false>Saldatrice selettiva</option>
                       <option value= true>Saldatrice ad onda</option>
                   
@@ -67,13 +67,13 @@
               
                     <div class="mb-6">
                       <label
-                        for="orderNumber"
+                        for="soldering_program"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Programma di saldatura</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="soldering_program"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
@@ -87,15 +87,15 @@
                     
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="note"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Note di processo</label
                       >
                       <textarea
                         v-model="note"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="note"
+                        id="note"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -103,15 +103,15 @@
                     </div>
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="missing_component"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Componenti mancanti</label
                       >
                       <textarea
                         v-model="missing_component"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="missing_component"
+                        id="missing_component"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -122,13 +122,13 @@
                     <hr>
                     <div class="mb-6 mt-4">
                       <label
-                        for="orderNumber"
+                        for="firma"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Firma operatore</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="firma"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
@@ -164,7 +164,7 @@
 </template>
 
 <script setup>
-import { ref, defineEmits, onMounted } from "vue";
+import { ref, defineEmits } from "vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 

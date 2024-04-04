@@ -40,6 +40,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'clearcache',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'django_filters',
     'widget_tweaks',
     'django_quill',
+   
     #Authentication
     'rest_framework.authtoken',
     'django_registration',
@@ -136,6 +138,7 @@ USE_I18N = True
 USE_TZ = True
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
+DATE_FORMAT = ['%d-%m-%Y']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -158,7 +161,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 #DRF permission settings
 REST_FRAMEWORK = {
-    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+    'DATETIME_FORMAT': "%d/%m/%Y %H:%M",
+    'DATE_FORMAT': "%Y-%m-%d",
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',

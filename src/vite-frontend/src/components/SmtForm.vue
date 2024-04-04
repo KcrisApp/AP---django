@@ -196,13 +196,13 @@
              
                     <div class="mb-6">
                       <label
-                        for="orderNumber"
+                        for="mydata_program"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Programma MyData</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="mydata_program"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
@@ -223,15 +223,15 @@
                     >
                       <div class="sm:col-span-3">
                         <label
-                          for="first-name"
+                          for="oven_top"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Forno TOP</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="first-name"
-                            id="first-name"
+                            name="oven_top"
+                            id="oven_top"
                             v-model="oven_top"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -240,15 +240,15 @@
 
                       <div class="sm:col-span-3">
                         <label
-                          for="last-name"
+                          for="oven_bot"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Forno BOT</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="last-name"
-                            id="last-name"
+                            name="oven_bot"
+                            id="oven_bot"
                             v-model="oven_bot"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -261,15 +261,15 @@
                     >
                       <div class="sm:col-span-3">
                         <label
-                          for="first-name"
+                          for="recast_profile_top"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Profilo forno TOP</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="first-name"
-                            id="first-name"
+                            name="recast_profile_top"
+                            id="recast_profile_top"
                             v-model="recast_profile_top"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -278,15 +278,15 @@
 
                       <div class="sm:col-span-3">
                         <label
-                          for="last-name"
+                          for="recast_profile_bot"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Profilo forno BOT</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="last-name"
-                            id="last-name"
+                            name="recast_profile_bot"
+                            id="recast_profile_bot"
                             v-model="recast_profile_bot"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -306,15 +306,15 @@
                     >
                       <div class="sm:col-span-3">
                         <label
-                          for="first-name"
+                          for="my500_top"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >My500 TOP</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="first-name"
-                            id="first-name"
+                            name="my500_top"
+                            id="my500_top"
                             v-model="my500_top"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -323,15 +323,15 @@
 
                       <div class="sm:col-span-3">
                         <label
-                          for="last-name"
+                          for="my500_bot"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >My500 BOT</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="last-name"
-                            id="last-name"
+                            name="my500_bot"
+                            id="my500_bot"
                             v-model="my500_bot"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -344,15 +344,15 @@
                     >
                       <div class="sm:col-span-3">
                         <label
-                          for="first-name"
+                          for="screen_printer_top"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Telaio serigrafico TOP</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="first-name"
-                            id="first-name"
+                            name="screen_printer_top"
+                            id="screen_printer_top"
                             v-model="screen_printer_top"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -361,15 +361,15 @@
 
                       <div class="sm:col-span-3">
                         <label
-                          for="last-name"
+                          for="screen_printer_bot"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Telaio serigrafico BOT</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="last-name"
-                            id="last-name"
+                            name="screen_printer_bot"
+                            id="screen_printer_bot"
                             v-model="screen_printer_bot"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -382,15 +382,15 @@
                     >
                       <div class="sm:col-span-3">
                         <label
-                          for="first-name"
+                          for="cream_type"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Tipo crema</label
                         >
                         <div class="mt-2">
                           <input
                             type="text"
-                            name="first-name"
-                            id="first-name"
+                            name="cream_type"
+                            id="cream_type"
                             v-model="cream_type"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
@@ -400,13 +400,13 @@
                       <div class="sm:col-span-3 p-10">
                         <input
                           checked
-                          id="checked-checkbox"
+                          id="cream_test"
                           type="checkbox"
                           v-model="cream_test"
                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
-                          for="checked-checkbox"
+                          for="cream_test"
                           class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                           >Controllo crema</label
                         >
@@ -414,50 +414,50 @@
                     </div>
                     <hr class="mb-4" />
 
-<h3
-class="my-4 text-md-body-1 font-semibold text-blue-900 dark:text-white text-center"
-                >
-  Info
-</h3>
+                    <h3
+                    class="my-4 text-md-body-1 font-semibold text-blue-900 dark:text-white text-center"
+                                    >
+                      Info
+                    </h3>
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="note"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Note di processo</label
                       >
                       <textarea
                         v-model="note"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="note"
+                        id="note"
                         cols="30"
                         rows="3"
                       ></textarea>
                     </div>
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="missing_component"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Componenti mancanti</label
                       >
                       <textarea
                         v-model="missing_component"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="missing_component"
+                        id="missing_component"
                         cols="30"
                         rows="3"
                       ></textarea>
                     </div>
                     <div class="mb-6 mt-4">
                       <label
-                        for="orderNumber"
+                        for="firma"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Firma operatore</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="firma"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
                         required
@@ -491,7 +491,7 @@ class="my-4 text-md-body-1 font-semibold text-blue-900 dark:text-white text-cent
 </template>
 
 <script setup>
-import { ref, defineEmits, onMounted } from "vue";
+import { ref, defineEmits } from "vue";
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
 

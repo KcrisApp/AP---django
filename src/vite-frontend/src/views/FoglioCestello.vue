@@ -124,7 +124,7 @@ table{
     <tr>
         <td>{{ order_info.board_code }}</td>
      
-        <td colspan="">{{ useDateFormat(order_info.created_at) }}</td>
+        <td colspan="">{{ useDateFormatted(order_info.created_at) }}</td>
         <td colspan="2" class="text-center">{{ qtaBasket }}</td>
     </tr>
 
@@ -199,7 +199,8 @@ import { axios } from "../common/api.service";
 import { ref, onMounted } from "vue";
 import html2pdf from "html2pdf.js";
 import QrcodeVue from "qrcode.vue";
-import {useDateFormat } from "../use/useDateFormat"
+import { useDateFormatted } from "../use/useDateFormatted";
+
 const order_smt_ref = ref({});
 const order_verify_ref = ref({});
 const order_test_ref = ref({});

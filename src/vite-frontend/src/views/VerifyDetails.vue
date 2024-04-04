@@ -30,7 +30,7 @@
 
               Verifica
             </h1>
-            <p class="mt-2">Data: {{ useDateFormat(verify.created_at) }}</p>
+            <p class="mt-2">Data: {{ useDateFormatted(verify.created_at) }}</p>
             <p class="mt-2">Ordine: {{ verify.order_number }}</p>
           </div>
 
@@ -105,7 +105,7 @@ import { axios } from "../common/api.service";
 import { ref, onMounted } from "vue";
 import VerifyForm from "../components/VerifyForm.vue";
 import  Info from "../components/Info.vue"
-import {useDateFormat } from "../use/useDateFormat"
+import { useDateFormatted } from "../use/useDateFormatted";
 import { useStoreUser } from "../stores/storeUsers";
 // access the `store`
 const store = useStoreUser();

@@ -30,7 +30,7 @@
 
 
 
-          <!-- <div
+          <div
             class="max-w-sm p-6 bg-slate-100 border border-gray-100 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           >
           
@@ -57,7 +57,42 @@
   
 
           </button>
-          </div> -->
+          </div>
+
+
+
+
+
+
+          
+          <div
+            class="max-w-sm p-6 bg-slate-100 border border-gray-100 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          >
+          
+              <h5
+                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                Powatec calculator
+              </h5>
+      
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              Permette capire la fattibilita di una scheda sulla P&P manuale
+            </p>
+            <button 
+            class="block w-full rounded bg-green-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-green-800 focus:outline-none focus:ring sm:w-auto">
+            <router-link
+                  :to="{
+                    name: 'powatec',
+                   }"
+                
+                >
+                Powatec
+                
+                </router-link>
+  
+
+          </button>
+          </div>
           
 
         </div>

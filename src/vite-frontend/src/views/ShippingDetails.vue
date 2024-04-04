@@ -28,7 +28,7 @@
         <div class="flex gap-2">
           <button
             
-            v-if="orderQta !== orderQtaDelivered && store.isShippingUser"
+            v-if="orderQtaDelivery !== 0 && store.isShippingUser"
             class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
             @click="togleModal"
           >
@@ -36,11 +36,14 @@
           </button>
         </div>
       </div>
+
+     
       <div class="flex gap-2">
         <span
           class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
-          >Quantità totale: {{ orderQta }} pz</span
+          >Quantità totale: {{ order_qta }} pz</span
         >
+
         <span
           class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"
           >Da spedire: {{ orderQtaDelivery }} pz</span
@@ -82,7 +85,7 @@
             </td>
 
             <td class="whitespace-nowrap py-4">
-              {{ useDateFormat(s.shipping_date) }}
+              {{ s.shipping_date }}
             </td>
             <td class="whitespace-nowrap px-6 py-4">
               {{
@@ -131,7 +134,7 @@
     </div>
 
     <ShippingForm
-      v-show="showForm"
+    v-if="showForm"
       @close-modal="togleModal"
       @save-data="updateShipping"
       :order="props.order_id"
@@ -156,7 +159,7 @@ import CardCheck from "../components/CardCheck.vue";
 import ShippingForm from "../components/ShippingForm.vue";
 import Alert from "@/components/Alert.vue";
 import Info from "../components/Info.vue";
-import {useDateFormat } from "../use/useDateFormat"
+
 import { useStoreUser } from "../stores/storeUsers"
 
 const store = useStoreUser();
@@ -170,28 +173,23 @@ const iconType = ref(false);
 const msg = ref("");
 
 const props = defineProps({
-  order_id: String,
+  order_id: {
+    type:String
+  },
+  order_qta:{
+    type:Number
+  }
+    
+ 
 });
 
-const orderQta = computed(() => {
-  let val = 0;
-  shipping.value.forEach((element, index) => {
-    if (index == 0) {
-      val = element.order_quantity;
-    }
-  });
-
-  return val;
-});
 const orderQtaDelivery = computed(() => {
-  let val = 0;
+  let val = props.order_qta
   let orderDelivery = 0;
   let orderToDelivery = 0;
   shipping.value.forEach((element, index) => {
     orderDelivery += element.shipping_qta;
-    if (index == 0) {
-      val = element.order_quantity;
-    }
+ 
   });
 
   orderToDelivery = val - orderDelivery;
@@ -275,6 +273,7 @@ async function callApi() {
   try {
     const response = await axios.get(endpoint);
     shipping.value.push(...response.data);
+    
   } catch (error) {
     alert(error);
   }

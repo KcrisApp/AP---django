@@ -38,10 +38,7 @@
                     </select>
                     </div>
                 </div>
-                
-
-
-
+              
 
                 <hr class="mb-4" />
 
@@ -56,13 +53,13 @@
                   >
                     <div class="flex items-center ps-3">
                       <input
-                        id="vue-checkbox-list"
+                        id="ict"
                         type="checkbox"
                         v-model="ict"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark:ring-offset-gray-700   dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="vue-checkbox-list"
+                        for="ict"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >Ict</label
                       >
@@ -73,13 +70,13 @@
                   >
                     <div class="flex items-center ps-3">
                       <input
-                        id="react-checkbox-list"
+                        id="aoi"
                         type="checkbox"
                         v-model="aoi"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="react-checkbox-list"
+                        for="aoi"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >AOI</label
                       >
@@ -91,12 +88,12 @@
                     <div class="flex items-center ps-3">
                       <input
                         id="angular-checkbox-list"
-                        type="checkbox"
+                        type="xray"
                         v-model="xray"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="angular-checkbox-list"
+                        for="xray"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >X-ray</label
                       >
@@ -105,13 +102,13 @@
                   <li class="w-full dark:border-gray-600">
                     <div class="flex items-center ps-3">
                       <input
-                        id="laravel-checkbox-list"
+                        id="functional"
                         type="checkbox"
                         v-model="functional"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        for="laravel-checkbox-list"
+                        for="functional"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                         >FT</label
                       >
@@ -123,15 +120,14 @@
                
                     <div class="mb-6">
                       <label
-                        for="orderNumber"
+                        for="serialnumber"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Serial number testati</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="serialnumber"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder=""
                         required
                         v-model="serialnumber"
                       />
@@ -141,15 +137,15 @@
                     
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="note"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Note di processo</label
                       >
                       <textarea
                         v-model="note"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="note"
+                        id="note"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -157,15 +153,15 @@
                     </div>
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="missing_component"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Componenti mancanti</label
                       >
                       <textarea
                         v-model="missing_component"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="missing_component"
+                        id="missing_component"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -173,15 +169,15 @@
                     </div>
                     <div class="mb-6">
                       <label
-                        for="procesNote"
+                        for="non_compliance"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Non conformita</label
                       >
                       <textarea
                         v-model="non_compliance"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="procesNote"
-                        id="procesNote"
+                        name="non_compliance"
+                        id="non_compliance"
                         cols="30"
                         rows="3"
                       ></textarea>
@@ -191,16 +187,15 @@
                     <hr>
                     <div class="mb-6 mt-4">
                       <label
-                        for="orderNumber"
+                        for="firma"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Firma operatore</label
                       >
                       <input
                         type="text"
-                        id="orderNumber"
+                        id="firma"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder=""
-                        required
                         v-model="firma"
                       />
                     </div>

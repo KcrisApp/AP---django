@@ -19,6 +19,7 @@ import AnnouncementDetails from '../views/AnnouncementDetails.vue'
 import AnnouncementList from '../views/AnnouncementList.vue'
 import Stats from '../views/Stats.vue'
 import TestPage from '../views/TestPage.vue'
+import Powatec from '../views/Powatec.vue'
 import NotFound from '../views/NotFound.vue'
 
 
@@ -57,7 +58,7 @@ const router = createRouter({
 
     },
     {
-      path:'/shipping/:order_id',
+      path:'/shipping/:order_id/:order_qta',
       name:'shipping-details',
       component: () => ShippingDetails,
       props: true
@@ -161,11 +162,33 @@ const router = createRouter({
       path: "/stats/",
       name: "stat-page",
       component: () => Stats,
+      beforeEnter: (to, from) => {
+        // reject the navigation
+      const store = useStoreUser()
+
+       return store.permissionAccess ?  true :  "/"
+     
+      },
+      
     },
+
+    // Pagine di test non ancora implementate in rev 1.0
     {
       path: "/test-page/",
       name: "test-page",
       component: () => TestPage,
+      beforeEnter: (to, from) => {
+        // reject the navigation
+        const store = useStoreUser()
+
+       return store.permissionAccess ?  true :  "/"
+     
+      },
+    },
+    {
+      path: "/powatec/",
+      name: "powatec",
+      component: () => Powatec,
       beforeEnter: (to, from) => {
         // reject the navigation
         const store = useStoreUser()

@@ -77,7 +77,7 @@
                 {{ board.board_code }}
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                {{ board.created_at }}
+                {{ useDateFormatted(board.created_at) }}
               </td>
               <td class="whitespace-nowrap px-4 py-4">{{ board.board_rev }}
               
@@ -128,6 +128,7 @@ import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import BoardForm from "../components/BoardForm.vue";
 import { useStoreUser } from "../stores/storeUsers";
+import { useDateFormatted } from "../use/useDateFormatted"
 
 // access the `store`
 const store = useStoreUser();

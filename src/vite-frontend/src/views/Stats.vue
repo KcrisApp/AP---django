@@ -21,7 +21,7 @@
   import { axios } from "../common/api.service";
   import { ref, onMounted, computed } from "vue";
   import Chart from "../components/Chart.vue";
-  import {useDateFormat } from "../use/useDateFormat"
+  
 
 
   const boards = ref([]);
@@ -42,7 +42,7 @@
 
       response.data.forEach(element => {
         data.value.push(element.order_quantity)
-        label.value.push(useDateFormat(element.created_at))
+        label.value.push(element.created_at)
 
         var dateString = element.created_at;
  
