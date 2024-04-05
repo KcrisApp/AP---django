@@ -192,7 +192,7 @@ if not DEBUG:
 # Vite - Django connection
 VITE_BUILD_DIRNAME = "build"
 VITE_STATIC_BUNDLE = BASE_DIR / f"static/{VITE_BUILD_DIRNAME}"
-VITE_LIVE_SERVER = True
+VITE_LIVE_SERVER = False
 
 
 
