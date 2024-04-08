@@ -20,6 +20,7 @@ from dotenv import load_dotenv
 load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
 # DATABASE_URL = os.getenv('DATABASE_URL')
 
 
@@ -30,11 +31,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
-
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT =  True
+# SECURE_HSTS_SECONDS = 31536000  
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -98,14 +101,23 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('SQL_ENGINE'),
+        'NAME': os.getenv('SQL_DATABASE'), 
+        'USER': os.getenv('SQL_USER'),
+        'PASSWORD': os.getenv('SQL_PASSWORD'),
+        'HOST': os.getenv('SQL_HOST'), 
+        'PORT': os.getenv('SQL_PORT'),
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -192,7 +204,7 @@ if not DEBUG:
 # Vite - Django connection
 VITE_BUILD_DIRNAME = "build"
 VITE_STATIC_BUNDLE = BASE_DIR / f"static/{VITE_BUILD_DIRNAME}"
-VITE_LIVE_SERVER = True
+VITE_LIVE_SERVER = False
 
 
 

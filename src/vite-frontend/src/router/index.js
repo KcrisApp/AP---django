@@ -35,32 +35,32 @@ const router = createRouter({
     {
       path:'/ordini/',
       name:'ordini',
-      component: () => Ordini
+      component: Ordini
 
     },
     {
       path:'/tools/',
       name:'tools',
-      component: () => Tools
+      component: Tools
 
     },
     {
       path:'/boards/',
       name:'boards',
-      component: () => Boards
+      component: Boards
 
     },
     {
       path:'/shipping/',
       name:'shipping',
-      component: () => Shipping
+      component: Shipping
 
 
     },
     {
       path:'/shipping/:order_id/:order_qta',
       name:'shipping-details',
-      component: () => ShippingDetails,
+      component: ShippingDetails,
       props: true
 
     },
@@ -70,7 +70,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => BoardDetails,
+      component: BoardDetails,
       props: true,
     },
     {
@@ -79,7 +79,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => OrderDetails,
+      component: OrderDetails,
       props: true,
     },
     {
@@ -88,7 +88,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => TestDetails,
+      component: TestDetails,
       props: true,
     },
     {
@@ -97,7 +97,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => SmtDetails,
+      component: SmtDetails,
       props: true,
     },
     ,
@@ -107,7 +107,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => WeldingDetails,
+      component: WeldingDetails,
       props: true,
     },
     {
@@ -116,7 +116,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => VerifyDetails,
+      component: VerifyDetails,
       props: true,
     },
     {
@@ -125,7 +125,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => CaratterizzazioneProdotto,
+      component: CaratterizzazioneProdotto,
       props: true
 
     },
@@ -135,7 +135,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => FoglioCestello,
+      component: FoglioCestello,
       props: true
 
     },
@@ -145,7 +145,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => AnnouncementDetails,
+      component: AnnouncementDetails,
       props: true
 
     },
@@ -155,13 +155,13 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => AnnouncementList,
+      component: AnnouncementList,
 
     },
     {
       path: "/stats/",
       name: "stat-page",
-      component: () => Stats,
+      component: Stats,
       beforeEnter: (to, from) => {
         // reject the navigation
       const store = useStoreUser()
@@ -176,7 +176,7 @@ const router = createRouter({
     {
       path: "/test-page/",
       name: "test-page",
-      component: () => TestPage,
+      component: TestPage,
       beforeEnter: (to, from) => {
         // reject the navigation
         const store = useStoreUser()
@@ -188,7 +188,7 @@ const router = createRouter({
     {
       path: "/powatec/",
       name: "powatec",
-      component: () => Powatec,
+      component: Powatec,
       beforeEnter: (to, from) => {
         // reject the navigation
         const store = useStoreUser()
@@ -200,7 +200,7 @@ const router = createRouter({
     {
       path: "/:catchAll(.*)",
       name: "page-not-found",
-      component: () => NotFound,
+      component:  NotFound,
     },
   
   ]

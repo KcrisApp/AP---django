@@ -1,6 +1,6 @@
 {
-  "_html2canvas-9ac5d86c.js": {
-    "file": "assets/html2canvas-9ac5d86c.js",
+  "_html2canvas-8f5c85d6.js": {
+    "file": "assets/html2canvas-8f5c85d6.js",
     "imports": [
       "index.html"
     ],
@@ -15,16 +15,16 @@
       "assets/index-bb86b189.css"
     ],
     "dynamicImports": [
-      "_html2canvas-9ac5d86c.js",
+      "_html2canvas-8f5c85d6.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js"
     ],
-    "file": "assets/index-41d6e942.js",
+    "file": "assets/index-6746615c.js",
     "isEntry": true,
     "src": "index.html"
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-512f536a.js",
+    "file": "assets/index.es-a2fcddfa.js",
     "imports": [
       "index.html"
     ],

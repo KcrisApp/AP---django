@@ -10,5 +10,21 @@ services:
     volumes:
       - ./src:/usr/src/app/
     ports:
-      - 8001:8000
-    
+      - 8000:8000
+    depends_on:
+      - db
+  
+
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+    environment:
+      - POSTGRES_USER=admin_user_ap
+      - POSTGRES_PASSWORD=ApUser01!
+      - POSTGRES_DB=andamento_produzione_db
+
+volumes:
+    postgres_data:
+      
