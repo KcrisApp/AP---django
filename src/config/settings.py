@@ -33,11 +33,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 # SECURE_SSL_REDIRECT =  True
 # SECURE_HSTS_SECONDS = 31536000  
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 # SECURE_HSTS_PRELOAD = True
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -155,14 +158,18 @@ DATE_FORMAT = ['%d-%m-%Y']
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = '/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    
 ]
-# Actual directory user files go to
-MEDIA_ROOT = BASE_DIR /'media'
-# URL used to access the media
-MEDIA_URL = '/media/'
 
+
+
+# Actual directory user files go to
+MEDIA_URL = "media/"
+MEDIA_ROOT = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

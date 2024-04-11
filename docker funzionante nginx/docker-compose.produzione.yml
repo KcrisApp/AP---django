@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+
+  django:
+    container_name: django
+    build: 
+      context: ./src
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    # volumes:
+    #   - ./src:/usr/src/app/
+    volumes:
+       - static:/static/
+       - media:/media/
+    
+    expose:
+      - 8000
+    depends_on:
+      - db
+    
+
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+    environment:
+      - POSTGRES_USER=admin_user_ap
+      - POSTGRES_PASSWORD=ApUser01!
+      - POSTGRES_DB=andamento_produzione_db
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/static/
+      - media:/media/
+    ports:
+      - "8080:80"
+    depends_on:
+      - django
+volumes:
+    postgres_data:
+    static:
+    media:

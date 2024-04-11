@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'users',
     'core',
     'administration',
+
+    # third part app
     'colorfield' 
 ]
 
@@ -148,10 +150,18 @@ DATE_FORMAT = ['%d-%m-%Y']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+
+
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+
+STATIC_ROOT = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+# Actual directory user files go to
+MEDIA_ROOT = BASE_DIR /'media'
+# URL used to access the media
+MEDIA_URL = '/media/'
 # Actual directory user files go to
 MEDIA_ROOT = BASE_DIR /'media'
 # URL used to access the media

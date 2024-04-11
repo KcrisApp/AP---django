@@ -1,5 +1,8 @@
 <template>
   <main>
+    <pre>
+      {{ board }}
+    </pre>
     <div class="p-4 w-full">
       <Alert
         v-show="showAlert"
@@ -122,6 +125,7 @@
         </div>
         <div class="col">
           <h5 class="font-semibold">BOT side</h5>
+        
           <img class="h-auto max-w-xs" :src="board.board_img_bot" />
           <button
           v-if="store.permissionAccess"
