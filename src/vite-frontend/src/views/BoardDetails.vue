@@ -1,8 +1,6 @@
 <template>
   <main>
-    <pre>
-      {{ board }}
-    </pre>
+
     <div class="p-4 w-full">
       <Alert
         v-show="showAlert"

@@ -1,7 +1,7 @@
 from django.db import models
 import uuid as uuid_lib
 from core.models import TimeStampedModel
-from django_quill.fields import QuillField
+
 # Create your models here.
 class Announcement(TimeStampedModel):
      

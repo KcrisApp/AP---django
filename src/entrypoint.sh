@@ -14,7 +14,18 @@ then
 fi
 
 
+# Svuoto il DB
+# python manage.py flush --no-input
+
+# Migrate
 python manage.py makemigrations
 python manage.py migrate
+
+# Create a superuser
+python manage.py initadmin
+
+# collect statics file
+python manage.py collectstatic --no-input   
+
 
 exec "$@"

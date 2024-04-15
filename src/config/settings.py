@@ -21,7 +21,12 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
-# DATABASE_URL = os.getenv('DATABASE_URL')
+
+#User ADMIN
+USERNAME = os.getenv('USERNAME')
+EMAIL = os.getenv('EMAIL')
+PASSWORD = os.getenv('PASSWORD')
+NAME = os.getenv('NAME')
 
 
 # Build pahs inside the project like this: BASE_DIR / 'subdir'.
@@ -54,7 +59,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'widget_tweaks',
-    'django_quill',
    
     #Authentication
     'rest_framework.authtoken',
