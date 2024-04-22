@@ -20,6 +20,7 @@
               class="mb-2 text-md font-medium leading-tight text-neutral-800 dark:text-neutral-50"
             >
             {{ order.board_name }}
+
             </h5>
             <hr class="my-2">
             <div class="mb-2 text-base text-neutral-600 dark:text-neutral-200 " >
@@ -27,7 +28,7 @@
                 <p><b>Quantità:</b> {{ order.order_quantity }}</p>
                 <p><b>Personalizzazione:</b> {{ order.order_customization }}</p>
                 <p><b>Serialnumber:</b> {{ order.order_serialnumber }}</p>
-              
+
               </div>
               
             </div>

@@ -15,6 +15,12 @@ class OrderSerializer(serializers.ModelSerializer):
     order_test = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_welding = serializers.SlugRelatedField(many=False, read_only=True, slug_field="uuid")
     order_shipping = serializers.SlugRelatedField(many=True, read_only=True, slug_field="uuid")
+
+
+
+
+ 
+    
     
     class Meta:
         model = Order
@@ -27,11 +33,39 @@ class OrderSerializer(serializers.ModelSerializer):
         return instance.board.board_name
     def get_customer (self, instance):
         return instance.board.customer
-    
-    
-    # def validate(self, data):
 
-    #     return data
+    
+
+class OrderStatusSerializer(serializers.ModelSerializer):
+
+    # created_at = serializers.SerializerMethodField()
+    board_name= serializers.SerializerMethodField()
+    customer= serializers.SerializerMethodField()
+
+    order_verify = serializers.SlugRelatedField(many=False, read_only=True, slug_field="status")
+    order_smt = serializers.SlugRelatedField(many=False, read_only=True, slug_field="status")
+    order_test = serializers.SlugRelatedField(many=False, read_only=True, slug_field="status")
+    order_welding = serializers.SlugRelatedField(many=False, read_only=True, slug_field="status")
+   
+
+    
+    
+    class Meta:
+        model = Order
+        exclude = ["updated_at","uuid",'order_quantity','order_process_note','order_serialnumber','order_customization','order_filetopographic','board','created_at','id']
+    
+    # def get_created_at(self, instance):
+    #     return instance.created_at.strftime("%d/%m/%Y")
+    
+    def get_board_name (self, instance):
+        return instance.board.board_name
+    def get_customer (self, instance):
+        return instance.board.customer
+
+    
+    
+    
+
 
 class OrderTopographicSerializer(serializers.ModelSerializer):
 

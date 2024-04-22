@@ -61,6 +61,7 @@
             
         </div>
 
+        
         <hr class="my-5" />
         <div class="flex bg-slate-100 p-4  gap-10 flex-wrap rounded-md shadow-md">
           <div class="flex-0">
@@ -176,7 +177,10 @@
           <p>{{ o.order_process_note }}</p>
         </div>
 
-        <hr class="my-5" />
+        <hr class="my-2" />
+        <p><b>Stato ordine:</b></p>
+        <OrderStatusBar :order_number="o.order_number " :minimal_view="true" />
+        <hr class="" />
 
         <h1 class="text-xl mt-4">Reparti</h1>
 
@@ -232,6 +236,7 @@ import { useRouter } from "vue-router";
 import OrderForm from "../components/OrderForm.vue";
 import ModalFile from "../components/ModalFile.vue";
 import  ElapsedDays  from '../components/ElapsedDays.vue'
+import  OrderStatusBar  from '../components/OrderStatusBar.vue'
 import QrcodeVue from "qrcode.vue";
 import { useStoreUser } from '../stores/storeUsers'
 import { useDateFormatted } from "../use/useDateFormatted"

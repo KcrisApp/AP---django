@@ -4,6 +4,7 @@ const adminEndPoint = "/api/v1/administration/";
 const endpoints = {
   boardsCRUD: `${productionEndPoint}board/`,
   ordersCRUD: `${productionEndPoint}order/`,
+  orderStatus: `${productionEndPoint}order_status/`,
   shippingCRUD: `${productionEndPoint}shipping/`,
   productionstepCRUD: `${productionEndPoint}productionstep/`,
   testCRUD: `${productionEndPoint}test/`,

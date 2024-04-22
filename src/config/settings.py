@@ -44,7 +44,7 @@ CSRF_COOKIE_SECURE = True
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 # SECURE_HSTS_PRELOAD = True
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
 
 # Application definition
 
@@ -116,13 +116,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': os.getenv('SQL_ENGINE'),
+    #     'NAME': os.getenv('SQL_DATABASE'), 
+    #     'USER': os.getenv('SQL_USER'),
+    #     'PASSWORD': os.getenv('SQL_PASSWORD'),
+    #     'HOST': os.getenv('SQL_HOST'), 
+    #     'PORT': os.getenv('SQL_PORT'),
+    # }
     'default': {
-        'ENGINE': os.getenv('SQL_ENGINE'),
-        'NAME': os.getenv('SQL_DATABASE'), 
-        'USER': os.getenv('SQL_USER'),
-        'PASSWORD': os.getenv('SQL_PASSWORD'),
-        'HOST': os.getenv('SQL_HOST'), 
-        'PORT': os.getenv('SQL_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 # Password validation
@@ -215,7 +219,7 @@ if not DEBUG:
 # Vite - Django connection
 VITE_BUILD_DIRNAME = "build"
 VITE_STATIC_BUNDLE = BASE_DIR / f"static/{VITE_BUILD_DIRNAME}"
-VITE_LIVE_SERVER = False
+VITE_LIVE_SERVER = True
 
 
 

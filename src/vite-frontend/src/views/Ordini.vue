@@ -38,6 +38,7 @@
         <thead class="border-b font-medium dark:border-neutral-500">
           <tr>
             <th scope="col" class="px-6 py-4">Numero ordine</th>
+            <th scope="col" class="px-4 py-4">Stato</th>
             <th scope="col" class="px-6 py-4">Quantità</th>
             <th scope="col" class="px-6 py-4">Data di consegna</th>
             <th scope="col" class="px-6 py-4">Scheda</th>
@@ -52,7 +53,12 @@
           >
             <td class="whitespace-nowrap px-6 py-4 font-medium">
               {{ order.order_number }}
+              
             </td>
+            <td class="whitespace-nowrap px-4 py-4">
+              <OrderStatusBar :order_number="order.order_number " :minimal_view="false" />
+            </td>
+            
             <td class="whitespace-nowrap px-6 py-4">
               {{ order.order_quantity }}
             </td>
@@ -120,8 +126,7 @@ import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import { useDateFormatted } from "../use/useDateFormatted"
 import  ElapsedDays  from '../components/ElapsedDays.vue'
-
-
+import  OrderStatusBar  from '../components/OrderStatusBar.vue'
 
 
 

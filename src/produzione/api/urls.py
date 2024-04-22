@@ -1,11 +1,12 @@
 from django.urls import path, include
 # from produzione.api.views import OrderViewset,BoardViewSet, BoardListCreateAPIView, BoardDetailAPIView, OrderCreateAPIView, OrderDetailAPIView, OrderListAPIView, SmtCreateAPIView, SmtDetailAPIView, SmtListAPIView, TestCreateAPIView, TestDetailAPIView, TestListAPIView, VerifyCreateAPIView, VerifyDetailAPIView, VerifyListAPIView
-from produzione.api.views import OrderTopographicView, BoardImgUpdateBot, WeldingListAPIView, WeldingDetailAPIView, BoardImgUpdate, OrderViewset,BoardViewSet, TestListAPIView, TestDetailAPIView, SmtDetailAPIView, SmtListAPIView, VerifyDetailAPIView, VerifyListAPIView, ShippingViewSet, ProductionStepViewset, ProductionListAPIView
+from produzione.api.views import OrderStatusViewset, OrderTopographicView, BoardImgUpdateBot, WeldingListAPIView, WeldingDetailAPIView, BoardImgUpdate, OrderViewset,BoardViewSet, TestListAPIView, TestDetailAPIView, SmtDetailAPIView, SmtListAPIView, VerifyDetailAPIView, VerifyListAPIView, ShippingViewSet, ProductionStepViewset, ProductionListAPIView
 
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r"order",OrderViewset)
+router.register(r"order_status",OrderStatusViewset)
 router.register(r"board",BoardViewSet)
 router.register(r"shipping",ShippingViewSet)
 router.register(r"productionstep",ProductionStepViewset)
