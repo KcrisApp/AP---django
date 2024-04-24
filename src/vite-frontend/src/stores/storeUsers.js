@@ -8,6 +8,10 @@ export const useStoreUser = defineStore('storeUser', {
     }
  },
  getters:{
+
+  userInfo(state){
+    return state.userData
+  },
   permissionAccess(state){
     return state.userData.company_role === "M"   ?  true :  false
   },

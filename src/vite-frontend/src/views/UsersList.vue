@@ -4,7 +4,7 @@
       <div class="flex justify-between gap-2">
         <h1 class="text-2xl">
           <font-awesome-icon icon="table-list" class="text-blue-950" />
-          Ordini
+          Utenti
         </h1>
         <div class="flex-1">
           <form class="">
@@ -28,7 +28,7 @@
       <div class="flex my-4">
         <span
           class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"
-          >Totale ordini: {{ ordersCount }}</span
+          >Numero utenti: {{ usersCount }}</span
         >
       </div>
       <table
@@ -37,48 +37,48 @@
       >
         <thead class="border-b font-medium dark:border-neutral-500">
           <tr>
-            <th scope="col" class="px-6 py-4">Numero ordine</th>
-            <th scope="col" class="px-4 py-4">Stato</th>
-            <th scope="col" class="px-6 py-4">Quantità</th>
-            <th scope="col" class="px-4 py-4">Data di consegna</th>
-            <th scope="col" class="px-6 py-4">Scheda</th>
-          
+            <th scope="col" class="px-6 py-4">Nome</th>
+            <th scope="col" class="px-6 py-4">Cognome</th>
+            <th scope="col" class="px-6 py-4">Email</th>
+            <th scope="col" class="px-6 py-4">Ultimo accesso</th>
+            <th scope="col" class="px-6 py-4"></th>
+           
           </tr>
         </thead>
         <tbody>
           <tr
             class="border-b dark:border-neutral-500"
-            v-for="order in paginatedData"
-            :key="order.uuid"
+            v-for="user in paginatedData"
           >
             <td class="whitespace-nowrap px-6 py-4 font-medium">
-              <router-link
-                :to="{
-                  name: 'order-details',
-                  params: { order_number: order.order_number },
-                }"
-                class="hover:text-green-600"
-              >
-              {{ order.order_number }}
-              </router-link>
-             
+              {{ user.first_name }}
               
             </td>
             <td class="whitespace-nowrap px-4 py-4">
-              <OrderStatusBar :order_number="order.order_number " :minimal_view="false" />
+             {{ user.last_name }}
             </td>
             
             <td class="whitespace-nowrap px-6 py-4">
-              {{ order.order_quantity }}
+              {{ user.email }}
             </td>
-            <td class="whitespace-nowrap px-4 py-4">
-              {{ useDateFormatted(order.shipping_date) }}
-
-              <ElapsedDays :dateTime="order.shipping_date" />
-             
+            <td class="whitespace-nowrap px-6 py-4">
+              {{ user.last_login }}
             </td>
-            <td class="whitespace-nowrap px-6 py-4">{{ order.board_name }}</td>
-
+          
+            <td class="whitespace-nowrap py-4">
+              <router-link
+                :to="{
+                  name: 'users-details',
+                  params: { username: user.username },
+                }"
+                class="hover:text-green-600"
+              >
+                <font-awesome-icon
+                  icon="fa-eye"
+                  class="text-blue-950 hover:text-green-500"
+                />
+              </router-link>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -117,23 +117,25 @@
   </main>
 </template>
 <script setup>
-import { endpoints } from "../common/endpoints";
-import { axios } from "../common/api.service";
+
+
 import { ref, onMounted, computed } from "vue";
-import { useDateFormatted } from "../use/useDateFormatted"
-import  ElapsedDays  from '../components/ElapsedDays.vue'
-import  OrderStatusBar  from '../components/OrderStatusBar.vue'
+import { userEndPoints } from "../common/endpoints";
+import { axios } from "../common/api.service";
 
 
 
-const orders = ref([]);
+
+
+
+const users = ref([]);
 const onLoad = ref(false);
 
 const search = ref("");
 const pageCounter = ref(0);
 
-const ordersCount = computed(() => {
-  return orders.value.length;
+const usersCount = computed(() => {
+  return users.value.length;
 });
 
 // Pagination
@@ -145,8 +147,9 @@ const paginatedData = computed(() => {
   const start = pageNumber.value * size.value;
   const end = start + size.value;
 
-  let b = orders.value.filter((order) =>
-    order.order_number.toLowerCase().includes(search.value.toLowerCase())
+
+  let b = users.value.filter((user) =>
+  user.username.toLowerCase().includes(search.value.toLowerCase())
   );
 
   pageCounter.value = Math.ceil(b.length / size.value);
@@ -169,19 +172,28 @@ const prevPage = () => {
 
 // ######################################################################
 
+
+
+
+
 async function callApi() {
-  onLoad.value = false;
-  let endpoint = endpoints["ordersCRUD"];
+  onLoad.value = false
+  let endpoint = userEndPoints["usersList"];
   try {
     const response = await axios.get(endpoint);
-    orders.value.push(...response.data);
-    console.log(response.data);
-    onLoad.value = true;
+  
+    users.value = response.data
+    // Update storeUser
+
+    onLoad.value = true
+
   } catch (error) {
     alert(error);
-    onLoad.value = true;
   }
 }
+
+
+
 // lifecycle hooks
 onMounted(() => {
   callApi();

@@ -99,20 +99,7 @@
             </p>
           </div>
 
-          <div class="flex-1 text-lg p-4 bg-slate-200 rounded-md shadow-md">
-            
-            <p class="flex justify-center">
-              Data di spedizione: 
-            </p>
-            <p class="flex justify-center">
-              <b>  {{ useDateFormatted(o.shipping_date) }}</b>
-            </p>
-            <p class="flex justify-center">
-              <hr>
-              <ElapsedDays :dateTime="o.shipping_date" />
-            </p>
-
-          </div>
+ 
          
         </div>
         <div class="bg-gray-100 my-4 p-4 rounded-md text-sm">
@@ -179,7 +166,29 @@
 
         <hr class="my-2" />
         <p><b>Stato ordine:</b></p>
-        <OrderStatusBar :order_number="o.order_number " :minimal_view="true" />
+        
+          <div>
+              <div class="text-lg p-4 bg-slate-100 rounded-md ">
+              
+              <p class="flex justify-center text-sm">
+                Data di spedizione: 
+              </p>
+              <p class="flex justify-center text-sm">
+                <b>  {{ useDateFormatted(o.shipping_date) }}</b>
+              </p>
+              <p class="flex justify-center">
+                <hr>
+                <ElapsedDays :dateTime="o.shipping_date" />
+              </p>
+
+            </div>
+          </div>
+      
+          <div class="">
+            <OrderStatusBar :order_number="o.order_number " :minimal_view="true" />
+          </div>
+    
+       
         <hr class="" />
 
         <h1 class="text-xl mt-4">Reparti</h1>

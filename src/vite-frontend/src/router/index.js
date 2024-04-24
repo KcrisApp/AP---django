@@ -20,6 +20,9 @@ import AnnouncementList from '../views/AnnouncementList.vue'
 import Stats from '../views/Stats.vue'
 import TestPage from '../views/TestPage.vue'
 import Powatec from '../views/Powatec.vue'
+import UsersList from '../views/UsersList.vue'
+import UserDetails from '../views/UserDetails.vue'
+import UserPersonalInfo from '../views/UserPersonalInfo.vue'
 import NotFound from '../views/NotFound.vue'
 
 
@@ -156,6 +159,48 @@ const router = createRouter({
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: AnnouncementList,
+
+    },    
+    {
+      path: "/users-list/",
+      name: "users-list",
+      // route level code-splitting
+      // this generates a separate chunk (QuestionView.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: UsersList,
+      beforeEnter: (to, from) => {
+        // reject the navigation
+      const store = useStoreUser()
+
+       return store.permissionAccess ?  true :  "/"
+     
+      },
+
+    },
+    {
+      path: "/users-details/:username",
+      name: "users-details",
+      // route level code-splitting
+      // this generates a separate chunk (QuestionView.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: UserDetails,
+      props:true,
+      beforeEnter: (to, from) => {
+        // reject the navigation
+      const store = useStoreUser()
+
+       return store.permissionAccess ?  true :  "/"
+     
+      },
+
+    },
+    {
+      path: "/my-info/",
+      name: "my-info",
+      // route level code-splitting
+      // this generates a separate chunk (QuestionView.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: UserPersonalInfo,
 
     },
     {

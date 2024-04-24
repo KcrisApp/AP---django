@@ -4,7 +4,7 @@
 
 <script setup>
 
-import { endpoints } from "./common/endpoints";
+import { userEndPoints } from "./common/endpoints";
 import { axios } from "./common/api.service";
 import { onMounted, ref } from "vue";
 import { useStoreUser } from './stores/storeUsers'
@@ -17,7 +17,7 @@ const onLoad = ref(false)
 
 async function callApi() {
   onLoad.value = false
-  let endpoint = endpoints["usersDetail"];
+  let endpoint = userEndPoints["usersDetail"];
   try {
     const response = await axios.get(endpoint);
   

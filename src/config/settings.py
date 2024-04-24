@@ -202,11 +202,14 @@ REST_FRAMEWORK = {
 
 
 DJOSER = {
-
+    'USER_ID_FIELD': 'username',
     "SERIALIZERS": {
 
            'current_user': 'users.serializers.CustomUserSerializer',
-    }
+           'user': 'users.serializers.CustomUserSerializer',
+    },
+    "HIDE_USERS":False
+
 }
 
 # Disable browsable api 

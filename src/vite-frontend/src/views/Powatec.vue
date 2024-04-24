@@ -10,17 +10,15 @@
         height="200"
       />
     </div>
-
-    <hr />
-    <div class="flex flex-wrap my-6">
-      <div class="relative md:flex-1 ">
-        <div class="flex flex-wrap">
-          
-            <div class="w-4/5">
-              <label for="rangePartNumber" class="form-label "
-                >Partnumber quantity</label
-              >
-              <input
+    <div class="w-full ">
+  <div class="flex justify-between mb-6">
+    <div class="">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Partnumber quantity
+      </label>
+    </div>
+    <div class="flex-1">
+      <input
                 type="range"
                 class="form-range mx-4"
                 min="1"
@@ -29,15 +27,24 @@
                 id="rangePartNumber"
                 v-model="partnumberQta"
               />
-            </div>
-            <div class="w-1/5 flex items-end">
-              <h4>{{ partnumberQta }}</h4>
-            </div>
-          </div>
-          <div class="flex flex-wrap">
-            <div class="w-4/5">
-              <label for="rangeHours" class="form-label">Hours</label>
-              <input
+  </div>
+  <div class="">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        <h4>{{ partnumberQta }}</h4>
+      </label>
+    </div>
+  </div>
+  
+
+
+  <div class="flex justify-between">
+    <div class="">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Hours
+      </label>
+    </div>
+    <div class="flex-1">
+      <input
                 type="range"
                 class="form-range mx-4"
                 min="1"
@@ -46,17 +53,25 @@
                 id="rangeHours"
                 v-model="hoursQta"
               />
-            </div>
-            <div class="w-1/5 flex items-end">
-              <h4>{{ hoursQta }}</h4>
-            </div>
-          </div>
-          <div class="flex flex-wrap">
-            <div class="w-4/5">
-              <label for="rangeComponents" class="form-label"
-                >Components mounted</label
-              >
-              <input
+  </div>
+  <div class="">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        <h4>{{ hoursQta }}</h4>
+      </label>
+    </div>
+  </div>
+
+
+
+
+  <div class="flex justify-between mb-6">
+    <div class="">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Quantita componenti
+      </label>
+    </div>
+    <div class="flex-1">
+      <input
                 type="range"
                 class="form-range mx-4"
                 min="1"
@@ -65,15 +80,25 @@
                 id="rangeComponents"
                 v-model="componentsQta"
               />
-            </div>
-            <div class="w-1/5 flex items-end">
-              <h4>{{ componentsQta }}</h4>
-            </div>
-          </div>
-          <div class="flex flex-wrap">
-            <div class="w-4/5">
-              <label for="rangeBoard" class="form-label">Board Quantity</label>
-              <input
+  </div>
+  <div class="">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        <h4>{{ componentsQta }}</h4>
+      </label>
+    </div>
+  </div>
+
+
+
+
+  <div class="flex justify-between mb-6">
+    <div class="">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Numero di schede
+      </label>
+    </div>
+    <div class="flex-1">
+      <input
                 type="range"
                 class="form-range mx-4"
                 min="1"
@@ -82,14 +107,20 @@
                 id="rangeBoard"
                 v-model="boardQta"
               />
-            </div>
-            <div class="w-1/5 flex items-end">
-              <h4>{{ boardQta }}</h4>
-            </div>
-          </div>
-        </div>
-    
+  </div>
+  <div class="">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        <h4>{{ boardQta }}</h4>
+      </label>
+    </div>
+  </div>
+</div>
 
+
+
+    <hr class="my-4"/>
+
+     
 
       
       <div class="relative md:flex-grow md:flex-1">
@@ -139,7 +170,7 @@
         </div>
       </div>
     </div>
-  </div>
+  
 </template>
 
 <script setup>

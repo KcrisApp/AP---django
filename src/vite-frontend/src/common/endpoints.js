@@ -15,11 +15,16 @@ const endpoints = {
   updateImgBoardBot: `${productionEndPoint}boardImgUpdateBot/`,
   updateTopographicFile: `${productionEndPoint}topographicOrder/`,
   production: `${productionEndPoint}production/`,
-  usersDetail: "/auth/users/me/",
+  
 };
+
+const userEndPoints = {
+  usersDetail: "/auth/users/me/",
+  usersList: "/auth/users/",
+}
 
 const administrationEndpoint = {
   announcementCRUD: `${adminEndPoint}announcement/`,
 }
 
-export { endpoints, administrationEndpoint };
+export { endpoints, administrationEndpoint, userEndPoints };
