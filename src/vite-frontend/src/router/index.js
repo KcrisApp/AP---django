@@ -1,71 +1,67 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { useStoreUser } from "../stores/storeUsers"
+import { createRouter, createWebHistory } from "vue-router";
+import { useStoreUser } from "../stores/storeUsers";
 
-import HomeView from '../views/HomeView.vue'
-import Ordini from '../views/Ordini.vue'
-import Tools from '../views/Tools.vue'
-import Boards from '../views/Boards.vue'
-import Shipping from '../views/Shipping.vue'
-import ShippingDetails from '../views/ShippingDetails.vue'
-import BoardDetails from '../views/BoardDetails.vue'
-import OrderDetails from '../views/OrderDetails.vue'
-import TestDetails from '../views/TestDetails.vue'
-import SmtDetails from '../views/SmtDetails.vue'
-import WeldingDetails from '../views/WeldingDetails.vue'
-import VerifyDetails from '../views/VerifyDetails.vue'
-import CaratterizzazioneProdotto from '../views/CaratterizzazioneProdotto.vue'
-import FoglioCestello from '../views/FoglioCestello.vue'
-import AnnouncementDetails from '../views/AnnouncementDetails.vue'
-import AnnouncementList from '../views/AnnouncementList.vue'
-import Stats from '../views/Stats.vue'
-import TestPage from '../views/TestPage.vue'
-import Powatec from '../views/Powatec.vue'
-import UsersList from '../views/UsersList.vue'
-import UserDetails from '../views/UserDetails.vue'
-import UserPersonalInfo from '../views/UserPersonalInfo.vue'
-import NotFound from '../views/NotFound.vue'
-
-
+import HomeView from "../views/HomeView.vue";
+import Ordini from "../views/Ordini.vue";
+import Tools from "../views/Tools.vue";
+import Boards from "../views/Boards.vue";
+import Shipping from "../views/Shipping.vue";
+import ShippingDetails from "../views/ShippingDetails.vue";
+import BoardDetails from "../views/BoardDetails.vue";
+import OrderDetails from "../views/OrderDetails.vue";
+import TestDetails from "../views/TestDetails.vue";
+import SmtDetails from "../views/SmtDetails.vue";
+import WeldingDetails from "../views/WeldingDetails.vue";
+import VerifyDetails from "../views/VerifyDetails.vue";
+import CaratterizzazioneProdotto from "../views/CaratterizzazioneProdotto.vue";
+import FoglioCestello from "../views/FoglioCestello.vue";
+import AnnouncementDetails from "../views/AnnouncementDetails.vue";
+import AnnouncementList from "../views/AnnouncementList.vue";
+import Stats from "../views/Stats.vue";
+import TestPage from "../views/TestPage.vue";
+import TestPagePlacement from "../views/TestPagePlacement.vue";
+import Placement from "../views/Placement.vue";
+import TestPageBom from "../views/TestPageBom.vue";
+import Powatec from "../views/Powatec.vue";
+import UsersList from "../views/UsersList.vue";
+import UserDetails from "../views/UserDetails.vue";
+import UserPersonalInfo from "../views/UserPersonalInfo.vue";
+import NotFound from "../views/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path:'/ordini/',
-      name:'ordini',
-      component: Ordini
+      path: "/",
+      name: "home",
+      component: HomeView,
 
     },
     {
-      path:'/tools/',
-      name:'tools',
-      component: Tools
-
+      path: "/ordini/",
+      name: "ordini",
+      component: Ordini,
     },
     {
-      path:'/boards/',
-      name:'boards',
-      component: Boards
-
+      path: "/tools/",
+      name: "tools",
+      component: Tools,
     },
     {
-      path:'/shipping/',
-      name:'shipping',
-      component: Shipping
-
-
+      path: "/boards/",
+      name: "boards",
+      component: Boards,
     },
     {
-      path:'/shipping/:order_id/:order_qta',
-      name:'shipping-details',
+      path: "/shipping/",
+      name: "shipping",
+      component: Shipping,
+    },
+    {
+      path: "/shipping/:order_id/:order_qta",
+      name: "shipping-details",
       component: ShippingDetails,
-      props: true
-
+      props: true,
     },
     {
       path: "/board/:uuid",
@@ -129,8 +125,7 @@ const router = createRouter({
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: CaratterizzazioneProdotto,
-      props: true
-
+      props: true,
     },
     {
       path: "/foglio-cestello/:uuid",
@@ -139,8 +134,7 @@ const router = createRouter({
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: FoglioCestello,
-      props: true
-
+      props: true,
     },
     {
       path: "/announcement-details/:uuid",
@@ -149,8 +143,7 @@ const router = createRouter({
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: AnnouncementDetails,
-      props: true
-
+      props: true,
     },
     {
       path: "/announcement-list/",
@@ -159,8 +152,7 @@ const router = createRouter({
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: AnnouncementList,
-
-    },    
+    },
     {
       path: "/users-list/",
       name: "users-list",
@@ -168,14 +160,20 @@ const router = createRouter({
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: UsersList,
-      beforeEnter: (to, from) => {
+      beforeEnter: async (to, from) => {
         // reject the navigation
-      const store = useStoreUser()
+        const store = useStoreUser();
+        await store.getUserData()
+      
+        const user = store.userInfo
+        console.log(user)
+      
+        if (user) {
+          return true
+        }
 
-       return store.permissionAccess ?  true :  "/"
-     
+        return store.permissionAccess ? true : "/";
       },
-
     },
     {
       path: "/users-details/:username",
@@ -184,15 +182,13 @@ const router = createRouter({
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: UserDetails,
-      props:true,
+      props: true,
       beforeEnter: (to, from) => {
         // reject the navigation
-      const store = useStoreUser()
+        const store = useStoreUser();
 
-       return store.permissionAccess ?  true :  "/"
-     
+        return store.permissionAccess ? true : "/";
       },
-
     },
     {
       path: "/my-info/",
@@ -201,7 +197,6 @@ const router = createRouter({
       // this generates a separate chunk (QuestionView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: UserPersonalInfo,
-
     },
     {
       path: "/stats/",
@@ -209,47 +204,67 @@ const router = createRouter({
       component: Stats,
       beforeEnter: (to, from) => {
         // reject the navigation
-      const store = useStoreUser()
+        const store = useStoreUser();
 
-       return store.permissionAccess ?  true :  "/"
-     
+        return store.permissionAccess ? true : "/";
       },
-      
     },
 
     // Pagine di test non ancora implementate in rev 1.0
-    {
-      path: "/test-page/",
-      name: "test-page",
-      component: TestPage,
-      beforeEnter: (to, from) => {
-        // reject the navigation
-        const store = useStoreUser()
+    // {
+    //   path: "/test-page/",
+    //   name: "test-page",
+    //   component: TestPagePlacement,
+    //   beforeEnter: (to, from) => {
+    //     // reject the navigation
+    //     const store = useStoreUser();
 
-       return store.permissionAccess ?  true :  "/"
-     
+    //     return store.permissionAccess ? true : "/";
+    //   },
+    // },
+    // Pagine di test non ancora implementate in rev 1.0
+    {
+      path: "/placement/:order_number",
+      name: "placement",
+      component: Placement,
+      props: true,
+
+    },
+    {
+      path: "/upload_placement/:order_number",
+      name: "upload_placement",
+      component: TestPagePlacement,
+      props: true,
+      beforeEnter:async (to, from) => {
+        // reject the navigation
+        const store = useStoreUser();
+        await store.getUserData()
+        return store.permissionAccess ? true : "/";
       },
     },
     {
       path: "/powatec/",
       name: "powatec",
       component: Powatec,
-      beforeEnter: (to, from) => {
+      beforeEnter: async(to, from) => {
         // reject the navigation
-        const store = useStoreUser()
-
-       return store.permissionAccess ?  true :  "/"
-     
+       
+        const store = useStoreUser();
+        await store.getUserData()
+        return store.permissionAccess ? true : "/";
       },
     },
     {
       path: "/:catchAll(.*)",
       name: "page-not-found",
-      component:  NotFound,
+      component: NotFound,
     },
-  
-  ]
-})
+  ],
+});
 
 
-export default router
+
+
+
+
+export default router;

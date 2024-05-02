@@ -10,7 +10,7 @@ IDEE
 - Inserire tool calcolo prezzi assemblaggio 
 - Inserire tool calcolo prezzi assemblaggio powatec -> da sistemare aspetto grafico
 - Creare pannello e db impostazioni
-
+- creare todo-list lettura piazzamenti
 BUG
 ########################################################################
 - Fixare dimensione menu per tablet -> OK

@@ -1,30 +1,33 @@
 {
-  "_html2canvas-5e2c699d.js": {
-    "file": "assets/html2canvas-5e2c699d.js",
+  "_html2canvas-e5ca6a28.js": {
+    "file": "assets/html2canvas-e5ca6a28.js",
     "imports": [
       "index.html"
     ],
     "isDynamicEntry": true
   },
   "index.css": {
-    "file": "assets/index-a1bfcf46.css",
+    "file": "assets/index-f24943c2.css",
     "src": "index.css"
   },
   "index.html": {
+    "assets": [
+      "assets/logo-ebeeeaaf.png"
+    ],
     "css": [
-      "assets/index-a1bfcf46.css"
+      "assets/index-f24943c2.css"
     ],
     "dynamicImports": [
-      "_html2canvas-5e2c699d.js",
+      "_html2canvas-e5ca6a28.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js"
     ],
-    "file": "assets/index-7372a712.js",
+    "file": "assets/index-9138b616.js",
     "isEntry": true,
     "src": "index.html"
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-8a8f68e0.js",
+    "file": "assets/index.es-32c9694c.js",
     "imports": [
       "index.html"
     ],
@@ -35,5 +38,9 @@
     "file": "assets/purify.es-cf254a40.js",
     "isDynamicEntry": true,
     "src": "node_modules/dompurify/dist/purify.es.js"
+  },
+  "src/assets/logo.png": {
+    "file": "assets/logo-ebeeeaaf.png",
+    "src": "src/assets/logo.png"
   }
 }

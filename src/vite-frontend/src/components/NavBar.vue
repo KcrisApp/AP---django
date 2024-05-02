@@ -179,6 +179,8 @@ const formatted = useDateFormat(useNow(), formatter)
 
 // access the `store` 
 const store = useStoreUser()
+store.getUserData()
+
 
 
 const sideBarHide = ref(true)

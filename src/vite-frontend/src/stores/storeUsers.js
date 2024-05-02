@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-
+import { userEndPoints } from "../common/endpoints";
+import { axios } from "../common/api.service";
 
 export const useStoreUser = defineStore('storeUser', {
   state:  () => {
@@ -12,6 +13,8 @@ export const useStoreUser = defineStore('storeUser', {
   userInfo(state){
     return state.userData
   },
+
+  // Gestione permessi
   permissionAccess(state){
     return state.userData.company_role === "M"   ?  true :  false
   },
@@ -39,6 +42,22 @@ export const useStoreUser = defineStore('storeUser', {
   isVerifyUser(state){
     return state.userData.department === "V" || state.userData.company_role === "M" ?  true :  false
   }
+ },
+ actions: {
+  async getUserData() {
+
+    let endpoint = userEndPoints["usersDetail"];
+    try {
+      const response = await axios.get(endpoint);
+      // Update storeUser
+      this.userData = response.data 
+      
+  
+    } catch (error) {
+      alert(error);
+   
+    }
+  },
  }
 
 })

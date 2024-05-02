@@ -71,6 +71,8 @@ class Order(TimeStampedModel):
     order_serialnumber = models. CharField(max_length=120, blank=True, null=True)
     order_customization = models.CharField(max_length=120, blank=True, default="")
     order_filetopographic = models.FileField(upload_to='topographic', default="", blank=True)
+    order_placement_pick_and_place = models.TextField(blank=True, default="[]" )
+    order_bom = models.TextField(blank=True, default="" )
     shipping_date = models.DateField(auto_now=False, auto_now_add=False, default="2024-03-03")
     board = models.ForeignKey(Board, on_delete= models.CASCADE, related_name="order")
 

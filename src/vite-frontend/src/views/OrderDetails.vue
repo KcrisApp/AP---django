@@ -159,16 +159,16 @@
 
 
         <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
-          <p><b>Note di processo:</b></p>
+          <p class=""><b>Note di processo:</b></p>
           <hr class="my-1" />
           <p>{{ o.order_process_note }}</p>
         </div>
 
         <hr class="my-2" />
-        <p><b>Stato ordine:</b></p>
+        <p class="my-2"><b>Stato ordine:</b></p>
         
           <div>
-              <div class="text-lg p-4 bg-slate-100 rounded-md ">
+              <div class="text-lg p-4 bg-gray-100 rounded-md ">
               
               <p class="flex justify-center text-sm">
                 Data di spedizione: 
@@ -230,6 +230,7 @@
           >
             Spedizioni
           </router-link>
+
         </div>
       </div>
 
