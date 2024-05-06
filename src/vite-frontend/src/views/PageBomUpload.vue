@@ -28,11 +28,16 @@ function exportFile() {
 <script setup>
 import { ref, computed } from "vue";
 import { read, utils, writeFileXLSX } from 'xlsx';
+import { useRouter } from "vue-router";
+import { endpoints } from "../common/endpoints";
+import { axios } from "../common/api.service";
+
+
 const datatable = ref([])
 const file = ref(null)
 const colNumber = ref(0)
 const rowSelectArray = ref([])
-
+const jsonToSave = ref(null)
 const onLoad = ref(false)
 const tableShow = ref(true)
 
@@ -40,6 +45,14 @@ const classSelector = ref([])
 const colOrder = ref([])
 const typeCol = ['','border-red-500 border-solid border-4','border-orange-500 border-solid border-4','border-grey-500 border-solid border-4','border-blue-500 border-solid border-4','border-purple-500 border-solid border-4']
 const bomResult = ref([])
+
+
+const props = defineProps({
+  order_number: String,
+});
+
+const router = useRouter();
+
 
   function onChange(event) {
     onLoad.value = true
@@ -155,6 +168,25 @@ const expandedBom = () =>{
  
 }
 
+
+const save = () =>{
+  let arr_to_save = []
+  rowSelectArray.value.forEach(element =>{
+    // console.log(`Drowing ref: ${element[colOrder.value.indexOf('1')]}`)
+    // console.log(`Partnumber: ${element[colOrder.value.indexOf('2')]}`)
+    // console.log(`Qta: ${element[colOrder.value.indexOf('3')]}`)
+    // console.log(`Description: ${element[colOrder.value.indexOf('4')]}`)
+    // console.log(`Value: ${element[colOrder.value.indexOf('5')]}`)
+    let jsonToPush = {'drw':element[colOrder.value.indexOf('1')], 'pn':element[colOrder.value.indexOf('2')],'qta':element[colOrder.value.indexOf('3')],'desc':element[colOrder.value.indexOf('4')],'value':element[colOrder.value.indexOf('5')]}
+    arr_to_save.push(jsonToPush)
+     
+  })
+
+  sentData(arr_to_save)
+}
+
+
+
 // Conteggio codici
 const codeCount = computed(()=>{
   return bomResult.value.length
@@ -165,6 +197,32 @@ const backToFile = () =>{
   tableShow.value = !tableShow.value
 }
 
+
+async function sentData(arr_to_save) {
+  
+  const endpoint = `${endpoints["ordersCRUD"]}${props.order_number}/`;
+  let method = "PATCH";
+  try {
+    const response = await axios({
+      method: method,
+      url: endpoint,
+      data: {
+        order_bom: JSON.stringify(arr_to_save),
+      },
+
+    });
+    console.log(response.data);
+    jsonToSave.value = response.data.order_placement_pick_and_place
+    goBack()
+   
+  } catch (error) {
+    alert(error.response.status);
+  }
+}
+
+const goBack = () =>{
+  router.back()
+}
 </script>
 
 
@@ -175,8 +233,18 @@ const backToFile = () =>{
 
              BOM Creator
             </h1>
+            <p
+    class="hover:text-green-600 my-2"
+    @click="goBack"
+    >
+      
+      <font-awesome-icon icon="arrow-left-long" /> Back
+                
+    </p>
  
-<div class="mb-3 border rounded-md bg-gray-100 p-5">
+<div
+v-if="tableShow" 
+ class="mb-3 border rounded-md bg-gray-100 p-5">
   <label
     for="formFile"
     class="mb-2 inline-block text-blue-900 font-semibold text-xl dark:text-neutral-200 "
@@ -202,12 +270,17 @@ v-if="!tableShow"
 <button
 v-if="!tableShow"
   @click="exportFile"
- class="btn bg-emerald-500 px-4 py-2 rounded-md m-2 text-white text-sm">Download BOM
+ class="btn bg-yellow-500 px-4 py-2 rounded-md m-2 text-white text-sm">Download BOM
 </button>
 <button
 v-if="!tableShow"
   @click="expandedBom"
  class="btn bg-cyan-600 px-4 py-2 rounded-md m-2 text-white text-sm">Download BOM expand
+</button>
+<button
+v-if="!tableShow"
+  @click="save"
+ class="btn bg-green-600 px-4 py-2 rounded-md m-2 text-white text-sm">Save
 </button>
 
 

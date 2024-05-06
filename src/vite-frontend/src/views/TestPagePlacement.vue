@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import { read, utils, writeFileXLSX } from 'xlsx';
 import { endpoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-
+import { useRouter } from "vue-router";
 
 
 
@@ -11,7 +11,7 @@ const props = defineProps({
   order_number: String,
 });
 
-
+const router = useRouter();
 
 const datatable = ref([])
 const file = ref(null)
@@ -155,13 +155,16 @@ async function sentData(arr_to_save) {
     console.log(response.data);
     jsonToSave.value = response.data.order_placement_pick_and_place
 
-   
+    goBack()
+
   } catch (error) {
     alert(error.response.status);
   }
 }
 
-
+const goBack = () =>{
+  router.back()
+}
 </script>
 
 
@@ -172,6 +175,14 @@ async function sentData(arr_to_save) {
 
              Pick and Place placement 
             </h1>
+            <p
+    class="hover:text-green-600 my-2"
+    @click="goBack"
+    >
+      
+      <font-awesome-icon icon="arrow-left-long" /> Back
+                
+    </p>
  <!-- <pre>
   {{ jsonToSave }}
  </pre> -->

@@ -137,7 +137,7 @@
         <!-- Section topographic file -->
         <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
           <div class="flex justify-between">
-            <p><b>File:</b></p>
+            <p><b>Topographic:</b></p>
             <font-awesome-icon v-if="store.permissionAccess"  icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFile"/>
           </div>
          
@@ -152,6 +152,37 @@
            </p>
         </div>
 
+
+
+        <!-- Section BOM file -->
+                <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
+          <div class="flex justify-between">
+            <p><b>Distinta:</b></p>
+            <router-link
+            v-if="store.permissionAccess" 
+            :to="{ name: 'upload-bom', params: { order_number: o.order_number }}"
+           
+          >
+          <font-awesome-icon icon="circle-plus" class="text-2xl hover:text-green-700"/>       
+        </router-link>
+            
+          </div>
+         
+          <hr class="my-2" />
+          <p
+          v-if="o.order_filetopographic"
+          >
+        
+          <router-link
+            v-if="store.permissionAccess" 
+            :to="{ name: 'bom', params: { order_number: o.order_number }}"
+           
+          >
+          <font-awesome-icon icon="file-pdf" class="text-2xl"/>
+            Distinta     
+        </router-link>
+           </p>
+        </div>
 
 
 

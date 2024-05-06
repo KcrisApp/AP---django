@@ -21,7 +21,8 @@ import Stats from "../views/Stats.vue";
 import TestPage from "../views/TestPage.vue";
 import TestPagePlacement from "../views/TestPagePlacement.vue";
 import Placement from "../views/Placement.vue";
-import TestPageBom from "../views/TestPageBom.vue";
+import Bom from "../views/Bom.vue";
+import PageBomUpload from "../views/PageBomUpload.vue";
 import Powatec from "../views/Powatec.vue";
 import UsersList from "../views/UsersList.vue";
 import UserDetails from "../views/UserDetails.vue";
@@ -167,11 +168,6 @@ const router = createRouter({
       
         const user = store.userInfo
         console.log(user)
-      
-        if (user) {
-          return true
-        }
-
         return store.permissionAccess ? true : "/";
       },
     },
@@ -183,10 +179,13 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: UserDetails,
       props: true,
-      beforeEnter: (to, from) => {
+      beforeEnter:async (to, from) => {
         // reject the navigation
         const store = useStoreUser();
-
+        await store.getUserData()
+      
+        const user = store.userInfo
+        console.log(user)
         return store.permissionAccess ? true : "/";
       },
     },
@@ -202,26 +201,40 @@ const router = createRouter({
       path: "/stats/",
       name: "stat-page",
       component: Stats,
-      beforeEnter: (to, from) => {
+      beforeEnter: async(to, from) => {
         // reject the navigation
         const store = useStoreUser();
-
+        await store.getUserData()
+      
+        const user = store.userInfo
+        console.log(user)
         return store.permissionAccess ? true : "/";
       },
     },
 
     // Pagine di test non ancora implementate in rev 1.0
-    // {
-    //   path: "/test-page/",
-    //   name: "test-page",
-    //   component: TestPagePlacement,
-    //   beforeEnter: (to, from) => {
-    //     // reject the navigation
-    //     const store = useStoreUser();
+    {
+      path: "/upload-bom/:order_number",
+      name: "upload-bom",
+      component: PageBomUpload,
+      props:true,
+      beforeEnter:async (to, from) => {
+        // reject the navigation
+        const store = useStoreUser();
+        await store.getUserData()
+      
+        const user = store.userInfo
+        console.log(user)
+        return store.permissionAccess ? true : "/";
+      },
+    },
+    {
+      path: "/bom/:order_number",
+      name: "bom",
+      component: Bom,
+      props: true,
 
-    //     return store.permissionAccess ? true : "/";
-    //   },
-    // },
+    },
     // Pagine di test non ancora implementate in rev 1.0
     {
       path: "/placement/:order_number",
@@ -239,6 +252,9 @@ const router = createRouter({
         // reject the navigation
         const store = useStoreUser();
         await store.getUserData()
+      
+        const user = store.userInfo
+        console.log(user)
         return store.permissionAccess ? true : "/";
       },
     },
