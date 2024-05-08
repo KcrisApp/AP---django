@@ -155,7 +155,7 @@
 
 
         <!-- Section BOM file -->
-                <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
+      <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
           <div class="flex justify-between">
             <p><b>Distinta:</b></p>
             <router-link
@@ -170,7 +170,7 @@
          
           <hr class="my-2" />
           <p
-          v-if="o.order_filetopographic"
+        
           >
         
           <router-link

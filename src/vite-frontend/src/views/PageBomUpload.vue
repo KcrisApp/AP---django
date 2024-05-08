@@ -171,13 +171,13 @@ const expandedBom = () =>{
 
 const save = () =>{
   let arr_to_save = []
-  rowSelectArray.value.forEach(element =>{
+  rowSelectArray.value.forEach((element, index) =>{
     // console.log(`Drowing ref: ${element[colOrder.value.indexOf('1')]}`)
     // console.log(`Partnumber: ${element[colOrder.value.indexOf('2')]}`)
     // console.log(`Qta: ${element[colOrder.value.indexOf('3')]}`)
     // console.log(`Description: ${element[colOrder.value.indexOf('4')]}`)
     // console.log(`Value: ${element[colOrder.value.indexOf('5')]}`)
-    let jsonToPush = {'drw':element[colOrder.value.indexOf('1')], 'pn':element[colOrder.value.indexOf('2')],'qta':element[colOrder.value.indexOf('3')],'desc':element[colOrder.value.indexOf('4')],'value':element[colOrder.value.indexOf('5')]}
+    let jsonToPush = {'id':index,'drw':element[colOrder.value.indexOf('1')], 'pn':element[colOrder.value.indexOf('2')],'qta':element[colOrder.value.indexOf('3')],'desc':element[colOrder.value.indexOf('4')],'value':element[colOrder.value.indexOf('5')]}
     arr_to_save.push(jsonToPush)
      
   })

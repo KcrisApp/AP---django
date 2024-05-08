@@ -1,16 +1,17 @@
 IDEE
 ##########################################################
 - gestione permessi user -> in fase di completamento ricordarsi di guardiare le rote
-- Inserimento BOM -> Da completare
+- Inserimento BOM e lettura -> OK 
 - Inserimento ALERT in  board model -> OK
 - Creare bot whatsapp
 - Filtrare ordini per data di spedizione
 - Creare sistema di log azioni utente
 - Inserire tool calcolo prezzi collaudo 
 - Inserire tool calcolo prezzi assemblaggio 
-- Inserire tool calcolo prezzi assemblaggio powatec -> da sistemare aspetto grafico
+- Inserire tool calcolo prezzi assemblaggio powatec -> Ok
 - Creare pannello e db impostazioni
-- creare todo-list lettura piazzamenti
+- creare todo-list lettura piazzamenti -> OK (Migliorabile con maggiori info)
+
 BUG
 ########################################################################
 - Fixare dimensione menu per tablet -> OK

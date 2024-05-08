@@ -15,22 +15,111 @@ const router = useRouter();
 
 
 const onLoad = ref(false)
-const colOrder = ref([])
+const colOrder_bom = ref([])
 const order_bom = ref([])
 const order = ref(null)
 const showEditNote = ref(false)
 const store = useStoreUser();
 const note = ref("")
-const selectId = ref(null)
+const showModalOption = ref(false)
+const filterSmt = ref(false)
+const filterTht = ref(false)
+const sortDrw = ref(false)
+const search = ref("");
 
+
+
+
+
+// Filtri  di ricerca
+const filterSearch = () =>{
+  
+  colOrder_bom.value =  order_bom.value.filter((order_b) =>
+  order_b.drw.toLowerCase().includes(search.value.toLowerCase()) 
+  );
+}
+
+const filterThtActive = () =>{
+
+  filterTht.value =!filterTht.value
+
+  if (filterTht.value) {
+    colOrder_bom.value =  order_bom.value.filter((order_b) =>
+  
+  order_b.value.toLowerCase() == "tht" || order_b.value.toLowerCase() == "pth"
+  );
+  }
+  else{
+    colOrder_bom.value =  order_bom.value
+  }
+
+  
+}
+
+
+const filterSmdActive = () =>{
+
+  filterSmt.value =!filterSmt.value
+  if (filterSmt.value) {
+  
+      colOrder_bom.value =  order_bom.value.filter((order_b) =>
+      order_b.value.toLowerCase() == "smd"
+      );
+      }
+
+else{
+    colOrder_bom.value =  order_bom.value
+  }
+
+}
+const resetFilter = () =>{
+
+filterSmd.value =!filterSmd.value
+colOrder_bom.value =  order_bom.value
+
+}
+
+const filterSortByDrowing = () =>{
+
+  sortDrw.value =!sortDrw.value
+  if (sortDrw.value) {
+    colOrder_bom.value.sort(function (a, b) {
+      if (a.drw < b.drw) {
+        return -1;
+      }
+      if (a.drw > b.drw) {
+        return 1;
+      }
+      return 0;
+    }); 
+  }
+  else{
+    colOrder_bom.value.sort(function (a, b) {
+      if (a.drw > b.drw) {
+        return -1;
+      }
+      if (a.drw > b.drw) {
+        return 1;
+      }
+      return 0;
+    }); 
+  }
+
+   
+
+}
+
+
+
+const trigModal = () => showModalOption.value = !showModalOption.value
 
 // Conteggio codici
 const codeCount = computed(()=>{
-  return order_bom.value.length
+  return colOrder_bom.value.length
 })
 const codeCheckedItem = computed(()=>{
   let counter = 0;
-  for (const obj of order_bom.value) {
+  for (const obj of colOrder_bom.value) {
     if (obj.check) counter++;
 }
 return counter
@@ -53,13 +142,30 @@ return counter
     
 
   }
-
+                                                                                                                                                                                                                                                                                                                             
 
   const addToList = (id) =>{
     console.log(id)
-    console.log(order_bom.value[id].check)
-    
-    order_bom.value[id].check = !order_bom.value[id].check
+
+    for (const obj of colOrder_bom.value) {
+
+      if(obj.id == id){
+      
+        obj.check = !obj.check
+        console.log(obj)
+        for (const obj_bom of order_bom.value) {
+
+        if(obj_bom.id == id){
+
+          obj_bom.check =  obj.check
+
+        }
+        }
+  
+      }}
+
+ 
+      
     updateData()
 }
 
@@ -80,12 +186,6 @@ return counter
 // }
 
 
-
-
-
-
-
-
 // Conteggio codici
 // const codeCount = computed(()=>{
 //   return order.order_order_bom_pick_and_place.value.length
@@ -96,14 +196,22 @@ const goBack = () =>{
 }
 
 const resetAll = () =>{
-  for (const obj of order_bom.value) {
+  for (const obj of colOrder_bom.value) {
     obj.check = false
 }
+  for (const obj of order_bom.value) {
+      obj.check = false
+  }
+updateData()
 }
 const checkAll = () =>{
-  for (const obj of order_bom.value) {
+  for (const obj of colOrder_bom.value) {
     obj.check = true
 }
+for (const obj of order_bom.value) {
+    obj.check = true
+}
+updateData()
 }
 
 
@@ -120,6 +228,7 @@ async function callApi() {
     if (response.data.order_bom) {
       
       order_bom.value = JSON.parse(response.data.order_bom)
+      colOrder_bom.value = JSON.parse(response.data.order_bom)
     }
     order.value = response.data.order_number
 
@@ -182,9 +291,31 @@ onMounted(()=>{
 
 
 <div class="flex">
+  <div class="m-2">
+            <div class="relative">
+              <div
+                class=" inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              ></div>
+              <input
+                type="search"
+                id="default-search"
+                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Cerca drawing ref..."
+                v-model="search"
+                @keyup="filterSearch"
+                required
+              />
+            </div>
+      </div>
+
+
+      <button
+  @click="trigModal"
+ class="btn bg-slate-300 hover:bg-slate-400 px-4 py-2 rounded-md m-2 text-sm">Filter
+</button>
   <button
   @click="exportFile"
- class="btn bg-emerald-500 px-4 py-2 rounded-md m-2 text-white text-sm">Download
+ class="btn bg-emerald-500 hover:bg-emerald-800 px-4 py-2 rounded-md m-2 text-white text-sm">Download
 </button>
   <button
  @click="resetAll"
@@ -212,6 +343,54 @@ class="my-5">
   <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
 </div>
 </div> -->
+<div
+v-show="showModalOption"
+class="bg-slate-100 my-2 p-4 rounded-md text-sm border shadow-md">
+          <div class="flex justify-between">
+            <p><b>Filter:</b></p>
+            
+            <p
+            @click="resetFilter"
+            class="underline cursor-pointer"
+            >reset filter</p>
+          </div>
+         
+          <hr class="my-2" />
+          <div class="flex justify-start gap-2">
+            <button
+@click="filterSmdActive"
+:class="filterSmt ? 'bg-blue-700 text-white':''"
+ class="bg-transparent  hover:bg-blue-500 text-blue-700 hover:text-white text-sm  px-4 border border-blue-500 hover:border-transparent rounded-md">SMT
+</button> 
+<button
+ @click="filterThtActive"
+ :class="filterTht ? 'bg-green-600 text-white':''"
+ class=" hover:bg-green-500 text-green-700 hover:text-white text-sm  px-4 border border-green-500 hover:border-transparent rounded-md">THT
+</button> 
+<button
+
+ @click="filterSortByDrowing"
+ class="bg-transparent  hover:bg-slate-500 text-slate-700 hover:text-white text-sm  px-4 border border-slate-500 hover:border-transparent rounded-md">Ordina 
+
+  <span v-if="sortDrw">
+    <font-awesome-icon icon="arrow-up-a-z" />
+  </span>
+  <span v-else>
+    <font-awesome-icon icon="arrow-down-a-z" />
+  </span>
+
+
+
+ 
+</button> 
+
+          </div>
+       
+           
+        </div>
+
+
+
 
 <hr class="my-2">
 <div class="flex gap-2">
@@ -250,14 +429,13 @@ class="my-5">
         </thead>
         <tbody>
           <tr 
-          v-for="(row, idx) in order_bom" 
+          v-for="(row, idx) in colOrder_bom" 
           :key="idx" 
-          @dblclick ="addToList(idx)"
-          class="hover:text-white hover:bg-blue-950"
-          :class = "row.check ?' text-white bg-blue-950 font-bold':''"
+          @dblclick ="addToList(row.id)"
+          class="hover:text-white hover:bg-gray-400"
+          :class = "row.check ?' text-white bg-blue-950 font-bold':''"  
          >
-        
-         <!-- :class = "id == 2 ?'border-red-500 border-solid border-4':''" -->
+
             <td 
 
             class=" border-b dark:border-gray-700">
@@ -300,19 +478,13 @@ class="my-5">
               </th>
             </td>
               <td 
-             
             class=" border-b dark:border-gray-700">
-            
               <th 
-           
                 scope="row" 
                 class="px-6 py-4 font-medium  whitespace-nowrap dark:text-white0">
                 {{ row.value}}
-               
               </th>
-            
             </td>
-            
           </tr>
           
         </tbody>

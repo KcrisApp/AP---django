@@ -35,7 +35,9 @@ import {faLaptopCode,
         faUserTie,
         faCirclePlus,
         faBell,
-        faRocket
+        faRocket,
+        faArrowUpAZ,
+        faArrowDownAZ
       } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { createPinia } from 'pinia'
@@ -70,6 +72,8 @@ library.add(faFilePdf);
 library.add(faCirclePlus);
 library.add(faBell);
 library.add(faRocket);
+library.add(faArrowDownAZ);
+library.add(faArrowUpAZ);
 
 
 
