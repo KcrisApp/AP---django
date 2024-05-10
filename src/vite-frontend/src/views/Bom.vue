@@ -348,7 +348,6 @@ v-show="showModalOption"
 class="bg-slate-100 my-2 p-4 rounded-md text-sm border shadow-md">
           <div class="flex justify-between">
             <p><b>Filter:</b></p>
-            
             <p
             @click="resetFilter"
             class="underline cursor-pointer"
@@ -378,20 +377,9 @@ class="bg-slate-100 my-2 p-4 rounded-md text-sm border shadow-md">
   <span v-else>
     <font-awesome-icon icon="arrow-down-a-z" />
   </span>
-
-
-
- 
-</button> 
-
+  </button> 
           </div>
-       
-           
         </div>
-
-
-
-
 <hr class="my-2">
 <div class="flex gap-2">
         <span

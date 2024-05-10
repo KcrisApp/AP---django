@@ -22,39 +22,82 @@ def create_departments(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=Order)
 def auto_delete_old_file_signal(sender, instance, **kwargs):
-   
+ 
     if not instance.pk:
         return False
     
     try:
-        oldFileTopographic = Order.objects.get(pk=instance.pk).order_filetopographic
+        
+        oldFileTopographic = Order.objects.get(pk=instance.pk).order_file_topographic
+        oldFileGerber = Order.objects.get(pk=instance.pk).order_file_gerber
+        oldFileOdb = Order.objects.get(pk=instance.pk).order_file_odb
+        oldFileSchematics = Order.objects.get(pk=instance.pk).order_file_schematics
 
     except Order.DoesNotExist:
         return False
 
-    # Delete old  order_filetopographic
-    newFileTopographic = instance.order_filetopographic
+    # Delete old  file for order
+    newFileTopographic = instance.order_file_topographic
+    newFileGerber = instance.order_file_gerber
+    newFileOdb = instance.order_file_odb
+    newFileSchematics = instance.order_file_schematics
     
-    if not oldFileTopographic == newFileTopographic:
+    
+    if not oldFileTopographic == newFileTopographic and oldFileTopographic:
     
         if os.path.isfile(oldFileTopographic.path):
-
+           
             os.remove(oldFileTopographic.path)
 
+    if not oldFileGerber == newFileGerber and oldFileGerber:
+    
+        if os.path.isfile(oldFileGerber.path):
+           
+            os.remove(oldFileTopographic.path)
+
+    if not oldFileOdb == newFileOdb and oldFileOdb:
+    
+        if os.path.isfile(oldFileOdb.path):
+           
+            os.remove(oldFileTopographic.path)
+
+    if not oldFileSchematics == newFileSchematics and oldFileSchematics:
+    
+        if os.path.isfile(oldFileSchematics.path):
+           
+            os.remove(oldFileSchematics.path)
+       
 
 
 
-# Signal to delete old img top and bot when img field is update
+
+# Signal to delete old file top and bot when img field is update
 
 @receiver(post_delete, sender=Order)
-def auto_delete_img_on_delete_signal(sender, instance, **kwargs):
+def auto_delete_topographic_on_delete_signal(sender, instance, **kwargs):
     
 
     # Delete order_filetopographic 
-    if instance.order_filetopographic:
+    if instance.order_file_topographic:
 
-        if os.path.isfile(instance.order_filetopographic.path):
-            os.remove(instance.order_filetopographic.path)
+        if os.path.isfile(instance.order_file_topographic.path):
+            os.remove(instance.order_file_topographic.path)
+
+    # Delete order_filetopographic 
+    if instance.order_file_schematics:
+
+        if os.path.isfile(instance.order_file_schematics.path):
+            os.remove(instance.order_file_schematics.path)
+    # Delete order_filetopographic 
+    if instance.order_file_odb:
+
+        if os.path.isfile(instance.order_file_odb.path):
+            os.remove(instance.order_file_odb.path)
+    # Delete order_filetopographic 
+    if instance.order_file_gerber:
+
+        if os.path.isfile(instance.order_file_gerber.path):
+            os.remove(instance.order_file_gerber.path)
 
 
 

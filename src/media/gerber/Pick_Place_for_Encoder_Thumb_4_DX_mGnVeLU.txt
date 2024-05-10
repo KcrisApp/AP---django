@@ -1,0 +1,22 @@
+Altium Designer Pick and Place Locations
+C:\WORK\Electronics\PPR_AS_iHannes\Encoder\Draft\Encoder_Thumb_4_Dx\Project Outputs for Encoder_Thumb_4_DX\Pick Place\Pick Place for Encoder_Thumb_4_DX.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       10/11/23
+Time:       13:22
+Revision:   1941
+Variant:    No variations
+Units used: mm
+
+Designator Comment             Layer       Footprint                  Center-X(mm) Center-Y(mm) Rotation Description                                                                                                               
+C1         1u                  BottomLayer 0402C                      -0.0500      38.2750      270      Capacitor                                                                                                                 
+C2         100n                BottomLayer 0402C                      -1.2750      38.2750      270      Capacitor                                                                                                                 
+D1         "5Vdc, 0.2pF"       BottomLayer 0402R                      1.1750       30.7250      180      "WE-VE ULC ESD Suppressor, size 0402, 5Vdc, 0.2pF"                                                                        
+D2         "5Vdc, 0.2pF"       BottomLayer 0402R                      1.5000       38.2500      270      "WE-VE ULC ESD Suppressor, size 0402, 5Vdc, 0.2pF"                                                                        
+J1         DF40C-20DP-0.4V(51) BottomLayer HIROSE_DF40C-20DP-0.4V(51) 17.3628      -7.1016      177      "Board to Board connector Header- 0.4mm Pitch - 20 way - 2.0 mm stacking height"                                          
+Q1         SI1062X-T1-GE3      BottomLayer SC-89-3                    -0.2250      31.9000      270      "MOSFET 20V Vds 8V Vgs SC89-3"                                                                                            
+R1         1k                  BottomLayer 0402R                      1.6750       32.7250      90       Resistor                                                                                                                  
+R2         10k                 BottomLayer 0402R                      -1.7750      32.4500      90       Resistor                                                                                                                  
+U1         MA702GQ-P           BottomLayer QFN-16                     0.1000       35.4750      180      "Sensori magnetici/a effetto Hall su scheda 12-bit, digital, contactless angle sensor with ABZ incremental & PWM outputs" 

@@ -24,6 +24,7 @@
           v-show="showFormFile"
           @close-alert="togleModalFile"
           v-bind:order_id="o.id"
+          :file_type="fileType"
           @save-file="fileUpdate"
         />
         <div class="flex flex-wrap gap-4 justify-between my-4">
@@ -134,23 +135,108 @@
 
 
 
+
+
+
+
+
+
+
+        <hr class="my-2" />
+        <p class="my-2"><b>Produzione:</b></p>
+        
+
+<div class="flex gap-2">
+
+
+
+
+
+
         <!-- Section topographic file -->
-        <div class="bg-gray-100 my-2 p-4 rounded-md text-sm">
+        <div class="bg-gray-100 my-2 p-4 rounded-md text-sm flex-1">
           <div class="flex justify-between">
             <p><b>Topographic:</b></p>
-            <font-awesome-icon v-if="store.permissionAccess"  icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFile"/>
+            <font-awesome-icon v-if="store.permissionAccess"  icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFileTopographic"/>
           </div>
          
           <hr class="my-2" />
           <p
-          v-if="o.order_filetopographic"
+          v-if="o.order_file_topographic"
           >
-          <a :href="o.order_filetopographic" target=”_blank” class="text-red-700">
+          <a :href="o.order_file_topographic" target=”_blank” class="text-red-700">
             <font-awesome-icon icon="file-pdf" class="text-2xl"/>
             Topographic
           </a>
            </p>
         </div>
+
+
+                <!-- Section odb file -->
+                <div class="bg-gray-100 my-2 p-4 rounded-md text-sm flex-1">
+          <div class="flex justify-between">
+            <p><b>ODB++:</b></p>
+            <font-awesome-icon v-if="store.permissionAccess"  icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFileOdb"/>
+          </div>
+         
+          <hr class="my-2" />
+          <p
+          v-if="o.order_file_odb"
+          >
+          <a :href="o.order_file_odb" target=”_blank” class="text-blue-700">
+            <font-awesome-icon icon="file-zipper" class="text-2xl"/>
+            ODB++
+          </a>
+           </p>
+        </div>
+
+
+                <!-- Section gerber file -->
+                <div class="bg-gray-100 my-2 p-4 rounded-md text-sm flex-1">
+          <div class="flex justify-between">
+            <p><b>Gerber:</b></p>
+            <font-awesome-icon v-if="store.permissionAccess"  icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFileGerber"/>
+          </div>
+         
+          <hr class="my-2" />
+          <p
+          v-if="o.order_file_gerber"
+          >
+          <a :href="o.order_file_gerber" target=”_blank” class="text-slate-600">
+            <font-awesome-icon icon="file-pen" class="text-2xl"/>
+            Gerber
+          </a>
+           </p>
+        </div>
+
+
+        <div class="bg-gray-100 my-2 p-4 rounded-md text-sm flex-1">
+          <div class="flex justify-between">
+            <p><b>Schematics:</b></p>
+            <font-awesome-icon v-if="store.permissionAccess"  icon="circle-plus" class="text-2xl hover:text-green-700" @click="togleModalFileSchematics"/>
+          </div>
+         
+          <hr class="my-2" />
+          <p
+          v-if="o.order_file_schematics"
+          >
+          <a :href="o.order_file_schematics" target=”_blank” class="text-green-700">
+            <font-awesome-icon icon="file-pdf"  class="text-2xl"/>
+          
+            Schematics
+          </a>
+           </p>
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
 
 
 
@@ -178,7 +264,8 @@
             :to="{ name: 'bom', params: { order_number: o.order_number }}"
            
           >
-          <font-awesome-icon icon="file-pdf" class="text-2xl"/>
+          <font-awesome-icon icon="file-csv" class="text-2xl"/>
+     
             Distinta     
         </router-link>
            </p>
@@ -281,6 +368,7 @@ import  OrderStatusBar  from '../components/OrderStatusBar.vue'
 import QrcodeVue from "qrcode.vue";
 import { useStoreUser } from '../stores/storeUsers'
 import { useDateFormatted } from "../use/useDateFormatted"
+
 // access the `store` 
 const store = useStoreUser()
 
@@ -298,6 +386,7 @@ const order = ref([]);
 const showAlert = ref(false);
 const showModal = ref(false);
 const showFormFile = ref(false);
+const fileType = ref("")
 
 const onLoad = ref(false);
 
@@ -353,15 +442,35 @@ function togleAlert() {
 function togleModal() {
   showModal.value = !showModal.value;
 }
+
+
+// Apertura modal file 
 function togleModalFile() {
   showFormFile.value = !showFormFile.value;
+  
+}
+function togleModalFileTopographic() {
+  showFormFile.value = !showFormFile.value;
+  fileType.value = "topographic"
+}
+function togleModalFileOdb() {
+  showFormFile.value = !showFormFile.value;
+  fileType.value = "odb"
+}
+function togleModalFileGerber() {
+  showFormFile.value = !showFormFile.value;
+  fileType.value = "gerber"
+}
+function togleModalFileSchematics() {
+  showFormFile.value = !showFormFile.value;
+  fileType.value = "schematic"
 }
 
 
 function fileUpdate(value) {
-  console.log(value)
+  const file_type = Object.keys(value)
   togleModalFile();
-  order.value[0].order_filetopographic = value.order_filetopographic;
+  order.value[0][file_type] = value[file_type];
 
   
 }

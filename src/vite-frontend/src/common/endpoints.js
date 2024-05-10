@@ -14,6 +14,9 @@ const endpoints = {
   updateImgBoard: `${productionEndPoint}boardImgUpdate/`,
   updateImgBoardBot: `${productionEndPoint}boardImgUpdateBot/`,
   updateTopographicFile: `${productionEndPoint}topographicOrder/`,
+  updateGerberFile: `${productionEndPoint}gerberOrder/`,
+  updateSchematicsFile: `${productionEndPoint}schematicsOrder/`,
+  updateOdbFile: `${productionEndPoint}odbOrder/`,
   production: `${productionEndPoint}production/`,
   
 };

@@ -1,6 +1,6 @@
 IDEE
 ##########################################################
-- gestione permessi user -> in fase di completamento ricordarsi di guardiare le rote
+- gestione permessi user -> OK
 - Inserimento BOM e lettura -> OK 
 - Inserimento ALERT in  board model -> OK
 - Creare bot whatsapp
@@ -9,7 +9,7 @@ IDEE
 - Inserire tool calcolo prezzi collaudo 
 - Inserire tool calcolo prezzi assemblaggio 
 - Inserire tool calcolo prezzi assemblaggio powatec -> Ok
-- Creare pannello e db impostazioni
+- Creare pannello e db impostazioni 
 - creare todo-list lettura piazzamenti -> OK (Migliorabile con maggiori info)
 
 BUG

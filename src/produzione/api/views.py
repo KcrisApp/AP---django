@@ -8,7 +8,7 @@ from produzione.api.permissions import IsManagerOrReadOnly
 
 
 from produzione.models import Welding, Board, Order, Smt, Test, Verify, Shipping, ProductionSteps
-from produzione.api.serializer import OrderTopographicSerializer, BoardImagesBotSerializer, WeldingSerializer, BoardSerializer, OrderSerializer, OrderStatusSerializer, SmtSerializer, TestSerializer, VerifySerializer, BoardImagesSerializer, ShippingSerializer, ProductionStepSerializer, ProductionDetailsSerializer
+from produzione.api.serializer import OrderSchematicsFileSerializer, OrderGerberFileSerializer, OrderOdbFileSerializer, OrderTopographicSerializer, BoardImagesBotSerializer, WeldingSerializer, BoardSerializer, OrderSerializer, OrderStatusSerializer, SmtSerializer, TestSerializer, VerifySerializer, BoardImagesSerializer, ShippingSerializer, ProductionStepSerializer, ProductionDetailsSerializer
 
 # Orders views V2
 class OrderViewset(viewsets.ModelViewSet):
@@ -23,10 +23,25 @@ class OrderStatusViewset(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
     lookup_field = "order_number"
 
-
+# File
 class OrderTopographicView(generics.UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderTopographicSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
+
+class OrderGerberFileView(generics.UpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderGerberFileSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
+
+class OrderOdbFileView(generics.UpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderOdbFileSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
+
+class OrderSchematicsFileView(generics.UpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSchematicsFileSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsManagerOrReadOnly]
 
 #Board views V2

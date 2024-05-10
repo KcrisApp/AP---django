@@ -36,7 +36,7 @@
                 
                   <div>
                   <img :src="previewImage" class="uploading-image" />
-                  <input type="file" accept="image/jpeg" @change=uploadImage>
+                  <input type="file" accept="image/jpeg" id="fileInput" @change=uploadImage>
                 </div>
                 
               </div>
@@ -81,6 +81,9 @@ const emit = defineEmits(["close-alert", "save-img"]);
 function closeModal() {
   emit("close-alert")
 }
+function reset() {
+  document.getElementById('fileInput').value = null;
+}
 
 
 function uploadImage(e){
@@ -122,7 +125,7 @@ async function postImg() {
                   })
             console.log(response)
             previewImage.value = null
-            image.value = null
+            reset()
             emit("save-img", response.data);
           
         } catch (error) {

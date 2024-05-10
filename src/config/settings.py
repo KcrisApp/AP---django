@@ -177,7 +177,7 @@ STATICFILES_DIRS = [
 
 # Actual directory user files go to
 MEDIA_URL = "media/"
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = 'media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

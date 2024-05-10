@@ -52,7 +52,7 @@ class OrderStatusSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Order
-        exclude = ["updated_at","uuid",'order_quantity','order_process_note','order_serialnumber','order_customization','order_filetopographic','board','created_at','id']
+        exclude = ["updated_at","uuid",'order_quantity','order_process_note','order_serialnumber','order_customization','order_file_topographic','board','created_at','id']
     
     # def get_created_at(self, instance):
     #     return instance.created_at.strftime("%d/%m/%Y")
@@ -66,14 +66,33 @@ class OrderStatusSerializer(serializers.ModelSerializer):
     
     
 
-
+# Gestione file 
+############################################################################################
 class OrderTopographicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ("order_filetopographic",)
+        fields = ("order_file_topographic",)
             
+class OrderGerberFileSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Order
+        fields = ("order_file_gerber",)
+            
+class OrderOdbFileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = ("order_file_odb",)
+
+class OrderSchematicsFileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = ("order_file_schematics",)
+            
+###########################################################################################
 
 
 class BoardSerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 from django.urls import path, include
 # from produzione.api.views import OrderViewset,BoardViewSet, BoardListCreateAPIView, BoardDetailAPIView, OrderCreateAPIView, OrderDetailAPIView, OrderListAPIView, SmtCreateAPIView, SmtDetailAPIView, SmtListAPIView, TestCreateAPIView, TestDetailAPIView, TestListAPIView, VerifyCreateAPIView, VerifyDetailAPIView, VerifyListAPIView
-from produzione.api.views import OrderStatusViewset, OrderTopographicView, BoardImgUpdateBot, WeldingListAPIView, WeldingDetailAPIView, BoardImgUpdate, OrderViewset,BoardViewSet, TestListAPIView, TestDetailAPIView, SmtDetailAPIView, SmtListAPIView, VerifyDetailAPIView, VerifyListAPIView, ShippingViewSet, ProductionStepViewset, ProductionListAPIView
+from produzione.api.views import OrderSchematicsFileView, OrderOdbFileView, OrderGerberFileView, OrderStatusViewset, OrderTopographicView, BoardImgUpdateBot, WeldingListAPIView, WeldingDetailAPIView, BoardImgUpdate, OrderViewset,BoardViewSet, TestListAPIView, TestDetailAPIView, SmtDetailAPIView, SmtListAPIView, VerifyDetailAPIView, VerifyListAPIView, ShippingViewSet, ProductionStepViewset, ProductionListAPIView
 
 from rest_framework.routers import DefaultRouter
 
@@ -25,6 +25,15 @@ urlpatterns = [
      path("topographicOrder/<int:pk>",
          OrderTopographicView.as_view(),
          name="topographic-file-update"),
+     path("odbOrder/<int:pk>",
+         OrderOdbFileView.as_view(),
+         name="odb-file-update"),
+     path("gerberOrder/<int:pk>",
+         OrderGerberFileView.as_view(),
+         name="gerber-file-update"),
+     path("schematicsOrder/<int:pk>",
+         OrderSchematicsFileView.as_view(),
+         name="schemaics-file-update"),
      
      path("test/",
          TestListAPIView.as_view(),
