@@ -1,59 +1,26 @@
 <template>
-  <div
-    class="relative z-10"
-    aria-labelledby="modal-title"
-    role="dialog"
-    aria-modal="true"
-  >
-    <div
-      class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"
-    ></div>
-
+  <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"></div>
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-      <div
-        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
-      >
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
-          class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl"
-        >
+          class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl">
           <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <div class="">
               <div class="my-5 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                <h2
-                  class="text-base font-semibold leading-6 mb-4 text-gray-900"
-                  id="modal-title"
-                >
+                <h2 class="text-base font-semibold leading-6 mb-4 text-gray-900" id="modal-title">
                   <b class="text-blue-900"><font-awesome-icon icon="camera" /> Qrcode scanner</b>
                 </h2>
-
                 <div class="mb-4">
                   <p class="error">{{ error }}</p>
-
-                  <qrcode-stream  :paused="false" @detect="onDetect" @error="onError" :track="paintOutline"/>
+                  <qrcode-stream :paused="false" @detect="onDetect" @error="onError" :track="paintOutline" />
                 </div>
                 <div class="flex gap-4 justify-center">
-                  <!-- <div class="flex items-center ps-3">
-                      <input
-                        id="vue-checkbox-list"
-                        type="checkbox"
-                        v-model="goToOrder"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark:ring-offset-gray-700   dark:bg-gray-600 dark:border-gray-500"
-                      />
-                      <label
-                        for="vue-checkbox-list"
-                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                        >Abilità vai ad ordine</label
-                      >
-                    </div> -->
-                  <button
-                  @click="emit('update:modelValue', false)"
-                    class="mt-4  rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm  ring-gray-300 hover:bg-red-800 hover:text-white sm:mt-0 sm:w-auto"
-                  >
+                  <button @click="emit('update:modelValue', false)"
+                    class="mt-4  rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm  ring-gray-300 hover:bg-red-800 hover:text-white sm:mt-0 sm:w-auto">
                     Cancel
                   </button>
                 </div>
-                
-                
               </div>
             </div>
           </div>
@@ -75,8 +42,8 @@ const error = ref("");
 const goToOrder = ref(false);
 
 const props = defineProps({
-  modelValue:{
-    type:Boolean,
+  modelValue: {
+    type: Boolean,
     required: true
   }
 }
@@ -84,14 +51,14 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 // methods
-const onDetect = ( detectedCodes ) => {
+const onDetect = (detectedCodes) => {
   // console.log(detectedCodes);
 
   const [firstCode] = detectedCodes;
   result.value = firstCode.rawValue;
   console.log(goToOrder.value)
 
-  
+
   router.push({ name: 'order-details', params: { order_number: result.value } })
 
 };
@@ -120,24 +87,22 @@ const onError = (err) => {
 };
 
 
-
-
 function paintOutline(detectedCodes, ctx) {
-      for (const detectedCode of detectedCodes) {
-        const [firstPoint, ...otherPoints] = detectedCode.cornerPoints
+  for (const detectedCode of detectedCodes) {
+    const [firstPoint, ...otherPoints] = detectedCode.cornerPoints
 
-        ctx.strokeStyle = 'red'
+    ctx.strokeStyle = 'red'
 
-        ctx.beginPath()
-        ctx.moveTo(firstPoint.x, firstPoint.y)
-        for (const { x, y } of otherPoints) {
-          ctx.lineTo(x, y)
-        }
-        ctx.lineTo(firstPoint.x, firstPoint.y)
-        ctx.closePath()
-        ctx.stroke()
-      }
+    ctx.beginPath()
+    ctx.moveTo(firstPoint.x, firstPoint.y)
+    for (const { x, y } of otherPoints) {
+      ctx.lineTo(x, y)
     }
+    ctx.lineTo(firstPoint.x, firstPoint.y)
+    ctx.closePath()
+    ctx.stroke()
+  }
+}
 
 </script>
 

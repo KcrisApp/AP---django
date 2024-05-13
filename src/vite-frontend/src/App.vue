@@ -20,7 +20,7 @@ async function callApi() {
     const user = store.userInfo
 
     if (user) {
-      
+
       onLoad.value = true
     }
 
@@ -29,7 +29,7 @@ async function callApi() {
   }
 }
 
-        
+
 
 // lifecycle hooks
 onMounted(() => {
@@ -37,6 +37,3 @@ onMounted(() => {
 });
 
 </script>
-
-
-

@@ -3,20 +3,14 @@
     <Info v-show="msg" :message="msg" :icon-type="iconType" />
     <div class="p-4 w-full">
       <div class="">
-        <router-link
-          v-if="orderNumber"
-          :to="{
-            name: 'order-details',
-            params: { order_number: orderNumber },
-          }"
-          class="hover:text-green-600"
-        >
+        <router-link v-if="orderNumber" :to="{
+          name: 'order-details',
+          params: { order_number: orderNumber },
+        }" class="hover:text-green-600">
           <font-awesome-icon icon="arrow-left-long" /> Back to {{ orderNumber }}
         </router-link>
-
         <hr class="my-4" />
       </div>
-
       <div class="flex justify-between my-4">
         <div>
           <h1 class="text-2xl mb-4 text-blue-900">
@@ -24,34 +18,24 @@
             Dettaglio Spedizioni
           </h1>
         </div>
-
         <div class="flex gap-2">
-          <button
-            
-            v-if="orderQtaDelivery !== 0 && store.isShippingUser"
+          <button v-if="orderQtaDelivery !== 0 && store.isShippingUser"
             class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
-            @click="togleModal"
-          >
+            @click="togleModal">
             Add
           </button>
         </div>
       </div>
-
-     
       <div class="flex gap-2">
         <span
-          class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
-          >Quantità totale: {{ order_qta }} pz</span
-        >
-
+          class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Quantità
+          totale: {{ order_qta }} pz</span>
         <span
-          class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"
-          >Da spedire: {{ orderQtaDelivery }} pz</span
-        >
+          class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Da
+          spedire: {{ orderQtaDelivery }} pz</span>
         <span
-          class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"
-          >Spedite: {{ orderQtaDelivered }} pz</span
-        >
+          class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Spedite:
+          {{ orderQtaDelivered }} pz</span>
       </div>
       <hr class="mt-2" />
       <table class="text-left text-sm font-light flex-wrap w-full">
@@ -66,14 +50,8 @@
             <th scope="col" class="py-4"></th>
           </tr>
         </thead>
-
         <tbody>
-          <tr
-            class="border-b dark:border-neutral-500"
-            v-for="s in shipping"
-            :key="s.uuid"
-            ref="modalRef"
-          >
+          <tr class="border-b dark:border-neutral-500" v-for="s in shipping" :key="s.uuid" ref="modalRef">
             <td class="whitespace-nowrap px-6 py-4 font-medium">
               {{ s.order_number }}
             </td>
@@ -83,7 +61,6 @@
             <td class="whitespace-nowrap px-6 py-4">
               {{ s.shipping_qta }}
             </td>
-
             <td class="whitespace-nowrap py-4">
               {{ s.shipping_date }}
             </td>
@@ -97,58 +74,28 @@
             <td class="whitespace-nowrap py-4">
               {{ s.firma }}
             </td>
-            <td 
-            v-if="store.isShippingUser"
-            class="py-4">
-              <div
-                class="flex justify-center gap-4"
-                @click="openModShipping(s)"
-              >
-                <font-awesome-icon
-                  icon="pen-to-square"
-                  class="text-blue-950 hover:text-green-500"
-                />
+            <td v-if="store.isShippingUser" class="py-4">
+              <div class="flex justify-center gap-4" @click="openModShipping(s)">
+                <font-awesome-icon icon="pen-to-square" class="text-blue-950 hover:text-green-500" />
               </div>
             </td>
-            <td 
-            v-if="store.isShippingUser"
-            class="py-4">
+            <td v-if="store.isShippingUser" class="py-4">
               <div class="flex justify-center gap-4" @click="togleAlert">
-                <font-awesome-icon
-                  icon="trash"
-                  class="text-red-900 hover:text-red-500"
-                />
+                <font-awesome-icon icon="trash" class="text-red-900 hover:text-red-500" />
               </div>
-              <Alert
-                v-show="showAlert"
-                icon-type="error"
-                title="Attenzione"
+              <Alert v-show="showAlert" icon-type="error" title="Attenzione"
                 :message="`Sei sicuro di voler eliminare la spedizione per l'ordine ${s.order_number}?`"
-                @close-alert="togleAlert"
-                @confirm="deleteShipping(s.uuid)"
-              />
+                @close-alert="togleAlert" @confirm="deleteShipping(s.uuid)" />
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    <ShippingForm v-if="showForm" @close-modal="togleModal" @save-data="updateShipping" :order="props.order_id"
+      :max_shipping_board="orderQtaDelivery" />
 
-    <ShippingForm
-    v-if="showForm"
-      @close-modal="togleModal"
-      @save-data="updateShipping"
-      :order="props.order_id"
-      :max_shipping_board="orderQtaDelivery"
-    />
-
-    <ShippingForm
-      v-if="showModModal"
-      @close-modal="togleModifyForm"
-      :ship="singleShip"
-      :order="props.order_id"
-      @save-data="updateSingleShip"
-      :max_shipping_board="orderQtaDelivery"
-    />
+    <ShippingForm v-if="showModModal" @close-modal="togleModifyForm" :ship="singleShip" :order="props.order_id"
+      @save-data="updateSingleShip" :max_shipping_board="orderQtaDelivery" />
   </main>
 </template>
 <script setup>
@@ -174,13 +121,11 @@ const msg = ref("");
 
 const props = defineProps({
   order_id: {
-    type:String
+    type: String
   },
-  order_qta:{
-    type:Number
+  order_qta: {
+    type: Number
   }
-    
- 
 });
 
 const orderQtaDelivery = computed(() => {
@@ -189,7 +134,7 @@ const orderQtaDelivery = computed(() => {
   let orderToDelivery = 0;
   shipping.value.forEach((element, index) => {
     orderDelivery += element.shipping_qta;
- 
+
   });
 
   orderToDelivery = val - orderDelivery;
@@ -197,7 +142,7 @@ const orderQtaDelivery = computed(() => {
 });
 
 const orderQtaDelivered = computed(() => {
- 
+
   let orderDelivery = 0;
 
   shipping.value.forEach((element, index) => {
@@ -266,14 +211,12 @@ const togleAlert = () => {
 };
 
 async function callApi() {
-  // http://127.0.0.1:8000/api/v1/shipping/?order=12
-  // `string text ${expression} string text`
   let endpoint = `${endpoints["shippingCRUD"]}?order=${props.order_id}`;
 
   try {
     const response = await axios.get(endpoint);
     shipping.value.push(...response.data);
-    
+
   } catch (error) {
     alert(error);
   }

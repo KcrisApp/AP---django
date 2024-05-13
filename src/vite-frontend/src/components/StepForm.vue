@@ -1,90 +1,45 @@
 <template>
-  <div
-    class="relative z-10"
-    aria-labelledby="modal-title"
-    role="dialog"
-    aria-modal="true"
-  >
-    <div
-      class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"
-    ></div>
-
+  <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"></div>
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-      <div
-        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
-      >
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
-          class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl"
-      
-        >
+          class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl">
           <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <div class="">
               <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-
                 <div class="flex justify-between my-4">
-
-                  <h2
-                  class="text-base font-semibold leading-6 p-2 text-gray-900"
-                  id="modal-title"
-                >
-                  <b class="text-blue-900">Aggiungi step</b>
-                </h2>
-
+                  <h2 class="text-base font-semibold leading-6 p-2 text-gray-900" id="modal-title">
+                    <b class="text-blue-900">Aggiungi step</b>
+                  </h2>
                   <div class="flex items-center">
                     <label for="color" class="block mr-2 text-md font-medium  dark:text-white">Step color:</label>
-                    <input
-                        id="color"
-                        type="color"
-                        v-model="step_color"
-                        class=""
-                      />
-                    </div>
+                    <input id="color" type="color" v-model="step_color" class="" />
+                  </div>
                 </div>
-                
-
-               
                 <hr class="my-5">
                 <div class="mt-4">
                   <div>
                     <div class="mb-6">
-                      <label
-                        for="step_name"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Step name</label
-                      >
-                      <input
-                        type="text"
-                        id="step_name"
+                      <label for="step_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Step
+                        name</label>
+                      <input type="text" id="step_name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        required
-                        v-model="step_name"
-                      />
-                    </div>
-
-                    
-                    <div class="mb-6">
-                      <label
-                        for="step_description"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Descrizione del processo</label
-                      >
-                      <textarea
-                        v-model="step_description"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="step_description"
-                        id="step_description"
-                        cols="30"
-                        rows="3"
-                      ></textarea>
-                  
+                        required v-model="step_name" />
                     </div>
                     <div class="mb-6">
-                      <label
-                        for="step_type"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >Zona del processo</label
-                      >
-                      <select v-model="step_type" name="step_type" id="step_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <label for="step_description"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrizione del
+                        processo</label>
+                      <textarea v-model="step_description"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        name="step_description" id="step_description" cols="30" rows="3"></textarea>
+                    </div>
+                    <div class="mb-6">
+                      <label for="step_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Zona
+                        del processo</label>
+                      <select v-model="step_type" name="step_type" id="step_type"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected value="Verifica">Verifica</option>
                         <option value="Smt">Smt</option>
                         <option value="Collaudo">Collaudo</option>
@@ -92,23 +47,15 @@
                         <option value="Saldatura selettiva">Saldatura selettiva</option>
                         <option value="Preformatura">Preformatura</option>
                       </select>
-                  
                     </div>
-                   
-                
-
                     <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                      <button
-                       @click="sentData"
-                        class="mt-3 inline-flex w-full justify-center mx-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-500 hover:text-white sm:mt-0 sm:w-auto"
-                      >
+                      <button @click="sentData"
+                        class="mt-3 inline-flex w-full justify-center mx-2 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-500 hover:text-white sm:mt-0 sm:w-auto">
                         Save
                       </button>
                       <button
-                     
                         class="mt-3 inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-800 hover:text-white sm:mt-0 sm:w-auto"
-                        @click="triggerCloseModal"
-                      >
+                        @click="triggerCloseModal">
                         Cancel
                       </button>
                     </div>
@@ -130,7 +77,7 @@ import { axios } from "../common/api.service";
 
 
 const props = defineProps({
- 
+
   steps: {
     type: Object,
     required: false,
@@ -150,13 +97,13 @@ const step_type = ref("Verifica");
 
 const emit = defineEmits(["close-modal", "save-data"]);
 
-if(props.steps){
+if (props.steps) {
   console.log(props.steps)
-        step_type.value = props.steps.step_type
-        step_name.value = props.steps.step_name
-        step_description.value = props.steps.step_description
-        step_color.value = props.steps.step_color
-   
+  step_type.value = props.steps.step_type
+  step_name.value = props.steps.step_name
+  step_description.value = props.steps.step_description
+  step_color.value = props.steps.step_color
+
 }
 
 async function sentData() {
@@ -166,13 +113,13 @@ async function sentData() {
     let endpoint = endpoints["productionstepCRUD"];
 
     if (props.steps) {
-    
-    endpoint = endpoints["productionstepCRUD"]+`${props.steps.uuid}/`;
-    method = "PATCH";
 
-  
+      endpoint = endpoints["productionstepCRUD"] + `${props.steps.uuid}/`;
+      method = "PATCH";
 
-  }
+
+
+    }
 
 
     const response = await axios({
@@ -189,7 +136,7 @@ async function sentData() {
     });
     emit("save-data", response.data);
 
-   
+
   } catch (error) {
     console.log(error)
     // emit("save-data", error.response.status);
@@ -200,7 +147,7 @@ function triggerCloseModal() {
   emit("close-modal");
 }
 
- 
+
 
 
 </script>

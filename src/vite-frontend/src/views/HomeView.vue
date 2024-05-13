@@ -20,20 +20,14 @@
               </p>
 
               <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <RouterLink
-                  to="/ordini"
-                  class="block w-full rounded bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-800 focus:outline-none focus:ring sm:w-auto"
-                  >Ordini</RouterLink
-                >
-                <RouterLink
-                  to="/boards"
-                  class="block w-full rounded px-12 py-3 text-sm font-medium text-blue-600 shadow hover:text-blue-700 bg-slate-300 hover:bg-slate-400 focus:outline-none focus:ring sm:w-auto"
-                  >Schede</RouterLink
-                >
-                <button
-                  @click="togleModalScan"
-                  class="block w-full rounded bg-green-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-green-800 focus:outline-none focus:ring sm:w-auto"
-                >
+                <RouterLink to="/ordini"
+                  class="block w-full rounded bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-800 focus:outline-none focus:ring sm:w-auto">
+                  Ordini</RouterLink>
+                <RouterLink to="/boards"
+                  class="block w-full rounded px-12 py-3 text-sm font-medium text-blue-600 shadow hover:text-blue-700 bg-slate-300 hover:bg-slate-400 focus:outline-none focus:ring sm:w-auto">
+                  Schede</RouterLink>
+                <button @click="togleModalScan"
+                  class="block w-full rounded bg-green-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-green-800 focus:outline-none focus:ring sm:w-auto">
                   QRcode Scan
                 </button>
               </div>
@@ -43,14 +37,17 @@
 
         <!-- Bacheca -->
         <section class="my-4 shadow-md p-4 rounded-md border">
-          <h1 class="text-md font-semibold sm:text-2xl my-5 text-blue-900">
-            Bacheca:
-            <span
-              class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"
-              >{{ annuncementsCount }}</span
-            >
-          </h1>
+          <div class="flex justify-between">
+            <h1 class="text-md font-semibold sm:text-2xl  text-blue-900">
+              Notifiche:
 
+            </h1>
+            <span
+              class="bg-blue-100 text-blue-900 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Totale
+              notifiche: {{ annuncementsCount }}</span>
+            <RouterLink to="/announcement-list/" class="text-sm font-medium hover:text-green-700 underline">Tutte le
+              notifiche</RouterLink>
+          </div>
           <hr class="my-5" />
           <div v-for="an in firstFiveAnnouncement">
             <Annuncement class="my-4" :annuncements="an" />
@@ -60,23 +57,19 @@
         <!-- Ultimi ordini -->
         <section class="my-4 shadow-md p-4 rounded-md border">
           <div class="flex justify-between">
-          <h1 class="text-md font-semibold sm:text-2xl  text-lime-600">
-            Ultimi 5 ordini:
-            
-          </h1>
-          <span
-              class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"
-              >Totale ordini: {{ ordersCount }}</span
-            >
-            <RouterLink
-                  to="/ordini"
-                  class="text-sm font-medium hover:text-green-700 underline"
-                  >Tutti gli ordini</RouterLink
-                >
-        </div>
+            <h1 class="text-md font-semibold sm:text-2xl  text-lime-600">
+              Ultimi 5 ordini:
+
+            </h1>
+            <span
+              class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Totale
+              ordini: {{ ordersCount }}</span>
+            <RouterLink to="/ordini" class="text-sm font-medium hover:text-green-700 underline">Tutti gli ordini
+            </RouterLink>
+          </div>
           <hr class="my-5" />
           <div v-for="o in firstFiveOrder">
-            <OrderCard class="my-4" :order="o"/>
+            <OrderCard class="my-4" :order="o" />
           </div>
         </section>
       </div>
@@ -145,10 +138,10 @@ async function callApi() {
       .then(
         axios.spread((data1, data2) => {
           // output of req.
-          orders.value.push(... data1.data);
-          announcement.value.push(... data2.data);
-         
-    
+          orders.value.push(...data1.data);
+          announcement.value.push(...data2.data);
+
+
           isLoading.value = true;
         })
       );

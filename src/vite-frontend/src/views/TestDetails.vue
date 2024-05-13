@@ -1,110 +1,77 @@
 <template>
   <main>
-
     <Info v-show="msg" :message="msg" :icon-type="iconType" />
-      <div class="w-full p-4">
+    <div class="w-full p-4">
+      <div class="" v-if="isLoading">
+        <router-link :to="{
+          name: 'order-details',
+          params: { order_number: tests.order_number },
+        }" class="hover:text-green-600">
+          <font-awesome-icon icon="arrow-left-long" /> Back to {{ tests.order_number }}
 
-
-
-
-        <div class="" v-if="isLoading">
-        <router-link
-                  :to="{
-                    name: 'order-details',
-                    params: { order_number:tests.order_number  },
-                  }"
-                  class="hover:text-green-600"
-                >
-                <font-awesome-icon icon="arrow-left-long" /> Back to {{ tests.order_number }}
-                
-                </router-link>
-                <hr class="my-4">
-        </div>
-
-
-
-        
-        <div class="flex justify-between my-4">
-          <div>
-            <h1 class="text-2xl mb-4 text-blue-900">
-              <font-awesome-icon icon="laptop-code" class="text-blue-950" />
-
-              Collaudo: {{ tests.order_number }}
-            </h1>
-            <p class="mt-2">Data: {{ useDateFormatted(tests.created_at) }}</p>
-          </div>
-
-          <div class="flex gap-2">
-            <button
-            v-if="store.isTestingUser"
-              class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
-              @click="togleTestForm"
-            >
-              Aggiorna
-            </button>
-           
-          </div>
-        </div>
-
-        <hr class="my-2" />
-        <div class="flex justify-between my-4">
-          <h1 class="text-md font-semibold">Status:</h1>
-          <h1 class="text-md">
-            <span
-              v-if="tests.status"
-              class="text-white bg-green-700 p-1 px-2 rounded-md"
-              >COMPLETATO</span
-            >
-            <span v-else class="text-white bg-red-700 p-1 px-2 rounded-md"
-              >DA COMPLETARE</span
-            >
+        </router-link>
+        <hr class="my-4">
+      </div>
+      <div class="flex justify-between my-4">
+        <div>
+          <h1 class="text-2xl mb-4 text-blue-900">
+            <font-awesome-icon icon="laptop-code" class="text-blue-950" />
+            Collaudo: {{ tests.order_number }}
           </h1>
+          <p class="mt-2">Data: {{ useDateFormatted(tests.created_at) }}</p>
         </div>
-        <hr class="my-2" />
-
-        <div class="flex flex-wrap justify-center mt-5">
-          <CardCheck :status="tests.ict" text="ICT" />
-          <CardCheck :status="tests.aoi" text="AOI" />
-          <CardCheck :status="tests.xray" text="X-Ray" />
-          <CardCheck :status="tests.functional" text="Funzionale" />
+        <div class="flex gap-2">
+          <button v-if="store.isTestingUser"
+            class="hover:bg-amber-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded"
+            @click="togleTestForm">
+            Aggiorna
+          </button>
         </div>
-
-        <div class="mt-4 bg-gray-100 p-4 rounded-md">
-          <h4 class="text-blue-800 text-sn font-semibold">Non conformita:</h4>
-          <hr class="my-1" />
-          <p>{{ tests.non_compliance }}</p>
-        </div>
-        <div class="mt-4 bg-gray-100 p-4 rounded-md">
-          <h4 class="text-blue-800 text-sm font-semibold">
-            Componenti mancanti:
-          </h4>
-          <hr class="my-1" />
-          <p>{{ tests.missing_component }}</p>
-        </div>
-        <div class="mt-4 bg-gray-100 p-4 rounded-md">
-          <h4 class="text-blue-800 text-sm font-semibold">Note:</h4>
-          <hr class="my-1" />
-          <p>{{ tests.note }}</p>
-        </div>
-        <div class="mt-4 bg-gray-100 p-4 rounded-md">
-          <h4 class="text-blue-800 text-sm font-semibold">Serial number:</h4>
-          <hr class="my-1" />
-          <p>{{ tests.serialnumber }}</p>
-        </div>
-        <div class="mt-4 bg-gray-100 p-4 rounded-md">
-          <h4 class="text-blue-800 text-sm font-semibold mb-4">Firma operatore:</h4>
-          <p class="">{{ tests.firma }}</p>
-          <hr>
-        </div>
-
+      </div>
+      <hr class="my-2" />
+      <div class="flex justify-between my-4">
+        <h1 class="text-md font-semibold">Status:</h1>
+        <h1 class="text-md">
+          <span v-if="tests.status" class="text-white bg-green-700 p-1 px-2 rounded-md">COMPLETATO</span>
+          <span v-else class="text-white bg-red-700 p-1 px-2 rounded-md">DA COMPLETARE</span>
+        </h1>
+      </div>
+      <hr class="my-2" />
+      <div class="flex flex-wrap justify-center mt-5">
+        <CardCheck :status="tests.ict" text="ICT" />
+        <CardCheck :status="tests.aoi" text="AOI" />
+        <CardCheck :status="tests.xray" text="X-Ray" />
+        <CardCheck :status="tests.functional" text="Funzionale" />
+      </div>
+      <div class="mt-4 bg-gray-100 p-4 rounded-md">
+        <h4 class="text-blue-800 text-sn font-semibold">Non conformita:</h4>
+        <hr class="my-1" />
+        <p>{{ tests.non_compliance }}</p>
+      </div>
+      <div class="mt-4 bg-gray-100 p-4 rounded-md">
+        <h4 class="text-blue-800 text-sm font-semibold">
+          Componenti mancanti:
+        </h4>
+        <hr class="my-1" />
+        <p>{{ tests.missing_component }}</p>
+      </div>
+      <div class="mt-4 bg-gray-100 p-4 rounded-md">
+        <h4 class="text-blue-800 text-sm font-semibold">Note:</h4>
+        <hr class="my-1" />
+        <p>{{ tests.note }}</p>
+      </div>
+      <div class="mt-4 bg-gray-100 p-4 rounded-md">
+        <h4 class="text-blue-800 text-sm font-semibold">Serial number:</h4>
+        <hr class="my-1" />
+        <p>{{ tests.serialnumber }}</p>
+      </div>
+      <div class="mt-4 bg-gray-100 p-4 rounded-md">
+        <h4 class="text-blue-800 text-sm font-semibold mb-4">Firma operatore:</h4>
+        <p class="">{{ tests.firma }}</p>
+        <hr>
+      </div>
     </div>
-    <TestForm
-      v-show="showForm"
-      @close-modal="togleTestForm"
-      @save-data="updateTest"
-      v-if="isLoading"
-      :tests="tests"
-    />
+    <TestForm v-show="showForm" @close-modal="togleTestForm" @save-data="updateTest" v-if="isLoading" :tests="tests" />
   </main>
 </template>
 <script setup>
@@ -113,7 +80,7 @@ import { axios } from "../common/api.service";
 import { ref, onMounted, computed } from "vue";
 import TestForm from "../components/TestForm.vue";
 import CardCheck from "../components/CardCheck.vue";
-import  Info from "../components/Info.vue"
+import Info from "../components/Info.vue"
 import { useDateFormatted } from "../use/useDateFormatted";
 import { useStoreUser } from "../stores/storeUsers";
 // access the `store`
@@ -149,15 +116,15 @@ function updateTest(value) {
   togleTestForm();
 
   if (typeof value === 'number') {
-      msg.value =  "Aggiornametno non riuscito"
-      iconType.value =  false
+    msg.value = "Aggiornametno non riuscito"
+    iconType.value = false
   }
-  else{
-  tests.value = value; 
-  msg.value =  "Aggiornametno avvenuto con successo"
-  iconType.value =  true
+  else {
+    tests.value = value;
+    msg.value = "Aggiornametno avvenuto con successo"
+    iconType.value = true
   }
-  
+
 
   setTimeout(() => msg.value = "", 5000)
 }
@@ -173,7 +140,7 @@ function togleTestForm() {
 const orderNumber = computed(() => {
 
   return tests.value.order_number
-  
+
 })
 
 // lifecycle hooks
