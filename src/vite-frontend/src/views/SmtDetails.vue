@@ -21,11 +21,13 @@
           <p class="mt-2">Ordine: {{ smt.order_number }}</p>
         </div>
         <div class="flex gap-2" v-if="isLoading">
-          <router-link v-if="store.isOfficeUser" :to="{ name: 'placement', params: { order_number: smt.order_number } }"
+          <router-link v-if="store.isSmtUser" :to="{ name: 'placement', params: { order_number: smt.order_number } }"
             class="hover:bg-blue-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded">
             Placement
           </router-link>
-          <router-link :to="{ name: 'upload_placement', params: { order_number: smt.order_number } }"
+          <router-link 
+          v-if="store.isOfficeUser"
+          :to="{ name: 'upload_placement', params: { order_number: smt.order_number } }"
             class="hover:bg-green-400 max-h-8 text-sm text-blue-950 font-semibold hover:text-white py-1 px-4 border hover:border-none border-blue-950 rounded">
             Upload placement
           </router-link>

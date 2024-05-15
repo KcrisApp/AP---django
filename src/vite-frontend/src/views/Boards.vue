@@ -17,7 +17,7 @@
             </div>
           </form>
         </div>
-        <button
+        <button v-if="store.permissionAccess"
           class="hover:bg-blue-500 text-blue-950 font-semibold hover:text-white py-1 px-6 border border-blue-950 rounded"
           @click="togleModal">
           <font-awesome-icon icon="folder-plus" /> Add
@@ -68,7 +68,7 @@
             <li v-for="p in pageCounter" :key="p.uuid">
               <a @click.prevent="setPage(p)"
                 class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{
-                p }}</a>
+                  p }}</a>
             </li>
             <li v-show="pageNumber < pageCounter - 1">
               <a @click.prevent="nextPage"

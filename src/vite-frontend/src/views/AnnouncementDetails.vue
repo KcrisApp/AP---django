@@ -5,7 +5,7 @@
       <div class="flex justify-between my-4 flex-wrap">
         <h1 class="text-2xl mb-2">
           <font-awesome-icon icon="hard-drive" class="text-blue-950" />
-          Bacheca
+          Notifiche
         </h1>
         <div v-if="store.permissionAccess" class="flex gap-2">
           <button

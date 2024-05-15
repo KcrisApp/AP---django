@@ -6,7 +6,7 @@
         <div class="flex justify-between gap-2 flex-wrap">
           <h1 class="text-2xl flex-1">
             <font-awesome-icon icon="hard-drive" class="text-blue-950" />
-            Comunicati
+            Notifiche
           </h1>
           <div class="flex-2">
             <div class="">

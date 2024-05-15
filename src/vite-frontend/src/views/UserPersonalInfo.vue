@@ -83,6 +83,8 @@
 
 import { ref, onMounted } from "vue";
 import { useStoreUser } from '../stores/storeUsers'
+import { useRoleFormatted } from '../use/useRoleFormatted'
+import { useDepartmentFormatted } from '../use/useDepartmentFormatted'
 
 // access the `store` 
 const store = useStoreUser()

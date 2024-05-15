@@ -76,12 +76,12 @@
                <a
                   class="flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
                   <font-awesome-icon icon="toolbox" class="text-lg" />
-                  <RouterLink to="/tools/" class="text-sm ml-2">Tools</RouterLink>
+                  <RouterLink to="/tools" class="text-sm ml-2">Tools</RouterLink>
                </a>
             </li>
             <li>
                <a @click="dropdownShow = !dropdownShow"
-                  class=" flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
+                  class="cursor-pointer flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900   dark:hover:bg-gray-700 group">
                   <font-awesome-icon icon="user-tie" />
                   <span class="text-sm ml-2">Administration</span>
                </a>
@@ -90,13 +90,13 @@
                   <li @click="hideSidebar">
                      <a
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                        <RouterLink to="/announcement-list/" class="text-sm ml-2">Notifiche</RouterLink>
+                        <RouterLink to="/announcement-list" class="text-sm ml-2">Notifiche</RouterLink>
                      </a>
                   </li>
                   <li @click="hideSidebar">
                      <a v-if="store.permissionAccess"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                        <RouterLink to="/users-list/" class="text-sm ml-2">Utenti</RouterLink>
+                        <RouterLink to="/users-list" class="text-sm ml-2">Utenti</RouterLink>
                      </a>
                   </li>
                   <li @click="dropdownShow = !dropdownShow">
@@ -111,7 +111,7 @@
                <a v-if="store.permissionAccess"
                   class="flex items-center p-2 text-blue-950 rounded-lg dark:text-white hover:bg-white hover:text-blue-900  dark:hover:bg-gray-700 group">
                   <font-awesome-icon icon="chart-pie" />
-                  <RouterLink to="/stats/" class="text-sm ml-2">Statistiche</RouterLink>
+                  <RouterLink to="/stats" class="text-sm ml-2">Statistiche</RouterLink>
                </a>
             </li>
             <hr class="h-px my-8 bg-slate-300 border-0 dark:bg-gray-700">

@@ -45,7 +45,7 @@
                 Ruolo
               </dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {{ user.company_role }}
+                {{ useRoleFormatted(user.company_role) }}
               </dd>
             </div>
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -53,7 +53,7 @@
                 Reparto
               </dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {{ user.department }}
+                {{ useDepartmentFormatted(user.department) }}
               </dd>
             </div>
             <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -81,10 +81,11 @@
 <script setup>
 
 
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import { userEndPoints } from "../common/endpoints";
 import { axios } from "../common/api.service";
-
+import { useRoleFormatted } from '../use/useRoleFormatted'
+import { useDepartmentFormatted } from '../use/useDepartmentFormatted'
 
 
 const props = defineProps({
