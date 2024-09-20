@@ -8,9 +8,9 @@
               <!-- <img src="http://127.0.0.1:8000/static/img/logo.png" alt="Mce logo"  width="150"> -->
 
               <h1 class="text-3xl font-extrabold sm:text-5xl text-gray-100">
-                Benvenuto sul portale
-                <strong class="font-extrabold  sm:block">
-                  Mce - AP
+                Benvenuto su 
+                <strong class="font-extrabold  sm:block text-blue-500">
+                Cloud Factory
                 </strong>
               </h1>
 

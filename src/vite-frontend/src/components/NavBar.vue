@@ -19,9 +19,9 @@
 
             <div class="flex justify-between">
                <li>
-                  <a target="_blank" href="https://mceschedeelettroniche.com/"
+                  <a target="_blank" 
                      class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                     <h1 class="text-2xl text-blue-900 font-bold">Mce S.r.l.</h1>
+                     <h1 class="text-2xl text-blue-900 font-bold">Cloud Factory</h1>
                   </a>
                </li>
                <li v-show="!sideBarHide" @click.prevent="hideSidebar">
