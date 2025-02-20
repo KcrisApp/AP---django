@@ -1,8 +1,21 @@
 # AP - Andamento produzione 
-A management system written in Django REST Framework and Vue.js for the production of electronic assemblies.
+Project Management Software for Electronic Assembly Production
 
-It allows you to enter a project with its related documentation, upload and manage a Bill of Materials (BOM), and organize all the information in production.
+This software, built using Django REST Framework and Vue.js, is designed to manage the production of electronic assemblies. It allows users to:
 
-For the backend, Django and DRF are used, authentication via sessions, and communication with the frontend via API calls.
+- Create projects and upload related documentation.
+- Upload and manage Bills of Materials (BOMs).
+- Organize all production-related information.
 
-For the frontend, management is entrusted to Vue.js.
+## Technical Details:
+
+- Backend: Developed using Django and Django REST Framework (DRF). Authentication is handled via sessions.
+- Frontend: Developed using Vue.js and Axios for making REST API calls to the backend.
+
+## Key Features:
+
+- Project creation and documentation management
+- BOM upload and management
+- Production information organization
+- Secure authentication using sessions
+- Modern and responsive user interface
