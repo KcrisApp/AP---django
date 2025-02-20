@@ -1,4 +1,4 @@
-# AP - Factory Cloud
+# Factory Cloud
 Project Management Software for Electronic Assembly Production
 
 This software, built using Django REST Framework and Vue.js, is designed to manage the production of electronic assemblies. It allows users to:
