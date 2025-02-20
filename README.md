@@ -1,6 +1,8 @@
 # Factory Cloud
 Project Management Software for Electronic Assembly Production
 
+<img width="662" alt="Immagine 2025-02-20 155330" src="https://github.com/user-attachments/assets/f55de0f8-00ca-489e-90e6-2bf99b2a5685" />
+
 This software, built using Django REST Framework and Vue.js, is designed to manage the production of electronic assemblies. It allows users to:
 
 - Create projects and upload related documentation.
@@ -20,4 +22,5 @@ This software, built using Django REST Framework and Vue.js, is designed to mana
 - Secure authentication using sessions
 - Modern and responsive user interface
 
-<img width="662" alt="Immagine 2025-02-20 155330" src="https://github.com/user-attachments/assets/f55de0f8-00ca-489e-90e6-2bf99b2a5685" />
+
+<img width="941" alt="Immagine 2025-02-20 160042" src="https://github.com/user-attachments/assets/d6328089-55a1-4331-ad92-b7d84d478fdb" />
