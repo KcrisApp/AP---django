@@ -19,3 +19,5 @@ This software, built using Django REST Framework and Vue.js, is designed to mana
 - Production information organization
 - Secure authentication using sessions
 - Modern and responsive user interface
+
+<img width="662" alt="Immagine 2025-02-20 155330" src="https://github.com/user-attachments/assets/f55de0f8-00ca-489e-90e6-2bf99b2a5685" />
